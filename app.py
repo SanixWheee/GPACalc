@@ -1,12 +1,22 @@
 from flask import Flask
 
-app = Flask(__name__)
+import auth
+import home
+import db
 
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+def create_app() -> Flask:
+    app = Flask(__name__)
+
+    with app.app_context():
+        auth.init_db()
+
+    app.teardown_appcontext(db.close_db)
+    app.register_blueprint(home.bp)
+    app.register_blueprint(auth.bp)
+
+    return app
 
 
 if __name__ == '__main__':
-    app.run()
+    create_app().run()
