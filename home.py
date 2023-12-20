@@ -1,8 +1,6 @@
 from typing import Any
 
-from flask import Blueprint, render_template, session, redirect, url_for
-
-
+from flask import Blueprint, redirect, render_template, session, url_for
 
 bp = Blueprint('home', __name__)
 

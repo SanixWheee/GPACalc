@@ -1,29 +1,19 @@
-import sqlite3
-import functools
-from typing import Any, Callable, ParamSpec
+from typing import Any
 
-from flask import Blueprint, flash, request, render_template, redirect, url_for, session
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import (
+    Blueprint,
+    flash,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
+from flask_login import login_required, login_user, logout_user
 
-from db import get_db
-
-
-P = ParamSpec('P')
-
+from app import db
+from models import User
 
 bp = Blueprint('auth', __name__)
-
-
-def init_db() -> None:
-    db = get_db()
-    db.execute(
-        '''
-        CREATE TABLE IF NOT EXISTS users (
-            username TEXT PRIMARY KEY,
-            password TEXT
-        )
-        '''
-    )
 
 
 @bp.route('/signup', methods=('GET', 'POST'))
@@ -34,18 +24,16 @@ def signup() -> Any:
         username = request.form['username']
         password = request.form['password']
 
-        db = get_db()
-
-        try:
-            db.execute(
-                '''
-                INSERT INTO users VALUES (?, ?)
-                ''',
-                (username, generate_password_hash(password))
-            )
-        except sqlite3.IntegrityError:
-            error = 'Username already exists'
+        if User.query.filter_by(username=username).first() is not None:
+            error = 'Username already taken'
         else:
+            user = User(username=username)
+            user.set_password(password)
+
+            db.session.add(user)
+            db.session.commit()
+
+            flash('Account successfully created')
             return redirect(url_for('auth.login'))
 
     return render_template('signup.html', error=error)
@@ -59,20 +47,12 @@ def login() -> Any:
         username = request.form['username']
         password = request.form['password']
 
-        db = get_db()
-        user = db.execute(
-            '''
-            SELECT * FROM users WHERE username = ?
-            ''',
-            (username,)
-        ).fetchone()
+        user = User.query.filter_by(username=username).first()
 
-        if user is None or not check_password_hash(user['password'], password):
+        if user is None or not user.check_password(password):
             error = 'Incorrect username or password'
         else:
-            session.clear()
-            session['username'] = username
-
+            login_user(user)
             flash('Successfully logged in')
             return redirect(url_for('dashboard'))
 
@@ -80,17 +60,8 @@ def login() -> Any:
 
 
 @bp.route('/logout')
+@login_required
 def logout() -> Any:
-    session.clear()
+    logout_user()
+    flash('You have been logged out')
     return redirect(url_for('home'))
-
-
-def login_required(view: Callable[P, Any]) -> Callable[P, Any]:
-    @functools.wraps(view)
-    def wrapped_view(*args: P.args, **kwargs: P.kwargs):
-        if session['username'] is None:
-            return redirect(url_for('auth.login'))
-
-        return view(*args, **kwargs)
-
-    return wrapped_view
