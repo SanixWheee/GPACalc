@@ -1,7 +1,14 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import db
+
+if TYPE_CHECKING:
+    from flask import Flask
 
 
 class User(UserMixin, db.Model):
@@ -14,3 +21,13 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password: str) -> bool:
         return check_password_hash(self.password, password)
+
+
+def init_db(app: Flask) -> None:
+    # by putting this function in the models.py file,
+    # it is ensured that all models have been loaded
+    # because then this function is imported
+    # all models above also are
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
