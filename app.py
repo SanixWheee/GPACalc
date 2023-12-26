@@ -17,11 +17,10 @@ def create_app() -> Flask:
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    import auth
-    import home
+    from routes import auth, home
 
-    app.register_blueprint(home.bp)
     app.register_blueprint(auth.bp)
+    app.register_blueprint(home.bp)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
