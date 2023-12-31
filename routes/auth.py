@@ -16,8 +16,8 @@ from models import User
 bp = Blueprint('auth', __name__)
 
 
-@bp.route('/signup', methods=('GET', 'POST'))
-def signup() -> Any:
+@bp.route('/register', methods=('GET', 'POST'))
+def register() -> Any:
     error = None
 
     if request.method == 'POST':
@@ -36,7 +36,7 @@ def signup() -> Any:
             flash('Account successfully created')
             return redirect(url_for('auth.login'))
 
-    return render_template('signup.html', error=error)
+    return render_template('register.html', error=error)
 
 
 @bp.route('/login', methods=('GET', 'POST'))

@@ -9,4 +9,4 @@ bp = Blueprint('home', __name__)
 def home() -> Any:
     if 'username' in session:
         return redirect(url_for('dashboard'))
-    return render_template('home.html')
+    return render_template('index.html')
