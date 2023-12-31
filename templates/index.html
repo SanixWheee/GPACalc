@@ -1,11 +1,10 @@
-    {% extends "base.html" %}
-    {% block content %}
-    <center>
-      <h1 style="font-size: 30px">GPA Calculator</h1>
-      <div style="font-size: 25px; background-color: grey; border-radius: 25px">
-        <a href="{{ url_for('auth.login') }}">
-          <button>Login/Signup</button>
-        </a>
-      </div>
-    </center>
-    {% endblock %}
+{% extends "base.html" %} {% block content %}
+<center>
+  <h1 style="font-size: 30px">GPA Calculator</h1>
+  <div style="font-size: 25px; background-color: grey; border-radius: 25px">
+    <a href="{{ url_for('auth.login') }}">
+      <button>Login/Signup</button>
+    </a>
+  </div>
+</center>
+{% endblock %}
