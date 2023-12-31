@@ -154,3 +154,6 @@ cython_debug/
 
 # PyCharm
 .idea/
+
+# Node.js modules to format html (prettier)
+node_modules/

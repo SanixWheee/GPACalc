@@ -1,23 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>GPACalc</title>
-        <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPACalc</title>
+    <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/> 
         <script type="module" defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
-    </head>
-    
-    <body>
-        <center>
-            <h1 style="font-size: 30px;">GPA Calculator</h1>
-            <div style = 'font-size: 25px; background-color: grey; border-radius: 25px;'>
-                <a href = "{{ url_for('auth.login') }}">
-                    <button >Login/Signup</button>
-                </a>
-            </div>
-        </center>
-        
-    </body>
+  </head>
+
+  <body>
+    <center>
+      <h1 style="font-size: 30px">GPA Calculator</h1>
+      <div style="font-size: 25px; background-color: grey; border-radius: 25px">
+        <a href="{{ url_for('auth.login') }}">
+          <button>Login/Signup</button>
+        </a>
+      </div>
+    </center>
+  </body>
 </html>
