@@ -23,6 +23,13 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
 
+class Class(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    grade_taken = db.Column(db.Integer, nullable=False)
+    received_grade = db.Column(db.String, nullable=False)
+
+
 def init_db(app: Flask) -> None:
     # by putting this function in the models.py file,
     # it is ensured that all models have been loaded
