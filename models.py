@@ -28,6 +28,7 @@ class Class(db.Model):
     name = db.Column(db.String, nullable=False)
     grade_taken = db.Column(db.Integer, nullable=False)
     received_grade = db.Column(db.String, nullable=False)
+    credits = db.Column(db.Float, nullable=False)
 
 
 def init_db(app: Flask) -> None:
