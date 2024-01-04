@@ -1,10 +1,19 @@
 from typing import Any
 
-from flask import Blueprint, redirect, render_template, session, url_for
+from flask import Blueprint, render_template
 
-bp = Blueprint("home", __name__)
+bp = Blueprint('home', __name__)
 
 
-@bp.route("/", methods=("GET",))
+@bp.route('/', methods=('GET',))
 def home() -> Any:
-    return render_template("index.html")
+    """
+    This is the main page
+
+    Methods
+    -------
+    GET /:
+        Render the template for index.html
+    """
+
+    return render_template('index.html')

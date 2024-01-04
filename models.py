@@ -12,18 +12,56 @@ if TYPE_CHECKING:
 
 
 class User(UserMixin, db.Model):
+    """
+    A model to represent a user
+
+    Attributes
+    ----------
+    id: int
+    username: str
+    password: str
+    """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
 
     def set_password(self, password: str) -> None:
+        """
+        Set a password for the user in a secure manner
+
+        Parameters
+        ----------
+        password: str
+        """
         self.password = generate_password_hash(password)
 
     def check_password(self, password: str) -> bool:
+        """
+        Check a password for the user by auto-converting it to the secure form
+
+        Parameters
+        ----------
+        password: str
+
+        Returns
+        -------
+        :class:`bool` representing whether the password parameter matches the attribute
+        """
         return check_password_hash(self.password, password)
 
 
 class Class(db.Model):
+    """
+    A model to represent a class taken
+
+    Attributes
+    ----------
+    id: int
+    name: str
+    grade_taken: int
+    received_grade: str
+    credits: float
+    """
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     grade_taken = db.Column(db.Integer, nullable=False)
