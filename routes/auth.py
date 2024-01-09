@@ -106,7 +106,7 @@ def login() -> Any:
         else:
             login_user(user)
             flash('Successfully logged in')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('dashboard.dashboard'))
 
     return render_template('login.html', error=error)
 
