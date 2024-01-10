@@ -60,6 +60,7 @@ class Class(db.Model):
     id: int
     user_id: int
     name: str
+    type: str
     grade_taken: int
     received_grade: str
     credits: float
@@ -68,6 +69,7 @@ class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     name = db.Column(db.String, nullable=False)
+    type = db.Column(db.String, nullable=False)
     grade_taken = db.Column(db.Integer, nullable=False)
     received_grade = db.Column(db.String, nullable=False)
     credits = db.Column(db.Float, nullable=False)
