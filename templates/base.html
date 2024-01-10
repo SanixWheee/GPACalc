@@ -4,9 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel = "stylesheet" href = "style.css">
   </head>
   <body>
-    {% if signed_in %} ... {% else %} ... {% endif %}
+    {% if current_user is not None and current_user.is_authenticated() %} 
+      <header>
+        <nav>
+          <ul class = "navLinks">
+            <li><a href = "#">Dashboard</a></li>
+            <li><a href = "#">How To Use</a></li>
+            <li><a href = "#">Logout</a></li>
+          </ul>ye
+        </nav>
+        <a class = "cta" href="#"><button>Test</button></a>
+      </header>
+    {% else %}
+    <header>
+      <nav>
+        <ul class = "navLinks">
+          <li><a href = "#">Dashbaord</a></li>
+          <li><a href = "#">How To Use</a></li>
+          <li><a href = "#">Login</a></li>
+        </ul>
+      </nav>
+      <a class = "cta" href="#"><button>Test</button></a>
+    </header>
+    {% endif %}
     <div id="content">{% block content %}{% endblock %}</div>
   </body>
 </html>
