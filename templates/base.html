@@ -18,6 +18,8 @@
         </nav>
         <a class = "cta" href="#"><button>Test</button></a>
       </header>
+
+
     {% else %}
     <header>
       <nav>
@@ -29,6 +31,10 @@
       </nav>
       <a class = "cta" href="#"><button>Test</button></a>
     </header>
+    {% endif %}
+
+    {% if error is defined %}
+    
     {% endif %}
     <div id="content">{% block content %}{% endblock %}</div>
   </body>
