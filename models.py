@@ -21,6 +21,7 @@ class User(UserMixin, db.Model):
     username: str
     password: str
     """
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
@@ -63,6 +64,7 @@ class Class(db.Model):
     received_grade: str
     credits: float
     """
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     name = db.Column(db.String, nullable=False)

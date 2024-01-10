@@ -2,7 +2,6 @@ from typing import Any, Sequence
 
 from flask import Blueprint, render_template
 from flask_login import current_user
-
 from reportlab.lib.pagesizes import LETTER
 from reportlab.pdfgen.canvas import Canvas
 
