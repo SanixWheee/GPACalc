@@ -1,13 +1,13 @@
 from typing import Any, Dict, List, Sequence
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, send_from_directory, current_app
 from flask_login import current_user, login_required
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
-from models import Class
+from models import Class, User
 
 bp = Blueprint('dashboard', __name__)
 
@@ -45,7 +45,7 @@ def calculate_weighted_gpa(classes: Sequence[Class]) -> float:
     ) / len(classes)
 
 
-def create_pdf(classes: List[Class], username: str) -> None:
+def create_pdf(classes: List[Class], user: User) -> None:
     """
     A method to create a report pdf from a list of classes and a username
 
@@ -58,12 +58,12 @@ def create_pdf(classes: List[Class], username: str) -> None:
     classes.sort(key=lambda c: (c.grade_taken, c.name))
 
     # the file name is their username + _report.pdf
-    doc = SimpleDocTemplate(f'{username}_report.pdf', pagesize=LETTER)
+    doc = SimpleDocTemplate(user.get_report_filepath(), pagesize=LETTER)
     styles = getSampleStyleSheet()
 
     heading_style = styles['Heading1']
     heading_style.alignment = 1
-    heading = Paragraph(f'{username}\'s GPA Report', heading_style)
+    heading = Paragraph(f'{user.username}\'s GPA Report', heading_style)
 
     # Populate a table with following columns
     # Grade Taken, Name, Received Grade, Credits, Unweighted GPA, Weighted GPA
@@ -141,9 +141,22 @@ def dashboard() -> Any:
 
     Methods
     -------
-    GET /:
+    GET /dashboard:
         Render the template for dashboard.html
     """
 
     classes = Class.query.filter_by(user_id=current_user.id).all()
     return render_template('dashboard.html', classes=classes)
+
+
+@bp.route('/dashboard/download', methods=('GET,'))
+def download_report() -> Any:
+    """
+    This page downloads the report pdf for a user
+
+    Methods
+    -------
+    GET dashboard/download:
+        Returns the pdf file
+    """
+    return send_from_directory(current_app.config['REPORT_DIR'], current_user.get_report_filepath())

@@ -50,6 +50,9 @@ class User(UserMixin, db.Model):
         """
         return check_password_hash(self.password, password)
 
+    def get_report_filepath(self) -> str:
+        return f'{self.username}_report.pdf'
+
 
 class Class(db.Model):
     """

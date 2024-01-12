@@ -18,6 +18,7 @@ def create_app() -> Flask:
         basedir, 'db.sqlite3'
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # saves memory
+    app.config['REPORT_DIR'] = './reports'
 
     # initialize the blueprints (sections of the website)
     from routes import auth, home
