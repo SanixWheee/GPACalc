@@ -127,8 +127,13 @@ def create_pdf(classes: List[Class], user: User) -> None:
     )
     table.setStyle(style)
 
-    unweighted_gpa = calculate_unweighted_gpa(classes)
-    weighted_gpa = calculate_weighted_gpa(classes)
+    # can't calculate GPA if they have no classes added
+    if classes:
+        unweighted_gpa = calculate_unweighted_gpa(classes)
+        weighted_gpa = calculate_weighted_gpa(classes)
+    else:
+        unweighted_gpa = 'Add classes first'
+        weighted_gpa = 'Add classes first'
 
     unweighted_gpa_paragraph_style = styles['Heading2']
     unweighted_gpa_paragraph_style.alignment = 1
