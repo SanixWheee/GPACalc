@@ -19,6 +19,7 @@
       </ul>
     </nav>
   </header>
+
   {% with messages = get_flashed_messages(with_categories=True) %}
   {% if messages %}
     <ul class=flashes>
@@ -27,11 +28,8 @@
     {% endfor %}
     </ul>
   {% endif %}
-{% endwith %}
+  {% endwith %}
 
-    {% if error is defined %}
-    
-    {% endif %}
     <div id="content">{% block content %}{% endblock %}</div>
   </body>
 </html>
