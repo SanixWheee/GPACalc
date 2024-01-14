@@ -1,6 +1,7 @@
-from typing import Any, Dict, List, Sequence
+import statistics
+from typing import Any, Dict, List, Sequence, Tuple
 
-from flask import Blueprint, render_template, send_from_directory, current_app
+from flask import Blueprint, current_app, render_template, send_from_directory
 from flask_login import current_user, login_required
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
@@ -23,9 +24,24 @@ letter_to_gpa: Dict[str, float] = {
 }
 
 
+def get_statistical_data(classes: Sequence[Class]) -> Tuple[List[float], List[float]]:
+    """
+    Get the data to pass into statistics.harmonic_mean(), this includes the actual data
+    and the data's weightages
+    """
+    data = []
+    weights = []  # a class with 2 credits is worth twice as much with a class with 1
+    # the weights account for this problem
+    for cls in classes:
+        data.append(letter_to_gpa[cls.received_grade])
+        weights.append(cls.credits)
+
+    return data, weights
+
+
 def calculate_unweighted_gpa(classes: Sequence[Class]) -> float:
     """Calculate unweighted GPA for a sequence of classes"""
-    return sum(letter_to_gpa[cls.received_grade] for cls in classes) / len(classes)
+    return statistics.harmonic_mean(*get_statistical_data(classes))
 
 
 def get_weighted_gpa_bonus(cls: Class) -> float:
@@ -39,10 +55,15 @@ def get_weighted_gpa_bonus(cls: Class) -> float:
 
 def calculate_weighted_gpa(classes: Sequence[Class]) -> float:
     """Calculate weighted GPA for a sequence of classes"""
-    return sum(
-        letter_to_gpa[cls.received_grade] + get_weighted_gpa_bonus(cls)
-        for cls in classes
-    ) / len(classes)
+    data, weights = get_statistical_data(classes)
+    return statistics.harmonic_mean(
+        map(lambda d: d[0] + get_weighted_gpa_bonus(d[1]), zip(data, classes)), weights
+        #             ^^^^                          ^^^^
+        #       the unweighted gpa value        the class object
+        #
+        # we need to zip the data with classes to recover the original class object and
+        # get the bonus from an honors or AP class
+    )
 
 
 def create_pdf(classes: List[Class], user: User) -> None:
@@ -159,4 +180,6 @@ def download_report() -> Any:
     GET dashboard/download:
         Returns the pdf file
     """
-    return send_from_directory(current_app.config['REPORT_DIR'], current_user.get_report_filepath())
+    return send_from_directory(
+        current_app.config['REPORT_DIR'], current_user.get_report_filepath()
+    )
