@@ -69,10 +69,13 @@ def register() -> Any:
             db.session.add(user)
             db.session.commit()
 
-            flash('Account successfully created')
+            flash('Account successfully created', 'info')
             return redirect(url_for('auth.login'))
 
-    return render_template('register.html', error=error)
+    if error:
+        flash(error, 'error')
+
+    return render_template('register.html')
 
 
 @bp.route('/login', methods=('GET', 'POST'))
@@ -105,10 +108,13 @@ def login() -> Any:
             error = 'Incorrect username or password'
         else:
             login_user(user)
-            flash('Successfully logged in')
+            flash('Successfully logged in', 'info')
             return redirect(url_for('dashboard.dashboard'))
 
-    return render_template('login.html', error=error)
+    if error:
+        flash(error, 'error')
+
+    return render_template('login.html')
 
 
 @bp.route('/logout')
