@@ -176,6 +176,7 @@ def dashboard() -> Any:
 
 
 @bp.route('/dashboard/download', methods=('GET,'))
+@login_required
 def download_report() -> Any:
     """
     This page downloads the report pdf for a user
