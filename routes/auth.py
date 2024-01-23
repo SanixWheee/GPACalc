@@ -131,4 +131,4 @@ def logout() -> Any:
 
     logout_user()
     flash('You have been logged out')
-    return redirect(url_for('home'))
+    return redirect(url_for('home.home'))

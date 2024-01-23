@@ -21,10 +21,11 @@ def create_app() -> Flask:
     app.config['REPORT_DIR'] = './reports'
 
     # initialize the blueprints (sections of the website)
-    from routes import auth, home
+    from routes import auth, dashboard, home
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(home.bp)
+    app.register_blueprint(dashboard.bp)
 
     # initialize the login handler
     login_manager = LoginManager()
