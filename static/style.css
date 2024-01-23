@@ -51,3 +51,54 @@ button {
 button:hover {
     background-color: rgba(0, 136, 169, 0.8);
 }
+
+error {
+    background-color: rgba(239, 11, 11, 0.8);
+}
+
+information {
+    background-color: rgba(47, 237, 9, 0.8);
+}
+
+/* #9thGrade {
+    width:25%;
+    float: left;
+}
+#10thGrade {
+    width:25%;
+    margin: 0 auto;
+}
+#11thGrade {
+    width:25%;
+    margin: 0 auto;
+}
+#12thGrade {
+    width:25%;
+    float: right;
+} */
+
+#gradeFormsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* #9thGrade{
+    background-color: #0088a9;
+    width: 25%;
+    margin: 0 10px; 
+}
+#10thGrade{
+    background-color: antiquewhite;
+    width: 25%;
+    margin: 0 10px; 
+}
+#11thGrade{
+    background-color: yellowgreen;
+    width: 25%;
+    margin: 0 10px; 
+}
+#12thGrade {
+    background-color: violet;
+    width: 25%;
+    margin: 0 10px; 
+} */
