@@ -13,6 +13,7 @@ For the actual website, the following python libraries can be found here and in 
 Flask>=3.0
 Flask-SQLAlchemy>=3.0
 Flask-Login>=0.6
+reportlab>=4.0
 ```
 
 For formatting Python, the libraries [black](https://pypi.org/project/black/) and [isort](https://pypi.org/project/isort/) are used.
