@@ -12,33 +12,35 @@
     document.getElementById("addClass").style.display = "none";
   }
 </script>
-<table>
-  <tr>
-    <th>9th Grade</th>
-    <th>10th Grade</th>
-    <th>11th Grade</th>
-    <th>12th Grade</th>
-  </tr>
-  {% for row in classes %}
-  <tr>
-    {% for cls in row %}
-    <td>
-      {% if cls %}
-      <p>{{ cls.name }}</p>
-      <p>{{ cls.received_grade }}</p>
-      {% endif %}
-    </td>
-    {% endfor %}
-  </tr>
-  {% endfor %}
-  <tr>
-    <td><button id="9" class="button" onclick="openForm(9)">+</button></td>
-    <td><button id="10" class="button" onclick="openForm(10)">+</button></td>
-    <td><button id="11" class="button" onclick="openForm(11)">+</button></td>
-    <td><button id="12" class="button" onclick="openForm(12)">+</button></td>
-  </tr>
-</table>
 
+<div class="table">
+  <table>
+    <tr>
+      <th>9th Grade</th>
+      <th>10th Grade</th>
+      <th>11th Grade</th>
+      <th>12th Grade</th>
+    </tr>
+    {% for row in classes %}
+    <tr>
+      {% for cls in row %}
+      <td>
+        {% if cls %}
+        <p>{{ cls.name }}</p>
+        <p>{{ cls.received_grade }}</p>
+        {% endif %}
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    <tr>
+      <td><button id="9" class="button" onclick="openForm(9)">+</button></td>
+      <td><button id="10" class="button" onclick="openForm(10)">+</button></td>
+      <td><button id="11" class="button" onclick="openForm(11)">+</button></td>
+      <td><button id="12" class="button" onclick="openForm(12)">+</button></td>
+    </tr>
+  </table>
+</div>
 <div class="form" id="addClass" style="display: none">
   <form action="{{ url_for('dashboard.dashboard') }}" method="POST">
     <label for="name"><b>Grade</b></label>
@@ -49,7 +51,7 @@
 
     <label for="type"><b>Class Type</b></label>
     <select name="type" id="type">
-      <option value="Normal">Normal</option>
+      <option value="">Normal</option>
       <option value="Honors">Honors</option>
       <option value="AP">AP</option>
     </select>
@@ -80,4 +82,13 @@
     </button>
   </form>
 </div>
-{% endblock %}
+
+{% if has_classes %}
+<div class="reports">
+  <h3>Unweighted GPA: {{ unweighted_gpa }}</h3>
+  <h3>Weighted GPA: {{ weighted_gpa }}</h3>
+  <!-- prettier-ignore -->
+  <button onClick="location.href = '{{ url_for('dashboard.download_report') }}'"
+    type="button">Download PDF</button>
+</div>
+{% endif %} {% endblock %}

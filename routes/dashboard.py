@@ -82,7 +82,10 @@ def create_pdf(classes: List[Class], user: User) -> None:
     classes.sort(key=lambda c: (c.grade_taken, c.name))
 
     # the file name is their username + _report.pdf
-    doc = SimpleDocTemplate(user.get_report_filepath(), pagesize=LETTER)
+    doc = SimpleDocTemplate(
+        f'{current_app.config["REPORT_DIR"]}/{user.get_report_filepath()}',
+        pagesize=LETTER,
+    )
     styles = getSampleStyleSheet()
 
     heading_style = styles['Heading1']
@@ -103,7 +106,7 @@ def create_pdf(classes: List[Class], user: User) -> None:
     ] + [
         (
             str(cls.grade_taken),
-            f'{cls.type} {cls.name}',
+            f'{cls.type} {cls.name}'.strip(),  # no honors or AP leaves an empty space at the start
             cls.received_grade,
             str(cls.credits),
             letter_to_gpa[cls.received_grade],
@@ -174,7 +177,6 @@ def dashboard() -> Any:
         Render the template for dashboard.html
     """
     if request.method == 'POST':
-        print(request.form)
         name = request.form['name']
         type = request.form['type']
         grade_taken = int(request.form['grade_taken'])
@@ -193,7 +195,18 @@ def dashboard() -> Any:
         db.session.commit()
 
     classes = Class.query.filter_by(user_id=current_user.id).all()
-    threading.Thread(target=create_pdf, args=(classes, current_user)).start()
+
+    # only pass in the gpa and create a pdf if the user actually has classes
+    gpa_kwargs = {'has_classes': False}
+    if classes:
+        create_pdf(classes, current_user)
+
+        # convert the GPA to 2 decimals
+        gpa_kwargs = {
+            'unweighted_gpa': f'{calculate_unweighted_gpa(classes):.2f}',
+            'weighted_gpa': f'{calculate_unweighted_gpa(classes):.2f}',
+            'has_classes': True,
+        }
 
     # html tables only support creation by row so we must convert our data
     # to fit the table spec
@@ -207,7 +220,7 @@ def dashboard() -> Any:
     for grade in class_table:
         grade.extend([None] * (max_length - len(grade)))
 
-    return render_template('dashboard.html', classes=class_table)
+    return render_template('dashboard.html', classes=class_table, **gpa_kwargs)
 
 
 @bp.route('/dashboard/download', methods=('GET',))

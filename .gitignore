@@ -157,3 +157,6 @@ cython_debug/
 
 # Node.js modules to format html (prettier)
 node_modules/
+
+# Ignore user PDF reports
+/reports
