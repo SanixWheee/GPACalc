@@ -222,65 +222,49 @@ input[type = submit] {
   border: 5px solid #3B8D61;
 }
 
-/*
+.table {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  margin-top: 20px;
+}
+
+
 table td, th {
   border: 3px solid #3B8D61;
   color: #ddd;
 }
 
-
-.tableContent {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  font-family: 'Montserrat', sans-serif;
+/* CSS for table headers */
+.tableHeader {
+  background-color: #3B8D61; /* Header background color */
+  color: #fff; /* Header text color */
   text-align: center;
-  color: #ddd;
+  padding: 10px;
+  border: 1px solid #ddd; /* Border color */
+  border-collapse: collapse;
 }
-*/
-  .table {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    margin-top: 20px;
-  }
 
+/* CSS for table cells */
+.tableContent {
+  text-align: center;
+  padding: 1px;
+}
 
-  table td, th {
-    border: 3px solid #3B8D61;
-    color: #ddd;
-  }
+/* CSS for add button */
+.addButton button {
+  padding: 5px 10px;
+  background-color: #165751; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif; /* Font family */
+}
 
-  /* CSS for table headers */
-  .tableHeader {
-    background-color: #3B8D61; /* Header background color */
-    color: #fff; /* Header text color */
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #ddd; /* Border color */
-    border-collapse: collapse;
-  }
-
-  /* CSS for table cells */
-  .tableContent {
-    text-align: center;
-    padding: 1px;
-  }
-
-  /* CSS for add button */
-  .addButton button {
-    padding: 5px 10px;
-    background-color: #165751; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif; /* Font family */
-  }
-
-  /* CSS for add button hover */
-  .addButton button:hover {
-    background-color: #3B8D61; /* Hover background color */
-  }
+/* CSS for add button hover */
+.addButton button:hover {
+  background-color: #3B8D61; /* Hover background color */
+}
 .gradeForm {
   display: flex;
   align-content: center;
