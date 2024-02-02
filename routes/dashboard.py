@@ -1,8 +1,7 @@
 import statistics
-import threading
 from typing import Any, Dict, List, Sequence, Tuple
 
-from flask import Blueprint, current_app, render_template, request, send_from_directory
+from flask import Blueprint, current_app, render_template, request, send_from_directory, flash
 from flask_login import current_user, login_required
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
@@ -181,18 +180,21 @@ def dashboard() -> Any:
         type = request.form['type']
         grade_taken = int(request.form['grade_taken'])
         received_grade = request.form['received_grade']
-        credits = float(request.form['credits'])
-
-        cls = Class(
-            user_id=current_user.id,
-            name=name,
-            type=type,
-            grade_taken=grade_taken,
-            received_grade=received_grade,
-            credits=credits,
-        )
-        db.session.add(cls)
-        db.session.commit()
+        try:
+            credits = float(request.form['credits'])
+        except ValueError:
+            flash('Invalid credits value', 'error')
+        else:
+            cls = Class(
+                user_id=current_user.id,
+                name=name,
+                type=type,
+                grade_taken=grade_taken,
+                received_grade=received_grade,
+                credits=credits,
+            )
+            db.session.add(cls)
+            db.session.commit()
 
     classes = Class.query.filter_by(user_id=current_user.id).all()
 
