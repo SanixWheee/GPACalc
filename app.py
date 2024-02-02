@@ -8,6 +8,13 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
+def init_report_dir(app: Flask) -> None:
+    if not os.path.exists('/reports'):
+        os.mkdir('/reports')
+
+    app.config['REPORT_DIR'] = '/reports'
+
+
 def create_app() -> Flask:
     basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -18,7 +25,7 @@ def create_app() -> Flask:
         basedir, 'db.sqlite3'
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # saves memory
-    app.config['REPORT_DIR'] = './reports'
+    init_report_dir(app)
 
     # initialize the blueprints (sections of the website)
     from routes import auth, dashboard, home
