@@ -1,34 +1,44 @@
+<!-- base.html allows us to make a consistent theme across each page on the website, giving each page a heading bar and a bottom bar, as well as a background color -->
+
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       type="text/css"
       href="{{url_for('static', filename='style.css')}}"
     />
-    >
   </head>
   <body>
-    <header>
-      <nav>
-        <ul class="navLinks">
+    <!-- Div for the top navigation bar -->
+    <div class = "background">
+        <div class="navBar">
           <!-- prettier-ignore -->
-          <li><a href = "{{ url_for('home.home') + '#help' }}">How To Use</a></li>
-          {% if current_user and current_user.is_authenticated %}
-          <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-          <li><a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a></li>
+          <a style = "float:left; font-family: 'Honk', system-ui; font-size: 30px;"  href = "{{ url_for('home.home') + '#index'}}"">GPAWIZARD</a>
+          <!-- <a href = "{{ url_for('home.home') + '#help' }}">How To Use</a> -->
+          <a href = "#helpScreen">How To Use</a>
+          {% if current_user and current_user.is_authenticated %} 
+          <!-- These buttons only show up if the user is logged in -->
+          <a href="{{ url_for('auth.logout') }}">Logout</a>
+          <a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
           {% else %}
-          <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+          <!-- This button only shows up if the user is not logged in -->
+          <a href="{{ url_for('auth.login') }}">Login/Signup</a>
           {% endif %}
-        </ul>
-      </nav>
-    </header>
-
-    {% with messages = get_flashed_messages(with_categories=True) %} {% if
-    messages %}
+        </div>
+      </div>
+      <!-- Div for the bottom nav bar -->
+      <div class = "bottomBar">
+          <p class = "mainCreators">By Kaushal Dabbiru and Tejas Panja</p>
+      </div>
+  
+    {% with messages = get_flashed_messages(with_categories=True) %} {% if messages %}
     <ul class="flashes">
       {% for category, message in messages %}
       <li class="{{ category }}">{{ message }}</li>

@@ -16,32 +16,32 @@
 <div class="table">
   <table>
     <tr>
-      <th>9th Grade</th>
-      <th>10th Grade</th>
-      <th>11th Grade</th>
-      <th>12th Grade</th>
+      <th class = 'tableHeader'>9th Grade</th>
+      <th class = 'tableHeader'>10th Grade</th>
+      <th class = 'tableHeader'>11th Grade</th>
+      <th class = 'tableHeader'>12th Grade</th>
     </tr>
     {% for row in classes %}
     <tr>
       {% for cls in row %}
       <td>
         {% if cls %}
-        <p>{{ cls.name }}</p>
-        <p>{{ cls.received_grade }}</p>
+        <p class = "tableContent">{{ cls.name }}</p>
+        <p class = "tableContent">{{ cls.received_grade }}</p>
         {% endif %}
       </td>
       {% endfor %}
     </tr>
     {% endfor %}
     <tr>
-      <td><button id="9" class="button" onclick="openForm(9)">+</button></td>
-      <td><button id="10" class="button" onclick="openForm(10)">+</button></td>
-      <td><button id="11" class="button" onclick="openForm(11)">+</button></td>
-      <td><button id="12" class="button" onclick="openForm(12)">+</button></td>
+      <td class = "addButton"><button id="9" class="button" onclick="openForm(9)">+</button></td>
+      <td class = "addButton"><button id="10" class="button" onclick="openForm(10)">+</button></td>
+      <td class = "addButton"><button id="11" class="button" onclick="openForm(11)">+</button></td>
+      <td class = "addButton"><button id="12" class="button" onclick="openForm(12)">+</button></td>
     </tr>
   </table>
 </div>
-<div class="form" id="addClass" style="display: none">
+<div class="gradeForm" id="addClass" style="display: none">
   <form action="{{ url_for('dashboard.dashboard') }}" method="POST">
     <label for="name"><b>Grade</b></label>
     <input id="gradeHeading" type="text" name="grade_taken" readonly />
@@ -85,10 +85,10 @@
 
 {% if has_classes %}
 <div class="reports">
-  <h3>Unweighted GPA: {{ unweighted_gpa }}</h3>
-  <h3>Weighted GPA: {{ weighted_gpa }}</h3>
+  <h3 class = 'gpaReport'>Unweighted GPA: {{ unweighted_gpa }}</h3>
+  <h3 class = 'gpaReport'>Weighted GPA: {{ weighted_gpa }}</h3>
   <!-- prettier-ignore -->
-  <button onClick="location.href = '{{ url_for('dashboard.download_report') }}'"
+  <button class = "pdfButton" onClick = "location.href = '{{ url_for('dashboard.download_report') }}'"
     type="button">Download PDF</button>
 </div>
 {% endif %} {% endblock %}

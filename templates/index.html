@@ -1,1 +1,23 @@
-{% extends "base.html" %} {% block content %} {% endblock %}
+<!-- Main page / Help page -->
+
+{% extends "base.html" %} 
+{% block content %} 
+<main class = "mainContainer">
+    <!-- Creates the div on the left side for the title and the summary-->
+    <div class = "mainScreen">
+        <p class = "mainTitle"><b>GPA Wizard</b></p>
+        <p class = "mainText">A quick and easy way to calculate your GPA in seconds!</p>
+    </div>
+    <!-- Creates the div on the right side with the help part of the page -->
+    <div class = "helpScreen" id = 'helpScreen'>
+        <h1 class = "helpTitle">How To Use:</h1>
+        <p class = "steps">Step 1: Create an account and login</p>
+        <p class = "steps">Step 2: Go to your dashboard</p>
+        <p class = "steps">Step 3: Press the '+' on the respective grade to add a class taken that year</p>
+        <p class = "steps">Step 4: fill out the form and press 'add class'</p>
+        <p class = "steps">Step 5: Repeat steps 3-4 until you have put all the classes you want</p>
+        <p class = "steps">Step 6: Press 'Download PDF' to download your GPA table</p>
+    </div>
+</main>
+
+{% endblock %}

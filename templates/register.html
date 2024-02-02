@@ -1,8 +1,8 @@
 {% extends "base.html" %} {% block content %}
-<h1 align="center" style="font-size: 30px">Register</h1>
-
+<h1 class = "title">Register</h1>
+<div class = "loginBox">
 <form action="{{ url_for('auth.register') }}" method="POST" class="register">
-  <div>
+  <div class = "userLogin">
     <label for="username">Username:</label>
     <label for="username"></label
     ><input
@@ -14,7 +14,7 @@
     />
   </div>
   <br />
-  <div>
+  <div class = "passLogin">
     <label for="password">Password:</label>
     <input
       type="password"
@@ -27,9 +27,8 @@
   <br />
   <div>
     <input type="submit" name="submit" value="Register" />
-    <a href="{{ url_for('auth.login') }}"
-      >Already have an Account? Log in Here</a
-    >
+    <a class = "registerButton" href="{{ url_for('auth.login') }}">Already have an Account? Log in Here.</a>
   </div>
 </form>
+</div>
 {% endblock %}
