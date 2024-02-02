@@ -8,7 +8,7 @@ body {
   background: #114454;
 }
 
-/* Add a black background color to the top navigation */
+
 .navBar {
     background-color: #165751;
     overflow: hidden;
@@ -16,33 +16,33 @@ body {
     font-family: 'Montserrat', sans-serif;
   }
   
-  /* Style the links inside the navigation bar */
-  .navBar a {
-    float: right;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    padding-top: 15px;
-    text-decoration: none;
-    font-size: 20px;
-  }
-  
-  /* Change the color of links on hover */
-  .navBar a:hover {
-    background-color: #ddd;
-    color: #165751;
-  }
-  
-  /* Add a color to the active/current link */
-  .navBar a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
+/* Style the links inside the navigation bar */
+.navBar a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  padding-top: 15px;
+  text-decoration: none;
+  font-size: 20px;
+}
 
-  .logo {
-    float: left;
-    font-family: 'Honk', system-ui;;
-  }
+/* Change the color of links on hover */
+.navBar a:hover {
+  background-color: #ddd;
+  color: #165751;
+}
+
+/* Add a color to the active/current link */
+.navBar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.logo {
+  float: left;
+  font-family: 'Honk', system-ui;;
+}
 
   /* Creates a box for the login form to go on */
 .loginBox {
@@ -98,15 +98,36 @@ input[type = submit] {
 }
 
 
-error {
-    background-color: rgba(239, 11, 11, 0.8);
+.flashes {
+  text-align: center
 }
 
-information {
-    background-color: rgba(47, 237, 9, 0.8);
+
+.error {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
 }
 
-/* Allows the  */
+.info {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  background-color: #d1ecf1;
+  color: #0c5460;
+  padding: 10px;
+  border: 1px solid #bee5eb;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+}
+
+
 #gradeFormsContainer {
     display: flex;
     justify-content: space-between;
@@ -197,14 +218,69 @@ information {
   border-radius: 25px;
   margin: auto;
   margin-top: 10px;
+  border-collapse: collapse;
+  border: 5px solid #3B8D61;
 }
 
-.tableHeader {
-  border: 5px solid #3B8D61;
-  border-radius: 25px;
+/*
+table td, th {
+  border: 3px solid #3B8D61;
   color: #ddd;
 }
 
+
+.tableContent {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  color: #ddd;
+}
+*/
+  .table {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+
+  table td, th {
+    border: 3px solid #3B8D61;
+    color: #ddd;
+  }
+
+  /* CSS for table headers */
+  .tableHeader {
+    background-color: #3B8D61; /* Header background color */
+    color: #fff; /* Header text color */
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd; /* Border color */
+    border-collapse: collapse;
+  }
+
+  /* CSS for table cells */
+  .tableContent {
+    text-align: center;
+    padding: 1px;
+  }
+
+  /* CSS for add button */
+  .addButton button {
+    padding: 5px 10px;
+    background-color: #165751; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif; /* Font family */
+  }
+
+  /* CSS for add button hover */
+  .addButton button:hover {
+    background-color: #3B8D61; /* Hover background color */
+  }
 .gradeForm {
   display: flex;
   align-content: center;
@@ -232,11 +308,52 @@ information {
   font-family: 'Montserrat', sans-serif;
 }
 
-.tableContent {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  color: #ddd;
-}
+
+  /* CSS for the popup form */
+  .gradeForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #18637B; /* Background color */
+    color: #ddd; /* Text color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    font-family: 'Montserrat', sans-serif; /* Font family */
+  }
+
+  /* CSS for form elements */
+  .gradeForm label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .gradeForm input,
+  .gradeForm select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #3B8D61; /* Border color */
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .gradeForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #165751; /* Button background color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif; /* Font family */
+  }
+
+  .gradeForm button.buttonCancel {
+    background-color: #dc3545; /* Cancel button background color */
+    margin-top: 10px;
+  }
