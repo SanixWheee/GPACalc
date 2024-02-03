@@ -20,9 +20,8 @@
     <div class = "background">
         <div class="navBar">
           <!-- prettier-ignore -->
-          <a style = "float:left; font-family: 'Honk', system-ui; font-size: 30px;"  href = "{{ url_for('home.home') + '#index'}}"">GPAWIZARD</a>
-          <!-- <a href = "{{ url_for('home.home') + '#help' }}">How To Use</a> -->
-          <a href = "#helpScreen">How To Use</a>
+          <a style = "float:left; font-family: 'Honk', system-ui; font-size: 30px;"  href = "{{ url_for('home.home') + '#mainScreen'}}"">GPAWIZARD</a>
+          <a href = "{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
           {% if current_user and current_user.is_authenticated %} 
           <!-- These buttons only show up if the user is logged in -->
           <a href="{{ url_for('auth.logout') }}">Logout</a>
