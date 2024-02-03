@@ -20,7 +20,7 @@
     <div class = "background">
         <div class="navBar">
           <!-- prettier-ignore -->
-          <a style = "float:left; font-family: 'Honk', system-ui; font-size: 30px;"  href = "{{ url_for('home.home') + '#mainScreen'}}"">GPAWIZARD</a>
+          <a style = "float:left; font-family: 'Honk', system-ui; font-size: 30px;"  href = "{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
           <a href = "{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
           {% if current_user and current_user.is_authenticated %} 
           <!-- These buttons only show up if the user is logged in -->
