@@ -24,12 +24,12 @@
     {% for row in classes %}
     <tr>
       {% for cls in row %}
-      <td>
         {% if cls %}
-        <p class = "tableContent">{{ cls.name }}</p>
-        <p class = "tableContent">{{ cls.received_grade }}</p>
-        {% endif %}
-      </td>
+          <td>
+            <h3 class = "tableContent">{{ cls.name }}</h3>
+            <p class = "tableContent">{{ cls.received_grade }}</p>
+          </td>
+          {% endif %}
       {% endfor %}
     </tr>
     {% endfor %}
