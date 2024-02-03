@@ -3,12 +3,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -17,27 +20,28 @@
   </head>
   <body>
     <!-- Div for the top navigation bar -->
-    <div class = "background">
-        <div class="navBar">
-          <!-- prettier-ignore -->
-          <a style = "float:left; font-family: 'Honk', system-ui; font-size: 30px;"  href = "{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
-          <a href = "{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
-          {% if current_user and current_user.is_authenticated %} 
-          <!-- These buttons only show up if the user is logged in -->
-          <a href="{{ url_for('auth.logout') }}">Logout</a>
-          <a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
-          {% else %}
-          <!-- This button only shows up if the user is not logged in -->
-          <a href="{{ url_for('auth.login') }}">Login/Signup</a>
-          {% endif %}
-        </div>
+    <div class="background">
+      <div class="navBar">
+        <!-- prettier-ignore -->
+        <a style = "float:left; font-family: 'Honk', system-ui; font-size: 30px;"  href = "{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
+        <a href="{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
+        {% if current_user and current_user.is_authenticated %}
+        <!-- These buttons only show up if the user is logged in -->
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+        <a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
+        {% else %}
+        <!-- This button only shows up if the user is not logged in -->
+        <a href="{{ url_for('auth.login') }}">Login/Signup</a>
+        {% endif %}
       </div>
-      <!-- Div for the bottom nav bar -->
-      <div class = "bottomBar">
-          <p class = "mainCreators">By Kaushal Dabbiru and Tejas Panja</p>
-      </div>
-  
-    {% with messages = get_flashed_messages(with_categories=True) %} {% if messages %}
+    </div>
+    <!-- Div for the bottom nav bar -->
+    <div class="bottomBar">
+      <p class="mainCreators">By Kaushal Dabbiru and Tejas Panja</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=True) %} {% if
+    messages %}
     <ul class="flashes">
       {% for category, message in messages %}
       <li class="{{ category }}">{{ message }}</li>

@@ -2,13 +2,13 @@
 
 {% extends "base.html" %} {% block content %}
 <!-- Title for the page -->
-<h1 class = "title">Login</h1>
+<h1 class="title">Login</h1>
 <!-- Div for the box that the form sits on -->
-<div class = "loginBox">
+<div class="loginBox">
   <!-- Form that sends an action to auth.login to check if the username and password exist within the database using the POST method -->
   <form action="{{ url_for('auth.login') }}" method="POST" class="login">
     <!-- The class for the username, contains the Username label and the text box for inputting it -->
-    <div class = "userLogin">
+    <div class="userLogin">
       <label for="username">Username:</label>
       <input
         type="text"
@@ -20,7 +20,7 @@
     </div>
     <br />
     <!-- The class for the password, contains the Password label and the text box for inputting it -->
-    <div class = "passLogin">
+    <div class="passLogin">
       <label for="password">Password:</label>
       <input
         type="password"
@@ -30,12 +30,14 @@
         required
       />
     </div>
-    <br/>
+    <br />
     <div>
       <!-- Submit button -->
-      <input type="submit" name="submit" value="Login"/>
+      <input type="submit" name="submit" value="Login" />
       <!-- Link to swap to the register page -->
-      <a class = "registerButton" href="{{ url_for( 'auth.register') }}">No Account? Register Here.</a>
+      <a class="registerButton" href="{{ url_for( 'auth.register') }}"
+        >No Account? Register Here.</a
+      >
     </div>
   </form>
 </div>
