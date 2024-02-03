@@ -23,12 +23,14 @@
     </tr>
     {% for row in classes %}
     <tr>
-      {% for cls in row %} {% if cls %}
+      {% for cls in row %}
       <td>
-        <h3 class="tableContent">{{ cls.name }}</h3>
-        <p class="tableContent">{{ cls.received_grade }}</p>
+          {% if cls %}
+            <h3 class="tableContent">{{ cls.name }}</h3>
+            <p class="tableContent">{{ cls.received_grade }}</p>
+          {% endif %}
       </td>
-      {% endif %} {% endfor %}
+      {% endfor %}
     </tr>
     {% endfor %}
     <tr>
