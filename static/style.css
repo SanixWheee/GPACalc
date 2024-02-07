@@ -14,7 +14,7 @@ body {
     overflow: hidden;
     align-items: center;
     font-family: 'Montserrat', sans-serif;
-  }
+}
   
 /* Style the links inside the navigation bar */
 .navBar a {
@@ -139,7 +139,6 @@ input[type = submit] {
   background-color: #18637B;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-
 }
 
 .helpScreen {
@@ -189,13 +188,16 @@ input[type = submit] {
 
 /* Adds a bottom bar to every page for the copyright information */
 .bottomBar {
-  padding: 10px 14px;
-  background-color: #94BF6E;
-  overflow: hidden;
   position: fixed;
-  bottom: 0%;
+  bottom: 0;
   width: 97%;
+  background-color: #94BF6E;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  padding: 5px 14px;
+  overflow: hidden;
 }
+
 
 .mainCreators {
   font-family: 'Montserrat', sans-serif;
