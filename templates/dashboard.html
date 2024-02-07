@@ -28,6 +28,10 @@
           {% if cls %}
             <h3 class="tableContent">{{ cls.name }}</h3>
             <p class="tableContent">{{ cls.received_grade }}</p>
+
+            <form action="/dashboard/delete_class/{{ cls.id }}" method="GET">
+                <input id="deleteClass" type="submit" value="Remove">
+            </form>
           {% endif %}
       </td>
       {% endfor %}

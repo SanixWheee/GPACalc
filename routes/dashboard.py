@@ -1,7 +1,7 @@
 import statistics
 from typing import Any, Dict, List, Sequence, Tuple
 
-from flask import Blueprint, current_app, render_template, request, send_from_directory, flash
+from flask import Blueprint, current_app, render_template, request, send_from_directory, flash, redirect, url_for
 from flask_login import current_user, login_required
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
@@ -221,12 +221,12 @@ def dashboard() -> Any:
     max_length = max(map(len, class_table_rows))
     for grade in class_table_rows:
         grade.extend([None] * (max_length - len(grade)))
-    print(class_table_rows)
+
     # convert the table from rows to columns
     class_table = []
     for a, b, c, d in zip(class_table_rows[0], class_table_rows[1], class_table_rows[2], class_table_rows[2]):
         class_table.append([a, b, c, d])
-    print(class_table)
+
     return render_template('dashboard.html', classes=class_table, **gpa_kwargs)
 
 
@@ -244,3 +244,12 @@ def download_report() -> Any:
     return send_from_directory(
         current_app.config['REPORT_DIR'], current_user.get_report_filepath()
     )
+
+
+@bp.route('/dashboard/delete_class/<class_id>', methods=('GET',))
+def delete_class(class_id: int) -> Any:
+    cls = Class.query.get_or_404(class_id)
+    db.session.delete(cls)
+    db.session.commit()
+
+    return redirect(url_for('dashboard.dashboard'))
