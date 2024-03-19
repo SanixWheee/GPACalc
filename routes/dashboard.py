@@ -248,6 +248,14 @@ def download_report() -> Any:
 
 @bp.route('/dashboard/delete_class/<class_id>', methods=('GET',))
 def delete_class(class_id: int) -> Any:
+    """
+    This route deletes a class from a user's classes
+
+    Methods
+    -------
+    GET dashboard/delete_class/<class_id>:
+        Deletes the class
+    """
     cls = Class.query.get_or_404(class_id)
     db.session.delete(cls)
     db.session.commit()
