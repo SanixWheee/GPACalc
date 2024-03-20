@@ -12,6 +12,10 @@
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"/>
+    <link href="https://fonts.googleapis.com/css2?family=Metrophobic&display=swap"
+          rel="stylesheet"/>
     <link
       rel="stylesheet"
       type="text/css"
@@ -20,24 +24,26 @@
   </head>
   <body>
     <!-- Div for the top navigation bar -->
-    <div class="background">
-      <div class="navBar">
+    <div class="navbar">
+      <div class="nav-container">
         <!-- prettier-ignore -->
-        <a style = "float:left; font-family: 'Honk', system-ui; font-size: 30px;"  href = "{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
-        <a href="{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
+        <a class="header" href = "{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
+        <a class="navLink" href="{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
         {% if current_user and current_user.is_authenticated %}
         <!-- These buttons only show up if the user is logged in -->
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
-        <a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
+        <a class="navLink" href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
+        <a class="navLink" href="{{ url_for('auth.logout') }}">Logout</a>
+
         {% else %}
         <!-- This button only shows up if the user is not logged in -->
-        <a href="{{ url_for('auth.login') }}">Login/Signup</a>
+        <a class="navLink" href="{{ url_for('auth.login') }}">Login/Signup</a>
         {% endif %}
       </div>
     </div>
     <!-- Div for the bottom nav bar -->
     <div class="bottomBar">
-      <p class="mainCreators">By Kaushal Dabbiru and Tejas Panja</p>
+      <p class="footer-text">By Kaushal Dabbiru, Tejas Panja, Safwan Hasan</p>
+      <p class="footer-text footer-right">FBLA Intro to Programming</p>
     </div>
 
     {% with messages = get_flashed_messages(with_categories=True) %} {% if
@@ -50,5 +56,32 @@
     {% endif %} {% endwith %}
 
     <div id="content">{% block content %}{% endblock %}</div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var isHomePage = "{{ request.path }}" === "/";
+          var navbar = document.querySelector('.navbar');
+
+          if (isHomePage) {
+              navbar.classList.add('homepage');
+          } else {
+              navbar.classList.remove('homepage')
+          }
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          // Check if the URL contains #helpScreen
+          if (window.location.href.indexOf('#helpScreen') > -1) {
+              // Scroll to the element with id "helpScreen"
+              var helpScreenElement = document.getElementById('helpScreen');
+              if (helpScreenElement) {
+                  helpScreenElement.scrollIntoView({ behavior: 'smooth' });
+              }
+          }
+      });
+    </script>
+
   </body>
 </html>

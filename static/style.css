@@ -2,42 +2,157 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #229684;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #9FFFCB;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #70ffb0;
+}
+
 
 /* Creates a background color for the entire website */
 body {
-  background: #114454;
+  margin: 0;
+  background-color: #25A18E;
+}
+
+/* Initial style for the navbar */
+.navbar {
+  position: fixed;
+  top: 0; /* Move the navbar above the viewport initially */
+  left: 0;
+  width: 100%;
+  background-color: #9FFFCB;
+  transition: top 0.3s; /* Add smooth transition for the top property */
+}
+
+/* Style for the navbar when it's visible */
+.navbar.visible {
+    top: 0; /* Move the navbar back to its original position */
+}
+
+/* Add this CSS to handle navbar position for non-home pages */
+.homepage {
+  top: -80px;
 }
 
 
-.navBar {
-    background-color: #165751;
-    overflow: hidden;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif;
-}
-  
-/* Style the links inside the navigation bar */
-.navBar a {
-  float: right;
-  color: #f2f2f2;
+/* Initial style for the title */
+.mainTitle {
+  font-family: 'Roboto Mono', monospace;
+  width: 97%;
+  font-size: 210px;
   text-align: center;
-  padding: 14px 16px;
-  padding-top: 15px;
-  text-decoration: none;
-  font-size: 20px;
+  margin-top: 100px; /* Add initial margin */
+  color: black;
+  background-color: #9FFFCB;
+  padding: 20px;
+  transition: font-size 0.3s, margin-top 0.3s; /* Add smooth transition for font size and margin top */
 }
 
-/* Change the color of links on hover */
-.navBar a:hover {
-  background-color: #ddd;
-  color: #165751;
+
+.nav-container{
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    align-items: center;
 }
 
-/* Add a color to the active/current link */
-.navBar a.active {
-  background-color: #04AA6D;
-  color: white;
+.header{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
 }
+
+.navLink{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    margin-left: 30px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+    font-family: 'Metrophobic', sans-serif;
+    flex-direction: column;
+}
+
+
+.widget{
+    margin: 30px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #c2ffdd;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-widget{
+    margin-bottom: 75px
+}
+
+.widget-text{
+    margin: 30px;
+    text-align: center;
+    font-size: 24px;
+    max-width: 400px;
+}
+
+.bottom-widget-text{
+    font-size: 18px;
+}
+
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.text, .image {
+    flex: 1;
+}
+
+.footer-text{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.footer-right {
+  margin-right: 25px; /* Pushes the text to the right by taking up all available space */
+}
+
+
 
 .logo {
   float: left;
@@ -165,37 +280,24 @@ input[type = submit] {
   color: #ddd;
 }
 
-.mainTitle {
-  font-family: 'Honk', system-ui;
-  font-size: 100px;
-  text-align: center;
-  margin-top: 3%;
-  color: #ddd;
-  padding-left: 10px;
-  padding-right: 10px;
-}
 
-.mainText {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 50px;
-  text-align: center;
-  margin-top: 10%;
-  color: #ddd;
-  padding-left: 10px;
-  padding-right: 10px;
-}
 
 
 /* Adds a bottom bar to every page for the copyright information */
 .bottomBar {
+  display: flex;
+  justify-content: space-between; /* Align items to the start and end of the container */
   position: fixed;
-  bottom: 0;
-  width: 97%;
-  background-color: #94BF6E;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  padding: 5px 14px;
+  bottom: -80px;
+  width: 100%;
+  background-color: #9FFFCB;
+  padding: 10px;
   overflow: hidden;
+  transition: bottom 0.3s;
+}
+
+.bottomBar.visible {
+  bottom: 0; /* Move the footer back to its original position */
 }
 
 
