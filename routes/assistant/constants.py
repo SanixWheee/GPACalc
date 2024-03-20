@@ -7,10 +7,11 @@ if TYPE_CHECKING:
 
 
 NAME: Final[str] = 'GPA Wizard Assistant'
-INSTRUCTIONS: Final[str] = '''
+INSTRUCTIONS: Final[
+    str
+] = '''
 You are an AI assistant for a GPA Calculator website. Help users navigate
 the website and discuss their grades
 '''
 
 FILE_TYPES: Final[Tuple[str, ...]] = ('pdf', 'docx', 'txt')
-

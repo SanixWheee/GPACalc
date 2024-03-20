@@ -1,7 +1,16 @@
 import statistics
 from typing import Any, Dict, List, Sequence, Tuple
 
-from flask import Blueprint, current_app, render_template, request, send_from_directory, flash, redirect, url_for
+from flask import (
+    Blueprint,
+    current_app,
+    flash,
+    redirect,
+    render_template,
+    request,
+    send_from_directory,
+    url_for,
+)
 from flask_login import current_user, login_required
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
@@ -59,7 +68,7 @@ def calculate_weighted_gpa(classes: Sequence[Class]) -> float:
     data, weights = get_statistical_data(classes)
     return statistics.harmonic_mean(
         map(lambda d: d[0] + get_weighted_gpa_bonus(d[1]), zip(data, classes)),
-        weights
+        weights,
         #             ^^^^                          ^^^^
         #       the unweighted gpa value        the class object
         #
@@ -224,7 +233,12 @@ def dashboard() -> Any:
 
     # convert the table from rows to columns
     class_table = []
-    for a, b, c, d in zip(class_table_rows[0], class_table_rows[1], class_table_rows[2], class_table_rows[2]):
+    for a, b, c, d in zip(
+        class_table_rows[0],
+        class_table_rows[1],
+        class_table_rows[2],
+        class_table_rows[2],
+    ):
         class_table.append([a, b, c, d])
 
     return render_template('dashboard.html', classes=class_table, **gpa_kwargs)
