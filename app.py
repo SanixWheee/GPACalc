@@ -5,6 +5,7 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
+
 db = SQLAlchemy()
 
 
@@ -28,11 +29,14 @@ def create_app() -> Flask:
     init_report_dir(app)
 
     # initialize the blueprints (sections of the website)
-    from routes import auth, dashboard, home
+    from routes import auth, dashboard, home, assistant
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(home.bp)
     app.register_blueprint(dashboard.bp)
+    app.register_blueprint(assistant.bp)
+
+    app.config['ASSISTANT_ID'] = assistant.init_assistant().id
 
     # initialize the login handler
     login_manager = LoginManager()
@@ -46,10 +50,6 @@ def create_app() -> Flask:
         """A custom user loader to use the User model"""
         return User.query.get(int(user_id))
 
-    init_db(app)
-
-    return app
-
 
 if __name__ == '__main__':
-    create_app().run()
+    create_app().run(debug=True)
