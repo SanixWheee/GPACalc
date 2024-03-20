@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from openai.types.beta import Assistant
 
 
-client = openai.OpenAI(api_key='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')
+client = openai.OpenAI(api_key='')
 
 
 def get_files() -> list[openai.File]:
