@@ -36,8 +36,6 @@ def create_message() -> Any:
         role='user',
         content=request.get_json()['content'],
     )
-    # get the stream response from OpenAI's api, put the responses in a queue,
-    # retrieve messages from the queue and forward it to a new stream to the frontend
 
     @stream_with_context
     def generate():
