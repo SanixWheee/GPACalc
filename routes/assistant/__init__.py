@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 import functools
-from queue import Queue
-from typing import TYPE_CHECKING, Any, Callable, Iterator, ParamSpec, TypeVar
+from typing import TYPE_CHECKING, Any, Callable, ParamSpec, TypeVar
 
 import openai
 from flask import Blueprint, current_app, request, session, stream_with_context
@@ -49,7 +48,7 @@ def create_message() -> Any:
         with client.beta.threads.runs.create_and_stream(
             thread_id=session['thread_id'],
             assistant_id=current_app.config['ASSISTANT_ID'],
-            instructions=f'Please address the user as joe',
+            instructions=f'Please address the user as {current_user.username}',
         ) as stream:
             for event in stream:
                 if isinstance(event, ThreadMessageDelta):
