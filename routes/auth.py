@@ -63,14 +63,17 @@ def register() -> Any:
         # if there was no error, then continue
         error = validate_username_and_password(username, password)
         if error is None:
-            user = User(username=username)
-            user.set_password(password)
+            if User.query.filter_by(username=username).exists():
+                error = 'Username already taken'
+            else:
+                user = User(username=username)
+                user.set_password(password)
 
-            db.session.add(user)
-            db.session.commit()
+                db.session.add(user)
+                db.session.commit()
 
-            flash('Account successfully created', 'info')
-            return redirect(url_for('auth.login'))
+                flash('Account successfully created', 'info')
+                return redirect(url_for('auth.login'))
 
     if error:
         flash(error, 'error')
