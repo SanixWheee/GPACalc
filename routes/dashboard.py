@@ -64,17 +64,13 @@ def get_weighted_gpa_bonus(cls: Class) -> float:
 
 
 def calculate_weighted_gpa(classes: Sequence[Class]) -> float:
-    """Calculate weighted GPA for a sequence of classes"""
     data, weights = get_statistical_data(classes)
-    return statistics.harmonic_mean(
-        map(lambda d: d[0] + get_weighted_gpa_bonus(d[1]), zip(data, classes)),
-        weights,
-        #             ^^^^                          ^^^^
-        #       the unweighted gpa value        the class object
-        #
-        # we need to zip the data with classes to recover the original class object and
-        # get the bonus from an honors or AP class
-    )
+
+    # classes is an ordered list so we can just go through the data and add the bonus
+    for i, cls in enumerate(classes):
+        data[i] += get_weighted_gpa_bonus(cls)
+
+    return statistics.harmonic_mean(data=data, weights=weights)
 
 
 def create_pdf(classes: List[Class], user: User) -> None:
