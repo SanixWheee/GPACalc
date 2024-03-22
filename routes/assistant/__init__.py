@@ -9,7 +9,6 @@ from openai.types.beta.assistant_stream_event import ThreadMessageDelta
 
 from .api import client, init_assistant
 
-
 P = ParamSpec('P')
 R = TypeVar('R')
 

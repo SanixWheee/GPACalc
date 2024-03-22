@@ -1,10 +1,15 @@
 import os
 from typing import Any
 
+from dotenv import load_dotenv
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
+# Load the environment variables
+load_dotenv()
+
+# create the database outside the create_app function to expose the object to other modules
 db = SQLAlchemy()
 
 

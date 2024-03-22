@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import glob
 import itertools
+import os
 from typing import TYPE_CHECKING
 
 import openai
@@ -12,7 +13,7 @@ if TYPE_CHECKING:
     from openai.types.beta import Assistant
 
 
-client = openai.OpenAI(api_key='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')
+client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
 
 
 def get_files() -> list[openai.File]:
@@ -40,6 +41,7 @@ def get_files() -> list[openai.File]:
         client.files.delete(file_id=file.id)
 
     if len(filenames) == 0:
+        # no files left to add
         return files
 
     for filename in filenames:
