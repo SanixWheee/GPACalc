@@ -1,29 +1,74 @@
 <!-- Main page / Help page -->
 
-{% extends "base.html" %} {% block content %}
-<main class="mainContainer">
-  <!-- Creates the div on the left side for the title and the summary-->
-  <div class="mainScreen">
-    <p class="mainTitle"><b>GPA Wizard</b></p>
-    <p class="mainText">
-      A quick and easy way to calculate your weighted & unweighted GPA in seconds! (FBLA Intro to Programming)
-    </p>
-  </div>
-  <!-- Creates the div on the right side with the help part of the page -->
-  <div class="helpScreen" id="helpScreen">
-    <h1 class="helpTitle">How To Use:</h1>
-    <p class="steps">Step 1: Create an account and login</p>
-    <p class="steps">Step 2: Go to your dashboard</p>
-    <p class="steps">
-      Step 3: Press the '+' on the respective grade to add a class taken that
-      year
-    </p>
-    <p class="steps">Step 4: fill out the form and press 'add class'</p>
-    <p class="steps">
-      Step 5: Repeat steps 3-4 until you have put all the classes you want
-    </p>
-    <p class="steps">Step 6: Press 'Download PDF' to download your GPA table</p>
-  </div>
-</main>
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="mainTitle">GPAWIZARD</h1>
+    <div class="widget">
+        <div class="image">
+            <img src="https://placehold.co/400x400"/>
+        </div>
+        <div class="widget-text">
+            <h2>About!</h2>
+            <p>A quick and easy way to calculate your weighted & unweighted GPA in seconds! </p>
+        </div>
+    </div>
+    <div class="widget">
+        <div class="widget-text">
+            <h2>Features!</h2>
+            <p>We have an interactive AI Assistant for all of your questions regarding grades! We also allow you to export
+                your grades + GPA in a PDF Format!</p>
+        </div>
+        <div class="image">
+            <img src="https://placehold.co/400x400"/>
+        </div>
+    </div>
+    <div class="widget bottom-widget" id="helpScreen">
+        <div class="image">
+            <img src="https://placehold.co/400x400"/>
+        </div>
+        <div class="widget-text bottom-widget-text">
+            <h2>How to Use!</h2>
+            <p>Step 1: Create an account and login</p>
+            <p>Step 2: Go to your dashboard</p>
+            <p>Step 3: Press the '+' on the respective grade to add a class taken that year</p>
+            <p>Step 4: fill out the form and press 'add class'</p>
+            <p>Step 5: Repeat steps 3-4 until you have put all the classes you want</p>
+            <p>Step 6: Press 'Download PDF' to download your GPA table</p>
+        </div>
+    </div>
+</div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the current page is the home page
+    var isHomePage = window.location.pathname === '/'; // Modify the condition based on your home page URL
+    // Get the path from Flask routing
+    var currentPagePath = "{{ request.path }}";
+
+    // If it's the home page, add scroll behavior
+    if (isHomePage || currentPagePath === '/') {
+        document.addEventListener('scroll', function() {
+            var navbar = document.querySelector('.navbar');
+            var footer = document.querySelector('.bottomBar');
+            var mainTitle = document.querySelector('.mainTitle');
+
+            // Check if the user has scrolled beyond a certain point
+            if (window.scrollY > 90) {
+                // Add class to make navbar visible
+                navbar.classList.add('visible');
+                // Add class to make mainTitle smaller and move to top left
+                mainTitle.classList.add('small');
+                footer.classList.add('visible');
+            } else {
+                // Remove classes if the user scrolls back up
+                navbar.classList.remove('visible');
+                mainTitle.classList.remove('small');
+                footer.classList.remove('visible');
+            }
+        });
+    }
+});
+
+</script>
 {% endblock %}
