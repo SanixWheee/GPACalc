@@ -3,7 +3,6 @@ from __future__ import annotations
 import functools
 from typing import Any, Callable, ParamSpec, TypeVar
 
-import openai
 from flask import Blueprint, current_app, request, session, stream_with_context
 from flask_login import current_user
 from openai.types.beta.assistant_stream_event import ThreadMessageDelta
@@ -31,6 +30,17 @@ bp = Blueprint('assistant', __name__, url_prefix='/api/assistant')
 @bp.route('/create_message', methods=('POST',))
 @check_thread
 def create_message() -> Any:
+    """
+    Create a message and get a response from OpenAI
+
+    Methods
+    -------
+    POST /api/assistant/create_message:
+        This is called by the frontend and returns a stream containing the response from OpenAI
+
+        Form Data:
+            content: str
+    """
     client.beta.threads.messages.create(
         thread_id=session['thread_id'],
         role='user',
@@ -48,4 +58,4 @@ def create_message() -> Any:
                 if isinstance(event, ThreadMessageDelta):
                     yield event.data.delta.content[0].text.value
 
-    return generate()
+    return generate()  # type: ignore  # stream_with_context seems to be missing an overload
