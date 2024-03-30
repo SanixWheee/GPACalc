@@ -21,8 +21,11 @@
       type="text/css"
       href="{{url_for('static', filename='style.css')}}"
     />
+    <link rel = "stylesheet" 
+          href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <script src="{{url_for('static', filename='chatbox.js')}}" defer></script>
   </head>
-  <body>
+  <body class = "showchatbot">
     <!-- Div for the top navigation bar -->
     <div class="navbar">
       <div class="nav-container">
@@ -40,11 +43,32 @@
         {% endif %}
       </div>
     </div>
+    <div class="chatbot">
+      <header>
+        <h2>placeholder</h2>
+      </header>
+      <ul class="chatbox">
+        <li class="chat incoming">
+          <span class = "material-symbols-outlined">smart_toy</span>
+          <p>Placeholder Welcome</p>
+        </li>
+      </ul>
+      <div class = "messageinput">
+        <textarea placeholder="Enter a Message" required></textarea>
+        <span id="sendbutton" class = "material-symbols-outlined">send</span>
+      </div>
+    </div>
     <!-- Div for the bottom nav bar -->
     <div class="bottomBar">
       <p class="footer-text">By Kaushal Dabbiru, Tejas Panja, Safwan Hasan</p>
       <p class="footer-text footer-right">FBLA Intro to Programming</p>
+      <button class = "chatbutton">
+        <span class = "material-symbols-outlined">mode_comment</span>
+        <span class = "material-symbols-outlined">close</span>
+      </button>
+
     </div>
+
 
     {% with messages = get_flashed_messages(with_categories=True) %} {% if
     messages %}
