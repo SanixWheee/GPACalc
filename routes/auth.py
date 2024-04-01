@@ -63,7 +63,7 @@ def register() -> Any:
         # if there was no error, then continue
         error = validate_username_and_password(username, password)
         if error is None:
-            if User.query.filter_by(username=username).exists():
+            if User.query.filter_by(username=username).scalar():
                 error = 'Username already taken'
             else:
                 user = User(username=username)
