@@ -20,6 +20,11 @@ const handleChat = () => {
 
     //appends the message that the user typed to the chatbox
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+
+    setTimeout(() => {
+        const incomingMessage = createChatLi("Thinking...", "incoming")
+        chatbox.appendChild(incomingMessage);
+    }, 600);
 }
 
 sendChatBtn.addEventListener("click", handleChat); //checks to see if the user has clicked on the span (send button), and runs the 'handleChat' const
