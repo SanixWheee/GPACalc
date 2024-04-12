@@ -24,6 +24,7 @@ def check_thread(func: Callable[P, R]) -> Callable[P, R]:
 
 
 bp = Blueprint('assistant', __name__, url_prefix='/api/assistant')
+""" /api/assistant/create_message """
 
 
 @bp.route('/create_message', methods=('POST',))
