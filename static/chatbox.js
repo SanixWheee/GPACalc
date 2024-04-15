@@ -5,6 +5,8 @@ const chatToggle = document.querySelector(".chatbutton"); //gets the button to o
 
 let userMessage;
 
+const url = "/api/assistant/create_message";
+
 const inputHeight = chatInput.scrollHeight;
 
 const createChatLi = (message, className) => {
@@ -15,6 +17,40 @@ const createChatLi = (message, className) => {
     chatLi.innerHTML = chatContent;
     chatInput.value = '';
     return chatLi;
+}
+
+const generateResponse = (incomingMessage) => {
+    const messageElement = incomingMessage.querySelector("p");
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            role: "user",
+            content: userMessage,
+            stream: true
+        }),
+    }
+    fetch(url, options)
+    .then(async (response) => {
+        const reader = response.body.getReader()
+        const decoder = new TextDecoder("utf-8");
+        messageElement.textContent = "";
+
+        while(true) {
+            const chunk = await reader.read();
+            const {done, value} = chunk;
+            if (done) {
+                break;
+            }
+            const decodedChunk = decoder.decode(value);
+            messageElement.textContent += decodedChunk
+        }
+    })
+    .catch((error) => {
+        messageElement.textContent = "Oops! Something went wrong. Please try again!";
+    })
 }
 
 const handleChat = () => {
@@ -29,20 +65,16 @@ const handleChat = () => {
     setTimeout(() => {
         const incomingMessage = createChatLi("Thinking...", "incoming")
         chatbox.appendChild(incomingMessage);
+        generateResponse(incomingMessage);
         chatbox.scrollTo(0, chatbox.scrollHeight);
     }, 600);
 }
 
-// chatInput.addEventListener("input", () => {
-//     //adjusts the height of the input box depending on how much the user types
-//     chatInput.style.height = `${inputHeight}px`;
-//     chatInput.style.height = `${chatInput.scrollHeight}px`;
 
-// })
 
 chatInput.addEventListener("keydown", (press) => {
     //Checks to see if the user presses the Enter key, while not pressing shift, and sends a message
-    if (press.key === "Enter" && !press.shiftKey && window.innerWidth > 800) {
+    if (press.key === "Enter" && !press.shiftKey) {
         press.preventDefault();
         handleChat();
     }

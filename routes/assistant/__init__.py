@@ -24,7 +24,6 @@ def check_thread(func: Callable[P, R]) -> Callable[P, R]:
 
 
 bp = Blueprint('assistant', __name__, url_prefix='/api/assistant')
-""" /api/assistant/create_message """
 
 
 @bp.route('/create_message', methods=('POST',))
@@ -52,7 +51,7 @@ def create_message() -> Any:
         with client.beta.threads.runs.create_and_stream(
             thread_id=session['thread_id'],
             assistant_id=current_app.config['ASSISTANT_ID'],
-            instructions=f'Please address the user as {current_user.username}',
+            instructions=f'Please address the user as {current_user.username if current_user else 'Guest'}',
         ) as stream:
             for event in stream:
                 if isinstance(event, ThreadMessageDelta):
