@@ -39,13 +39,13 @@ const generateResponse = (incomingMessage) => {
         messageElement.textContent = "";
 
         while(true) {
-            const chunk = await reader.read();
-            const {done, value} = chunk;
+            const word = await reader.read();
+            const {done, value} = word;
             if (done) {
                 break;
             }
-            const decodedChunk = decoder.decode(value);
-            messageElement.textContent += decodedChunk
+            const decodedWord = decoder.decode(value);
+            messageElement.textContent += decodedWord
         }
     })
     .catch((error) => {
@@ -56,7 +56,6 @@ const generateResponse = (incomingMessage) => {
 const handleChat = () => {
     userMessage = chatInput.value.trim(); //gets the text that the user has inputted within the chatInput field, and then trims extra whitespace
     if (!userMessage) return;
-    //send post request to /api/assistant/create_message here, content would be userMessage
 
     //appends the message that the user typed to the chatbox
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));

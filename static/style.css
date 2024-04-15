@@ -175,7 +175,6 @@ body {
     padding: 50px;
     margin: auto;
     border-radius: 25px;
-
   }
 
   /* Makes the login text better formatted within the loginBox */
@@ -233,6 +232,7 @@ input[type = submit] {
   border-radius: 5px;
   text-align: center;
   display: inline-block;
+  z-index: 1000;
 }
 
 .info {
@@ -245,12 +245,7 @@ input[type = submit] {
   border-radius: 5px;
   text-align: center;
   display: inline-block;
-}
-
-
-#gradeFormsContainer {
-    display: flex;
-    justify-content: space-between;
+  z-index: 1000;
 }
 
 .mainScreen {
@@ -285,9 +280,6 @@ input[type = submit] {
   color: #ddd;
 }
 
-
-
-
 /* Adds a bottom bar to every page for the copyright information */
 .bottomBar {
   display: flex;
@@ -305,7 +297,6 @@ input[type = submit] {
   bottom: 0; /* Move the footer back to its original position */
 }
 
-
 .mainCreators {
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
@@ -315,7 +306,25 @@ input[type = submit] {
   padding-right: 10px;
 }
 
-.table {
+.tableDiv {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  margin-top: 10%;
+  background-image: linear-gradient(#0c5460, rgb(31, 41, 54));
+  height: 100vh;
+  width: 33%;
+}
+
+.grades {
+  align-items: center;
+  padding: 10%;
+  font-family: 'Roboto Mono', monospace;
+  background-color: ;
+}
+
+/*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
+/* .table {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -329,12 +338,12 @@ input[type = submit] {
   margin-top: 20px;
   border-collapse: collapse;
   border: 5px solid #3B8D61;
-}
+} */
 
-table td, th {
+/* table td, th {
   border: 3px solid #3B8D61;
   color: #ddd;
-}
+} */
 
 /* CSS for table headers */
 .tableHeader {
@@ -367,6 +376,8 @@ table td, th {
 .addButton button:hover {
   background-color: #3B8D61; /* Hover background color */
 }
+/*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
+
 .gradeForm {
   display: flex;
   align-content: center;
@@ -394,7 +405,7 @@ table td, th {
   font-family: 'Montserrat', sans-serif;
 }
 
-
+/*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
   /* CSS for the popup form */
   .gradeForm {
     display: none;
@@ -443,7 +454,7 @@ table td, th {
     background-color: #dc3545; /* Cancel button background color */
     margin-top: 10px;
   }
-
+/*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
 
   /* start of chatbot css */
   .chatbutton {
