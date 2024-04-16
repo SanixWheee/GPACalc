@@ -14,22 +14,22 @@ db = SQLAlchemy()
 
 
 def init_report_dir(app: Flask) -> None:
-    if not os.path.exists('/reports'):
-        os.mkdir('/reports')
+    if not os.path.exists("/reports"):
+        os.mkdir("/reports")
 
-    app.config['REPORT_DIR'] = '/reports'
+    app.config["REPORT_DIR"] = "/reports"
 
 
 def create_app() -> Flask:
     basedir = os.path.abspath(os.path.dirname(__file__))
 
     app = Flask(__name__)
-    app.secret_key = 'uper secret key'
+    app.secret_key = "uper secret key"
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(
-        basedir, 'db.sqlite3'
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
+        basedir, "db.sqlite3"
     )
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # saves memory
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  # saves memory
     init_report_dir(app)
 
     # initialize the blueprints (sections of the website)
@@ -40,11 +40,11 @@ def create_app() -> Flask:
     app.register_blueprint(dashboard.bp)
     app.register_blueprint(assistant.bp)
 
-    app.config['ASSISTANT_ID'] = assistant.init_assistant().id
+    app.config["ASSISTANT_ID"] = assistant.init_assistant().id
 
     # initialize the login handler
     login_manager = LoginManager()
-    login_manager.login_view = 'auth.login'
+    login_manager.login_view = "auth.login"
     login_manager.init_app(app)
 
     from models import User, init_db
@@ -58,5 +58,5 @@ def create_app() -> Flask:
     return app
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     create_app().run(debug=True)
