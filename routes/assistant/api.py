@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from openai.types.beta import Assistant
 
 
-client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 
 def get_files() -> list[openai.File]:
@@ -21,12 +21,12 @@ def get_files() -> list[openai.File]:
     Get the files either from the OpenAI storage, or upload them. Then return them.
     """
 
-    files = list(client.files.list(purpose='assistants'))
+    files = list(client.files.list(purpose="assistants"))
 
     # search for all files in this directory that have a specific file type
     filenames = set(
         itertools.chain.from_iterable(
-            glob.glob(f'routes/assistant/*.{file_type}', recursive=True)
+            glob.glob(f"routes/assistant/*.{file_type}", recursive=True)
             for file_type in FILE_TYPES
         )
     )
@@ -45,8 +45,8 @@ def get_files() -> list[openai.File]:
         return files
 
     for filename in filenames:
-        with open(filename, 'rb') as f:
-            client.files.create(purpose='assistants', file=f)
+        with open(filename, "rb") as f:
+            client.files.create(purpose="assistants", file=f)
 
     # the second time, all files should be uploaded and this function will return early
     return get_files()
@@ -71,7 +71,7 @@ def init_assistant() -> Assistant:
         assistant = client.beta.assistants.create(
             name=NAME,
             instructions=INSTRUCTIONS,
-            tools=[{'type': 'retrieval'}],
+            tools=[{"type": "retrieval"}],
             model="gpt-3.5-turbo-0125",
         )
 

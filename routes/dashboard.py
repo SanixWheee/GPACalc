@@ -20,17 +20,17 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 from app import db
 from models import Class, User
 
-bp = Blueprint('dashboard', __name__)
+bp = Blueprint("dashboard", __name__)
 
 letter_to_gpa: Dict[str, float] = {
-    'A': 4.0,
-    'B+': 3.3,
-    'B': 3.0,
-    'B-': 2.7,
-    'C+': 2.3,
-    'C': 2.0,
-    'C-': 1.7,
-    'N': 0.0,
+    "A": 4.0,
+    "B+": 3.3,
+    "B": 3.0,
+    "B-": 2.7,
+    "C+": 2.3,
+    "C": 2.0,
+    "C-": 1.7,
+    "N": 0.0,
 }
 
 
@@ -56,9 +56,9 @@ def calculate_unweighted_gpa(classes: Sequence[Class]) -> float:
 
 def get_weighted_gpa_bonus(cls: Class) -> float:
     """Returns the bonus a class gets for a weighted GPA"""
-    if cls.type == 'AP':
+    if cls.type == "AP":
         return 1.0
-    elif cls.type == 'Honors':
+    elif cls.type == "Honors":
         return 0.5
     return 0.0
 
@@ -92,25 +92,25 @@ def create_pdf(classes: List[Class], user: User) -> None:
     )
     styles = getSampleStyleSheet()
 
-    heading_style = styles['Heading1']
+    heading_style = styles["Heading1"]
     heading_style.alignment = 1
-    heading = Paragraph(f'{user.username}\'s GPA Report', heading_style)
+    heading = Paragraph(f"{user.username}'s GPA Report", heading_style)
 
     # Populate a table with following columns
     # Grade Taken, Name, Received Grade, Credits, Unweighted GPA, Weighted GPA
     data = [
         (
-            'Grade Taken',
-            'Name',
-            'Received Grade',
-            'Credits',
-            'Unweighted GPA',
-            'Weighted GPA',
+            "Grade Taken",
+            "Name",
+            "Received Grade",
+            "Credits",
+            "Unweighted GPA",
+            "Weighted GPA",
         )
     ] + [
         (
             str(cls.grade_taken),
-            f'{cls.type} {cls.name}'.strip(),  # no honors or AP leaves an empty space at the start
+            f"{cls.type} {cls.name}".strip(),  # no honors or AP leaves an empty space at the start
             cls.received_grade,
             str(cls.credits),
             letter_to_gpa[cls.received_grade],
@@ -126,13 +126,13 @@ def create_pdf(classes: List[Class], user: User) -> None:
     table = Table(data, colWidths=[500 / column_count] * column_count)
     style = TableStyle(
         [
-            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-            ('BACKGROUND', (0, 1), (-1, -1), colors.white),
-            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
+            ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+            ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+            ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+            ("BOTTOMPADDING", (0, 0), (-1, 0), 12),
+            ("BACKGROUND", (0, 1), (-1, -1), colors.white),
+            ("GRID", (0, 0), (-1, -1), 1, colors.black),
         ]
     )
     table.setStyle(style)
@@ -142,19 +142,19 @@ def create_pdf(classes: List[Class], user: User) -> None:
         unweighted_gpa = calculate_unweighted_gpa(classes)
         weighted_gpa = calculate_weighted_gpa(classes)
     else:
-        unweighted_gpa = 'Add classes first'
-        weighted_gpa = 'Add classes first'
+        unweighted_gpa = "Add classes first"
+        weighted_gpa = "Add classes first"
 
-    unweighted_gpa_paragraph_style = styles['Heading2']
+    unweighted_gpa_paragraph_style = styles["Heading2"]
     unweighted_gpa_paragraph_style.alignment = 1
     unweighted_gpa_paragraph = Paragraph(
-        f'Unweighted GPA: {unweighted_gpa:.2f}', unweighted_gpa_paragraph_style
+        f"Unweighted GPA: {unweighted_gpa:.2f}", unweighted_gpa_paragraph_style
     )
 
-    weighted_gpa_paragraph_style = styles['Heading2']
+    weighted_gpa_paragraph_style = styles["Heading2"]
     weighted_gpa_paragraph_style.alignment = 1
     weighted_gpa_paragraph = Paragraph(
-        f'Weighted GPA: {weighted_gpa:.2f}', weighted_gpa_paragraph_style
+        f"Weighted GPA: {weighted_gpa:.2f}", weighted_gpa_paragraph_style
     )
 
     doc.build(
@@ -169,7 +169,7 @@ def create_pdf(classes: List[Class], user: User) -> None:
     )
 
 
-@bp.route('/dashboard', methods=('GET', 'POST'))
+@bp.route("/dashboard", methods=("GET", "POST"))
 @login_required
 def dashboard() -> Any:
     """
@@ -180,15 +180,15 @@ def dashboard() -> Any:
     GET /dashboard:
         Render the template for dashboard.html
     """
-    if request.method == 'POST':
-        name = request.form['name']
-        type = request.form['type']
-        grade_taken = int(request.form['grade_taken'])
-        received_grade = request.form['received_grade']
+    if request.method == "POST":
+        name = request.form["name"]
+        type = request.form["type"]
+        grade_taken = int(request.form["grade_taken"])
+        received_grade = request.form["received_grade"]
         try:
-            credits = float(request.form['credits'])
+            credits = float(request.form["credits"])
         except ValueError:
-            flash('Invalid credits value', 'error')
+            flash("Invalid credits value", "error")
         else:
             cls = Class(
                 user_id=current_user.id,
@@ -204,15 +204,15 @@ def dashboard() -> Any:
     classes = Class.query.filter_by(user_id=current_user.id).all()
 
     # only pass in the gpa and create a pdf if the user actually has classes
-    gpa_kwargs = {'has_classes': False}
+    gpa_kwargs = {"has_classes": False}
     if classes:
         create_pdf(classes, current_user)
 
         # convert the GPA to 2 decimals
         gpa_kwargs = {
-            'unweighted_gpa': f'{calculate_unweighted_gpa(classes):.2f}',
-            'weighted_gpa': f'{calculate_unweighted_gpa(classes):.2f}',
-            'has_classes': True,
+            "unweighted_gpa": f"{calculate_unweighted_gpa(classes):.2f}",
+            "weighted_gpa": f"{calculate_unweighted_gpa(classes):.2f}",
+            "has_classes": True,
         }
 
     # html tables only support creation by row so we must convert our data
@@ -237,10 +237,10 @@ def dashboard() -> Any:
     ):
         class_table.append([a, b, c, d])
 
-    return render_template('dashboard.html', classes=class_table, **gpa_kwargs)
+    return render_template("dashboard.html", classes=class_table, **gpa_kwargs)
 
 
-@bp.route('/dashboard/download', methods=('GET',))
+@bp.route("/dashboard/download", methods=("GET",))
 @login_required
 def download_report() -> Any:
     """
@@ -252,11 +252,11 @@ def download_report() -> Any:
         Returns the pdf file
     """
     return send_from_directory(
-        current_app.config['REPORT_DIR'], current_user.get_report_filepath()
+        current_app.config["REPORT_DIR"], current_user.get_report_filepath()
     )
 
 
-@bp.route('/dashboard/delete_class/<class_id>', methods=('GET',))
+@bp.route("/dashboard/delete_class/<class_id>", methods=("GET",))
 def delete_class(class_id: int) -> Any:
     """
     This route deletes a class from a user's classes
@@ -270,4 +270,4 @@ def delete_class(class_id: int) -> Any:
     db.session.delete(cls)
     db.session.commit()
 
-    return redirect(url_for('dashboard.dashboard'))
+    return redirect(url_for("dashboard.dashboard"))

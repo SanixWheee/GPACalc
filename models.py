@@ -51,7 +51,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
     def get_report_filepath(self) -> str:
-        return f'{self.username}_report.pdf'
+        return f"{self.username}_report.pdf"
 
 
 class Class(db.Model):
@@ -70,7 +70,7 @@ class Class(db.Model):
     """
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     name = db.Column(db.String, nullable=False)
     type = db.Column(db.String, nullable=False)
     grade_taken = db.Column(db.Integer, nullable=False)
