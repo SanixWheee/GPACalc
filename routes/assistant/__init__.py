@@ -4,7 +4,7 @@ import functools
 from typing import Any, Callable, ParamSpec, TypeVar
 
 from flask import Blueprint, current_app, request, session, stream_with_context
-from flask_login import current_user
+from flask_login import current_user, AnonymousUserMixin
 from openai.types.beta.assistant_stream_event import ThreadMessageDelta
 
 from .api import client, init_assistant
@@ -46,12 +46,18 @@ def create_message() -> Any:
         content=request.get_json()['content'],
     )
 
+    # user is not logged in
+    if isinstance(current_user, AnonymousUserMixin):
+        username = 'Guest'
+    else:
+        username = current_user.username
+
     @stream_with_context
     def generate():
         with client.beta.threads.runs.create_and_stream(
             thread_id=session['thread_id'],
             assistant_id=current_app.config['ASSISTANT_ID'],
-            instructions=f'Please address the user as {current_user.username if current_user else 'Guest'}',
+            instructions=f'Please address the user as {username}',
         ) as stream:
             for event in stream:
                 if isinstance(event, ThreadMessageDelta):
