@@ -27,7 +27,7 @@
           <input type = 'text' id = 'class' class = "classInput enter" name = 'name' placeholder="Enter the class name" required>
           <br>
           <!-- <label for = "grade" class = "dropdownLabel">Grade Recieved:</label> -->
-          <select class = "grade dropdown" id="grade" name = "received_grade">
+          <select class = "grade dropdown" id="grade" name = "received_grade" required>
             <option value = "" disabled selected class = "initChoice">Select your recieved grade</option>
             <option value="A">A</option>
             <option value="B+">B+</option>
@@ -42,7 +42,7 @@
           <input type = 'text' id = 'credits' class = "creditInput enter" name = 'credits', placeholder="Enter the number of credits" required>
           <br>
           <!-- <label for = "year" class = "dropdownLabel">Year Taken:</label> -->
-          <select class = "year dropdown" id="year" name = "grade_taken">
+          <select class = "year dropdown" id="year" name = "grade_taken" required>
             <option value = "" disabled selected class = "initChoice">Select the year taken</option>
             <option value="9">9</option>
             <option value="10">10</option>
@@ -51,14 +51,14 @@
           </select>
           <br>
           <!-- <label for = "type" class = "dropdownLabel">Class Type:</label> -->
-          <select class = "type dropdown" id="type" name = "type">
+          <select class = "type dropdown" id="type" name = "type" required>
             <option value = "" disabled selected class = "initChoice">Select the class type</option>
             <option value="">Normal</option>
             <option value="AP">AP</option>
             <option value="Honors">Honors</option>
           </select>
           <br>
-          <button type="submit" class="submitButton">Add</button>
+          <button type="submit" class="submitButton">Add Class</button>
       </div>
     </form>
   </div>
