@@ -77,6 +77,9 @@ class Class(db.Model):
     received_grade = db.Column(db.String, nullable=False)
     credits = db.Column(db.Float, nullable=False)
 
+    def full_name(self) -> str:
+        return f'{self.type} {self.name}'.strip()
+
 
 def init_db(app: Flask) -> None:
     # by putting this function in the models.py file,

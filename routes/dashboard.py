@@ -215,29 +215,11 @@ def dashboard() -> Any:
             "has_classes": True,
         }
 
-    # html tables only support creation by row so we must convert our data
-    # to fit the table spec
-    class_table_rows = [[], [], [], []]
+    sorted_classes = {grade: [] for grade in range(9, 13)}
     for cls in classes:
-        # 9th grade is index 0, 10th grade is index 1, etc
-        class_table_rows[cls.grade_taken - 9].append(cls)
+        sorted_classes[cls.grade_taken].append(cls)
 
-    # fill in extra values at the end with None
-    max_length = max(map(len, class_table_rows))
-    for grade in class_table_rows:
-        grade.extend([None] * (max_length - len(grade)))
-
-    # convert the table from rows to columns
-    class_table = []
-    for a, b, c, d in zip(
-        class_table_rows[0],
-        class_table_rows[1],
-        class_table_rows[2],
-        class_table_rows[2],
-    ):
-        class_table.append([a, b, c, d])
-
-    return render_template("dashboard.html", classes=class_table, **gpa_kwargs)
+    return render_template("dashboard.html", classes_by_grade=sorted_classes, **gpa_kwargs)
 
 
 @bp.route("/dashboard/download", methods=("GET",))
