@@ -396,20 +396,6 @@ input[type = submit] {
   border-radius: 10px;
 }
 
-.infoDiv {
-  display: flex;
-  flex-direction: column;
-  float: left;
-  margin-top: 2vh;
-  margin-left: 2vh;
-  height: 38vh;
-  width: 47vw;
-  background: #18637B;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
-  border-radius: 10px;
-}
-
 .addLabel {
   padding-top: 1%;
   padding-left: 2%;
@@ -424,33 +410,30 @@ input[type = submit] {
   border: none;
   margin-bottom: 1%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor:text;
 }
 
 .dropdown {
   padding: 1%;
   font-family: 'Roboto Mono', monospace;
   border-radius: 10px;
-  width: 29%;
+  width: 52%;
   border: none;
   margin-bottom: 1%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor:pointer;
 }
 
-.year,
-.type {
-  margin-left: 5.5%;
+.initChoice {
+    color: grey;
 }
-
-.select:invalid {
-  color: grey;
-}
-
+/* 
 .dropdownLabel {
   padding: 1%;
   font-family: 'Roboto Mono', monospace;
   width: 30%;
   margin-bottom: 1%;
-}
+} */
 
 .submitButton {
   padding: 1.5%;
@@ -461,6 +444,59 @@ input[type = submit] {
   margin-bottom: 1%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   background: #3B8D61;
+  cursor:pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.submitButton:hover {
+  background: #358157;
+}
+
+.infoDiv {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  margin-top: 2vh;
+  margin-left: 2vh;
+  height: 38vh;
+  width: 47vw;
+  background: #18637B;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+  border-radius: 10px;
+}
+
+.infoLabel {
+  padding-top: 1%;
+  padding-left: 2%;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.gpaText {
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+}
+
+.getPDF {
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+  border-radius: 10px;
+  padding: 1.5%;
+  width: 20%;
+  border: none;
+  display: block;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: #3B8D61;
+  cursor:pointer;
+  text-decoration: none;
+  color:#000;
+  transition: 0.3s;
+}
+
+.getPDF:hover {
+  background: #358157;
 }
 
 /*KAUSHALS CSS STUFF FOR THE DASHBOARD*/

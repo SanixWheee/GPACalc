@@ -26,9 +26,9 @@
       <div class = 'formClass' style="text-align: center;">
           <input type = 'text' id = 'class' class = "classInput enter" name = 'name' placeholder="Enter the class name" required>
           <br>
-          <label for = "grade" class = "dropdownLabel">Grade Recieved:</label>
+          <!-- <label for = "grade" class = "dropdownLabel">Grade Recieved:</label> -->
           <select class = "grade dropdown" id="grade" name = "received_grade">
-            <option value = "" disabled selected>Select a grade</option>
+            <option value = "" disabled selected class = "initChoice">Select your recieved grade</option>
             <option value="A">A</option>
             <option value="B+">B+</option>
             <option value="B">B</option>
@@ -41,18 +41,18 @@
           <br>
           <input type = 'text' id = 'credits' class = "creditInput enter" name = 'credits', placeholder="Enter the number of credits" required>
           <br>
-          <label for = "year" class = "dropdownLabel">Year Taken:</label>
+          <!-- <label for = "year" class = "dropdownLabel">Year Taken:</label> -->
           <select class = "year dropdown" id="year" name = "grade_taken">
-            <option value = "" disabled selected>Select a year</option>
+            <option value = "" disabled selected class = "initChoice">Select the year taken</option>
             <option value="9">9</option>
             <option value="10">10</option>
             <option value="11">11</option>
             <option value="12">12</option>
           </select>
           <br>
-          <label for = "type" class = "dropdownLabel">Class Type:</label>
+          <!-- <label for = "type" class = "dropdownLabel">Class Type:</label> -->
           <select class = "type dropdown" id="type" name = "type">
-            <option value = "" disabled selected>Select a Type</option>
+            <option value = "" disabled selected class = "initChoice">Select the class type</option>
             <option value="">Normal</option>
             <option value="AP">AP</option>
             <option value="Honors">Honors</option>
@@ -63,7 +63,15 @@
     </form>
   </div>
   <div class = "infoDiv">
-
+    <h1 class = "infoLabel">Your Report</h1>
+    {% if has_classes %}
+    <div class="reports">
+      <h2 class="gpaText">Unweighted GPA: {{ unweighted_gpa }}</h2>
+      <h2 class="gpaText">Weighted GPA: {{ weighted_gpa }}</h2>
+      <!-- prettier-ignore -->
+      <a class = "getPDF" href = "{{ url_for('dashboard.download_report') }}">Download PDF</a>
+    </div>
+{% endif %}
   </div>
 </div>
 {% endblock %}
