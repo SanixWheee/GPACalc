@@ -1,6 +1,4 @@
-const emptyTexts = document.querySelectorAll(".emptyText");
-const gradeTables = document.querySelectorAll(".grades");
-
+/*
 emptyTexts.forEach(function(emptyText) {
     emptyText.style.display = "none";
 });
@@ -22,3 +20,4 @@ function toggleVisibility() {
 
 
 toggleVisibility();
+*/

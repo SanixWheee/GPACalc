@@ -215,7 +215,9 @@ def dashboard() -> Any:
             "has_classes": True,
         }
 
-    sorted_classes = {grade: [] for grade in range(9, 13)}
+    # sorted_classes = {grade: [] for grade in range(9, 13)}
+    from collections import defaultdict; sorted_classes = defaultdict(list)
+
     for cls in classes:
         sorted_classes[cls.grade_taken].append(cls)
 
