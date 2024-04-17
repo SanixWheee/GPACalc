@@ -400,6 +400,8 @@ input[type = submit] {
   padding-top: 1%;
   padding-left: 2%;
   font-family: 'Roboto Mono', monospace;
+  text-align: center;
+  color: #fff;
 }
 
 .enter {
@@ -427,13 +429,6 @@ input[type = submit] {
 .initChoice {
     color: grey;
 }
-/* 
-.dropdownLabel {
-  padding: 1%;
-  font-family: 'Roboto Mono', monospace;
-  width: 30%;
-  margin-bottom: 1%;
-} */
 
 .submitButton {
   padding: 1.5%;
@@ -458,7 +453,7 @@ input[type = submit] {
   flex-direction: column;
   float: left;
   margin-top: 2vh;
-  margin-left: 2vh;
+  margin-left: 1vh;
   height: 38vh;
   width: 47vw;
   background: #18637B;
@@ -471,11 +466,14 @@ input[type = submit] {
   padding-top: 1%;
   padding-left: 2%;
   font-family: 'Roboto Mono', monospace;
+  text-align: center; 
+  color: #fff;
 }
 
 .gpaText {
   font-family: 'Roboto Mono', monospace;
   text-align: center;
+  color: #fff;
 }
 
 .getPDF {
