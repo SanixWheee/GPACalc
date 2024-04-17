@@ -1,34 +1,84 @@
 {% extends "base.html" %} {% block content %}
-<script>
-  function openForm(gradeTaken) {
-    var form = document.getElementById("addClass");
-    form.style.display = "block";
-
-    var gradeHeading = document.getElementById("gradeHeading");
-    gradeHeading.value = gradeTaken;
-  }
-
-  function closeForm() {
-    document.getElementById("addClass").style.display = "none";
-  }
-</script>
+<script src="{{url_for('static', filename='dashboard.js')}}" defer></script>
 <div class = "dashboardContainer">
   <div class = "tableDiv">
     <h1 class = "gradeLabel">9th Grade</h1>
-      <table class = "9thGrade grades">
+      <h5 class = "emptyText">Add a Class!</h5>
+      <table class = "freshmen grades">
         <tr>
           <th>Class</th>
           <th>Grade</th>
-          <th>Type</th>
           <th>Credits</th>
         </tr> 
       </table>
     <h1 class = "gradeLabel">10th Grade</h1>
+      <h5 class = "emptyText">Add a Class!</h5>
+      <table class = "sophomore grades">
+        <tr>
+          <th>Class</th>
+          <th>Grade</th>
+          <th>Credits</th>
+        </tr> 
+      </table>
     <h1 class = "gradeLabel">11th Grade</h1>
+      <h5 class = "emptyText">Add a Class!</h5>
+      <table class = "junior grades">
+        <tr>
+          <th>Class</th>
+          <th>Grade</th>
+          <th>Credits</th>
+        </tr> 
+      </table>
     <h1 class = "gradeLabel">12th Grade</h1>
+      <h5 class = "emptyText">Add a Class!</h5>
+      <table class = "senior grades">
+        <tr>
+          <th>Class</th>
+          <th>Grade</th>
+          <th>Credits</th>
+        </tr> 
+      </table>
   </div>
   <div class = "addDiv">
-
+    <h1 class = "addLabel">Add Classes</h1>
+    <form id = "addClass">
+      <div class = 'formClass' style="text-align: center;">
+          <input type = 'text' id = 'class' class = "classInput enter" name = 'Class', placeholder="Class Name" required>
+          <br>
+          <label for = "grade" class = "dropdownLabel">Grade Recieved:</label>
+          <select class = "grade dropdown" id="grade" name = "grade">
+            <option value = "" disabled selected>Select a Grade</option>
+            <option value="A">A</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+            <option value="B-">B-</option>
+            <option value="C+">C+</option>
+            <option value="C">C</option>
+            <option value="C-">C-</option>
+            <option value="N">N</option>
+          </select>
+          <br>
+          <input type = 'text' id = 'credits' class = "creditInput enter" name = 'credit', placeholder="Number of Credits" required>
+          <br>
+          <label for = "year" class = "dropdownLabel">Year Taken:</label>
+          <select class = "year dropdown" id="year" name = "year">
+            <option value = "" disabled selected>Select a Year</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <br>
+          <label for = "type" class = "dropdownLabel">Class Type:</label>
+          <select class = "type dropdown" id="type" name = "type">
+            <option value = "" disabled selected>Select a Type</option>
+            <option value="normal">Normal</option>
+            <option value="AP">AP</option>
+            <option value="Honors">Honors</option>
+          </select>
+          <br>
+          <button type="submit" class="submitButton">Add</button>
+      </div>
   </div>
   <div class = "infoDiv">
 
