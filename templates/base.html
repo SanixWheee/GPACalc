@@ -27,7 +27,7 @@
   </head>
   <body>
     <!-- Div for the top navigation bar -->
-    <div class="navbar">
+    <div class="navbar" id="navbar">
       <div class="nav-container">
         <!-- prettier-ignore -->
         <a class="header" href = "{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
@@ -62,7 +62,6 @@
     <!-- Div for the bottom nav bar -->
     <div class="bottomBar">
       <p class="footer-text">By Kaushal Dabbiru, Tejas Panja, Safwan Hasan</p>
-      <p class="footer-text footer-right">FBLA Intro to Programming</p>
       <button class = "chatbutton">
         <span class = "material-symbols-outlined">mode_comment</span>
         <span class = "material-symbols-outlined">close</span>
@@ -106,6 +105,19 @@
               }
           }
       });
+    </script>
+
+    <script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var navbar = document.getElementById("navbar");
+
+        // Check if it's the home page
+        if (window.location.pathname === '/') {
+            navbar.style.position = "fixed";
+        }
+    });
+
     </script>
 
   </body>
