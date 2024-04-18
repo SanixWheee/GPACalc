@@ -12,9 +12,9 @@
             </tr>
             {% for class in classes %}
             <tr>
-                <td>{{class.name}}</td>
-                <td>{{class.received_grade}}</td>
-                <td>{{class.credits}}</td>
+                <td>{{ class.full_name() }}</td>
+                <td>{{ class.received_grade }}</td>
+                <td>{{ class.credits }}</td>
             </tr>
             {% endfor %}
         </table>
@@ -86,14 +86,16 @@
   </div>
   <div class = "infoDiv">
     <h1 class = "infoLabel">Your Report</h1>
-    {% if has_classes %}
     <div class="reports">
-      <h2 class="gpaText">Unweighted GPA: {{ unweighted_gpa }}</h2>
-      <h2 class="gpaText">Weighted GPA: {{ weighted_gpa }}</h2>
-      <!-- prettier-ignore -->
-      <a class = "getPDF" href = "{{ url_for('dashboard.download_report') }}">Download PDF</a>
+       {% if has_classes %}
+           <h2 class="gpaText">Unweighted GPA: {{ unweighted_gpa }}</h2>
+           <h2 class="gpaText">Weighted GPA: {{ weighted_gpa }}</h2>
+           <!-- prettier-ignore -->
+           <a class = "getPDF" href = "{{ url_for('dashboard.download_report') }}">Download PDF</a>
+        {% else %}
+           <h2 class="gpaText">Add a class to see your GPA!</h2>
+        {% endif %}
     </div>
-{% endif %}
   </div>
 </div>
 {% endblock %}
