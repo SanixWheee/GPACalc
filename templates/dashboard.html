@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block content %}
-<script src="{{url_for('static', filename='dashboard.js')}}" defer></script>
 <div class = "dashboardContainer">
   <div class = "tableDiv">
     {% for grade, classes in classes_by_grade.items() %}
         <h1 class = "gradeLabel">{{ grade }}th Grade</h1>
+        <h5 class = "emptyText">Add a Class!</h5>
         <table class = "{{ grade }} grades">
             <tr>
             <th>Class</th>
@@ -19,6 +19,28 @@
             {% endfor %}
         </table>
     {% endfor %}
+    <script>const emptyTexts = document.querySelectorAll(".emptyText");
+      const gradeTables = document.querySelectorAll(".grades");
+      
+      emptyTexts.forEach(function(emptyText) {
+          emptyText.style.display = "none";
+      });
+      
+      function toggleVisibility() {
+          emptyTexts.forEach(function(emptyText, index) {
+              const table = gradeTables[index];
+              const rowCount = table.querySelectorAll("tr").length;
+              
+              if (rowCount > 1) {
+                  emptyText.style.display = "none";
+                  table.style.display = "table";
+              } else {
+                  emptyText.style.display = "block";
+                  table.style.display = "none";
+              }
+          });
+      }
+      toggleVisibility();</script> 
   </div>
   <div class = "addDiv">
     <h1 class = "addLabel">Add Classes</h1> <!--                                      update the 'add a class' text on submission-->
