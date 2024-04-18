@@ -211,7 +211,7 @@ def dashboard() -> Any:
         # convert the GPA to 2 decimals
         gpa_kwargs = {
             "unweighted_gpa": f"{calculate_unweighted_gpa(classes):.2f}",
-            "weighted_gpa": f"{calculate_unweighted_gpa(classes):.2f}",
+            "weighted_gpa": f"{calculate_weighted_gpa(classes):.2f}",
             "has_classes": True,
         }
 
