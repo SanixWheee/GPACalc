@@ -73,7 +73,7 @@ def register() -> Any:
                 db.session.commit()
 
                 flash("Account successfully created", "info")
-                return redirect(url_for("dashboard.dashboard"))
+                return redirect(url_for("auth.login"))
 
     if error:
         flash(error, "error")
