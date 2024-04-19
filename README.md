@@ -14,6 +14,8 @@ Flask>=3.0
 Flask-SQLAlchemy>=3.0
 Flask-Login>=0.6
 reportlab>=4.0
+openai>=1.3
+python-dotenv>1.0
 ```
 
 For formatting Python, the libraries [black](https://pypi.org/project/black/) and [isort](https://pypi.org/project/isort/) are used.
