@@ -16,6 +16,11 @@
                     <td>{{class.name}}</td>
                     <td>{{class.received_grade}}</td>
                     <td>{{class.credits}}</td>
+                    <td>
+                        <form action="{{ url_for('dashboard.delete_class', class_id=class.id) }}" method="GET">
+                            <input type="submit" value="Remove">
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </table>
