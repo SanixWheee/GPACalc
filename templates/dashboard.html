@@ -1,5 +1,7 @@
 {% extends "base.html" %} {% block content %}
-<script src="{{url_for('static', filename='dashboard.js')}}" defer></script>
+
+<link rel = "stylesheet" 
+          href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
 <div class = "dashboardContainer">
     <div class="leftWidget">
       <div class = "tableDiv">
@@ -16,11 +18,15 @@
                     <td>{{class.name}}</td>
                     <td>{{class.received_grade}}</td>
                     <td>{{class.credits}}</td>
-                    <td>
-                        <form action="{{ url_for('dashboard.delete_class', class_id=class.id) }}" method="GET">
-                            <input type="submit" value="Remove">
-                        </form>
+                    <td style="border: none">
+                        <span class = "material-symbols-outlined delete" id = "deleteButton">close</span>
                     </td>
+                    <script>
+                      document.getElementById('deleteButton').addEventListener('click', function() {
+                          var url = "{{ url_for('dashboard.delete_class', class_id=class.id) }}";
+                          window.location.href = url;
+                      });
+                    </script>
                 </tr>
                 {% endfor %}
             </table>

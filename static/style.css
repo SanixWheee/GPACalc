@@ -434,6 +434,7 @@ input[type = submit] {
     margin-bottom: 30px;
     display: block;
     animation: slideinRightClass 1000ms forwards;
+    font-size: 15px;
 }
 
 
@@ -488,6 +489,16 @@ input[type = submit] {
   font-family: 'Roboto Mono', monospace;
   visibility: visible;
   margin-left: 3%;
+}
+
+.delete {
+  color: red;
+  border: 0.2vmin solid red;
+  border-radius: 25px;
+}
+
+.delete:hover {
+  cursor:pointer;
 }
 
 .gradeLabel { 
