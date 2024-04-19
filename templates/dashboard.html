@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="rightWidgets">
-      <div class = "topWidget">
+      <div class = "classWidget">
         <h1 class = "addLabel">Add Classes</h1> <!--                                      update the 'add a class' text on submission-->
         <form id = "addClass" action="{{ url_for('dashboard.dashboard') }}" method="POST" onsubmit="toggleVisibility()">
 
@@ -31,7 +31,7 @@
               <br>
               <!-- <label for = "grade" class = "dropdownLabel">Grade Recieved:</label> -->
               <select class = "grade dropdown" id="grade" name = "received_grade" required>
-                <option value = "" disabled selected class = "initChoice">Select your recieved grade</option>
+                <option value = "" disabled selected class = "initChoice">Class grade</option>
                 <option value="A">A</option>
                 <option value="B+">B+</option>
                 <option value="B">B</option>
@@ -77,6 +77,43 @@
       </div>
     </div>
 </div>
+
+<script>
+    var leftWidget = document.querySelector('.leftWidget');
+    var table = document.querySelector('.grades');
+    var bottomWidget = document.querySelector('.bottomWidget');
+    var classWidget = document.querySelector('.classWidget');
+
+    window.onload = function() {
+        if (table.getElementsByTagName('tr').length > 1) {
+            classWidget.classList.add('fadeout');
+
+            setTimeout(function() {
+                classWidget.style.transform = 'translateX(200%)';
+                leftWidget.classList.add('visible');
+                bottomWidget.classList.add('visible');
+                classWidget.classList.add('visible');
+            }, 250);
+        }
+    };
+/*
+    document.addEventListener('click', function(event) {
+        classWidget.classList.add('fadeout');
+
+        setTimeout(function() {
+            classWidget.style.transform = 'translateX(200%)';
+            leftWidget.classList.add('visible');
+            bottomWidget.classList.add('visible');
+            classWidget.classList.add('visible');
+        }, 250);
+    });
+
+ */
+
+
+
+
+</script>
 
 
 {% endblock %}
