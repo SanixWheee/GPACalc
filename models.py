@@ -78,7 +78,7 @@ class Class(db.Model):
     credits = db.Column(db.Float, nullable=False)
 
     def full_name(self) -> str:
-        return f'{self.type} {self.name}'.strip()
+        return f"{self.type} {self.name}".strip()
 
 
 def init_db(app: Flask) -> None:

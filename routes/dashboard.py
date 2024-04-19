@@ -220,7 +220,9 @@ def dashboard() -> Any:
     for cls in classes:
         sorted_classes[cls.grade_taken].append(cls)
 
-    return render_template("dashboard.html", classes_by_grade=sorted_classes, **gpa_kwargs)
+    return render_template(
+        "dashboard.html", classes_by_grade=sorted_classes, **gpa_kwargs
+    )
 
 
 @bp.route("/dashboard/download", methods=("GET",))
@@ -235,7 +237,9 @@ def download_report() -> Any:
         Returns the pdf file
     """
     return send_from_directory(
-        current_app.config["REPORT_DIR"], current_user.get_report_filepath()
+        current_app.config["REPORT_DIR"],
+        current_user.get_report_filepath(),
+        as_attachment=True,
     )
 
 
