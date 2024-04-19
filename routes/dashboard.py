@@ -1,4 +1,5 @@
 import statistics
+from collections import defaultdict
 from typing import Any, Dict, List, Sequence, Tuple
 
 from flask import (
@@ -215,7 +216,7 @@ def dashboard() -> Any:
             "has_classes": True,
         }
 
-    sorted_classes = {grade: [] for grade in range(9, 13)}
+    sorted_classes = defaultdict(list)
 
     for cls in classes:
         sorted_classes[cls.grade_taken].append(cls)

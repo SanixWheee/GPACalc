@@ -85,12 +85,12 @@
 
 <script>
     var leftWidget = document.querySelector('.leftWidget');
-    var table = document.querySelector('.grades');
+    var table = document.querySelector('.tableDiv');
     var bottomWidget = document.querySelector('.bottomWidget');
     var classWidget = document.querySelector('.classWidget');
 
     window.onload = function() {
-        if (table.getElementsByTagName('tr').length > 1) {
+        if (table.getElementsByTagName('table').length >= 1) {
             classWidget.classList.add('fadeout');
 
             setTimeout(function() {
