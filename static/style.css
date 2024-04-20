@@ -493,8 +493,9 @@ input[type = submit] {
 
 .delete {
   color: red;
-  border: 0.2vmin solid red;
-  border-radius: 25px;
+  border: 0.5vmin solid red;
+  padding: 8px;
+  height: auto;
 }
 
 .delete:hover {
