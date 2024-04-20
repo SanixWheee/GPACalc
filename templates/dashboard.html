@@ -5,6 +5,11 @@
 <div class = "dashboardContainer">
     <div class="leftWidget">
       <div class = "tableDiv">
+      <script>
+          function redirect(url) {
+              window.location.href = url;
+          }
+      </script>
         {% for grade, classes in classes_by_grade.items() %}
             <h1 class = "gradeLabel">{{ grade }}th Grade</h1>
             <table class = "{{ grade }} grades">
@@ -15,18 +20,12 @@
                 </tr>
                 {% for class in classes %}
                 <tr>
-                    <td>{{class.name}}</td>
+                    <td>{{class.full_name()}}</td>
                     <td>{{class.received_grade}}</td>
                     <td>{{class.credits}}</td>
                     <td style="border: none">
-                        <span class = "material-symbols-outlined delete" id = "deleteButton">delete</span>
+                        <span class = "material-symbols-outlined delete" id = "deleteButton" onclick="redirect('{{ url_for('dashboard.delete_class', class_id=class.id) }}')">delete</span>
                     </td>
-                    <script>
-                      document.getElementById('deleteButton').addEventListener('click', function() {
-                          var url = "{{ url_for('dashboard.delete_class', class_id=class.id) }}";
-                          window.location.href = url;
-                      });
-                    </script>
                 </tr>
                 {% endfor %}
             </table>
