@@ -493,7 +493,7 @@ input[type = submit] {
 
 .delete {
   color: red;
-  border: 0.5vmin solid red;
+  border: 0.3vmin solid red;
   padding: 8px;
   height: auto;
   transition: 0.3s;
@@ -501,30 +501,8 @@ input[type = submit] {
 
 .delete:hover {
   cursor:pointer;
-  background-color: (228,231,223, 0.5);
-  animation: rotateAnimation 0.3s forwards;
-}
-
-@keyframes rotateAnimation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.delete:not(hover) {
-  animation: rotateBack 0.3s forwards;
-}
-
-@keyframes rotateBack {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+  background-color: red;
+  color: white;
 }
 
 .gradeLabel { 
@@ -550,19 +528,13 @@ input[type = submit] {
 }
 
 .grades td {
-  text-align: left;
+  /* text-align: left; */
   border: 3px solid #18637B;
   border-spacing: 0 1px;
   padding-right: 10px;
-}
-
-.grades td:hover {
-  background-color: #70ffb0;
-  font-weight: 600;
-}
-
-.grades td:nth-child(4):hover {
-  background-color: transparent;
+  padding-left: 5px;
+  transition: 0.3s;
+  color:black;
 }
 
 .addDiv {
