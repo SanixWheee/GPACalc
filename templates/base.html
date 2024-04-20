@@ -72,11 +72,14 @@
 
     {% with messages = get_flashed_messages(with_categories=True) %} {% if
     messages %}
-    <ul class="flashes">
-      {% for category, message in messages %}
-      <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
+    <div class = "flashes">
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p> 
+        <span id="closeButton" class = "material-symbols-outlined {{ category }}">close</span>
+        {% endfor %}
+        
+    </div>
+    
     {% endif %} {% endwith %}
 
     <div id="content">{% block content %}{% endblock %}</div>
