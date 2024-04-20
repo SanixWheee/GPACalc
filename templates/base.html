@@ -72,10 +72,18 @@
 
     {% with messages = get_flashed_messages(with_categories=True) %} {% if
     messages %}
+    <script>
+        function makeInvisible(id) {
+            var flashMessage = document.getElementById(`message${id}`);
+            flashMessage.style.display = 'none';
+            var flashX = document.getElementById(`closeButton${id}`);
+            flashX.style.display = 'none';
+        }
+    </script>
     <div class = "flashes">
         {% for category, message in messages %}
-        <p class="{{ category }}">{{ message }}</p> 
-        <span id="closeButton" class = "material-symbols-outlined {{ category }}">close</span>
+        <p id="message{{ loop.index }}" class="{{ category }}">{{ message }}</p>
+        <span id="closeButton{{ loop.index }}" class = "material-symbols-outlined {{ category }}" onclick="makeInvisible('{{loop.index}}')">close</span>
         {% endfor %}
         
     </div>
