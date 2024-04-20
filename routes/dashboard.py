@@ -201,6 +201,7 @@ def dashboard() -> Any:
             )
             db.session.add(cls)
             db.session.commit()
+        return redirect(url_for('dashboard.dashboard'))
 
     classes = Class.query.filter_by(user_id=current_user.id).all()
 
