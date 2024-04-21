@@ -160,7 +160,3 @@ node_modules/
 
 # Ignore user PDF reports
 /reports
-
-# Prettier
-package.json
-package-lock.json
