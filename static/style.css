@@ -28,6 +28,12 @@ body {
   background-color: #25A18E;
 }
 
+h2{
+  font-family: 'Roboto Mono', monospace;
+    margin-top: 35px;
+    margin-bottom: 5px;
+}
+
 /* Initial style for the navbar */
 .navbar {
   /*position: fixed;*/
@@ -168,50 +174,89 @@ body {
   font-family: 'Honk', system-ui;;
 }
 
+.loginWidget{
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    margin: 70px auto;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden; /* Ensure the shadow doesn't overflow */
+}
+
+.loginImage{
+    flex: 1;
+    background-image: url('https://placehold.co/400x400');
+    background-size: cover;
+    background-position: center;
+}
+
+.loginContainer{
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    flex-direction: column;
+}
+
+
+
   /* Creates a box for the login form to go on */
 .loginBox {
+    padding: 20px;
+    background-color: #c2ffdd;
+    flex-direction: column;
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: center;
-    background-color: #18637B;
-    overflow: hidden;
-    width: 500px;
-    padding: 50px;
-    margin: auto;
-    border-radius: 25px;
   }
 
   /* Makes the login text better formatted within the loginBox */
 .userLogin {
   text-align: center;
-  text-align: center;
   font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
-  color: #ddd;
-}
-/* Makes the password text better formatted within the loginBox */
-.passLogin {
-  text-align: center;
-  text-align: center;
-  font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
-  color: #ddd;
+  color: black;
+  font-family: 'Roboto Mono', monospace;
+  justify-content: center;
+  align-items: center;
 }
 
 /* The header for each page, makes it look bigger and centered */
 .title {
   text-align: center;
-  font-size: 30px;
-  font-family: 'Montserrat', sans-serif;
-  color: #ddd;
+  font-size: 40px;
+  font-family: 'Metrophobic', monospace;
+  color: white;
+    margin-top: 10px;
   
+}
+
+.loginText{
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.loginField {
+    font-family: "Roboto Mono", monospace;
+    border-radius: 10px;
+    padding: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #ddd;
+}
+
+.loginButtons{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Changes the input button to look better with no border and a better font */
 input[type = submit] {
   padding: 5px 15px;
   border: 0 none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
 /* The button that takes you between the login page and the register page */
@@ -406,6 +451,8 @@ input[type = submit] {
     border-radius: 15px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     width: 50vw;
+    max-height: 100vw;
+    overflow: auto;
     padding: 20px;
     display: none;
     transform: translateX(-200%);
@@ -480,6 +527,7 @@ input[type = submit] {
     text-align: center;
     margin-bottom: 30px;
     display: block;
+    font-size: 15px;
     animation: slideinRightClass 1000ms forwards;
     font-size: 15px;
 }
@@ -627,6 +675,8 @@ input[type = submit] {
 
 .submitButton {
   padding: 1.5%;
+  text-decoration: none;
+  text-align: center;
   font-family: 'Roboto Mono', monospace;
   border-radius: 10px;
   width: 40%;

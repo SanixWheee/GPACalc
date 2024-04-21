@@ -1,6 +1,13 @@
 {% extends "base.html" %} {% block content %}
-<h1 class="title">Register</h1>
+
+<div class="loginWidget">
+    <div class="loginImage"></div>
+<div class="loginContainer">
+
+
+
 <div class="loginBox">
+<h2 class="loginText">Register</h2>
   <form action="{{ url_for('auth.register') }}" method="POST" class="register">
     <div class="userLogin">
       <label for="username">Username:</label>
@@ -14,7 +21,7 @@
       />
     </div>
     <br />
-    <div class="passLogin">
+    <div class="userLogin">
       <label for="password">Password:</label>
       <input
         type="password"
@@ -25,11 +32,10 @@
       />
     </div>
     <br />
-    <div>
-      <input type="submit" name="submit" value="Register" />
-      <a class="registerButton" href="{{ url_for('auth.login') }}"
-        >Already have an Account? Log in Here.</a
-      >
+    <div class="loginButtons">
+      <input class="submitButton" type="submit" name="submit" value="Register" />
+      <h2> Already have an Account? </h2>
+      <a class="submitButton" href="{{ url_for('auth.login') }}">Log in Here</a>
     </div>
   </form>
 </div>
