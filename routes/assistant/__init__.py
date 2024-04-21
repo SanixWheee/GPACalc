@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import re
 import functools
 from typing import Any, Callable, ParamSpec, TypeVar
 
 from flask import Blueprint, current_app, request, session, stream_with_context
 from flask_login import AnonymousUserMixin, current_user
-from openai.types.beta.assistant_stream_event import ThreadMessageDelta, ThreadMessageCompleted
+from openai.types.beta.assistant_stream_event import ThreadMessageDelta, ThreadRunFailed
 
 from .api import client, init_assistant
 
@@ -18,8 +19,6 @@ def check_thread(func: Callable[P, R]) -> Callable[P, R]:
     def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
         if "thread_id" not in session:
             session["thread_id"] = client.beta.threads.create().id
-        else:
-            print(f"Existing thread ID: {session['thread_id']}")
         return func(*args, **kwargs)
 
     return wrapper
@@ -64,5 +63,7 @@ def create_message() -> Any:
             for event in stream:
                 if isinstance(event, ThreadMessageDelta):
                     yield event.data.delta.content[0].text.value
-
+                elif isinstance(event, ThreadRunFailed):
+                    retry = re.search(r"Please try again in [0-9]+s\.", event.data.last_error.message).group(0)
+                    yield 'We are under a high load right now. ' + retry
     return generate()  # type: ignore  # stream_with_context seems to be missing an overload

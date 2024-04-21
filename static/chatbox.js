@@ -6,8 +6,9 @@ const chatToggle = document.querySelector(".chatbutton"); //gets the button to o
 let userMessage;
 
 const url = "/api/assistant/create_message";
-
 const inputHeight = chatInput.scrollHeight;
+
+var fetchingResponse = false;
 
 const createChatLi = (message, className) => {
     //creates a chat <li> element with the passed message and className
@@ -20,6 +21,8 @@ const createChatLi = (message, className) => {
 }
 
 const generateResponse = (incomingMessage) => {
+    fetchingResponse = true;
+
     const messageElement = incomingMessage.querySelector("p");
     const options = {
         method: 'POST',
@@ -42,6 +45,7 @@ const generateResponse = (incomingMessage) => {
             const word = await reader.read();
             const {done, value} = word;
             if (done) {
+                fetchingResponse = false;
                 break;
             }
             const decodedWord = decoder.decode(value);
@@ -61,23 +65,20 @@ const handleChat = () => {
     chatbox.appendChild(createChatLi(userMessage, "outgoing"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
 
-    setTimeout(() => {
-        const incomingMessage = createChatLi("Sending...", "incoming")
-        chatbox.appendChild(incomingMessage);
-        generateResponse(incomingMessage);
-        chatbox.scrollTo(0, chatbox.scrollHeight);
-    }, 600);
+    const incomingMessage = createChatLi("Thinking...", "incoming");
+    chatbox.appendChild(incomingMessage);
+    generateResponse(incomingMessage);
+    chatbox.scrollTo(0, chatbox.scrollHeight);
 }
 
 
 
 chatInput.addEventListener("keydown", (press) => {
     //Checks to see if the user presses the Enter key, while not pressing shift, and sends a message
-    if (press.key === "Enter" && !press.shiftKey) {
+    if (press.key === "Enter" && !press.shiftKey && !fetchingResponse) {
         press.preventDefault();
         handleChat();
     }
-
 })
 
 chatToggle.addEventListener("click", () => document.body.classList.toggle("showchatbot"));
