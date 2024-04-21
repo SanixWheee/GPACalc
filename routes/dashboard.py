@@ -81,7 +81,7 @@ def create_pdf(classes: List[Class], user: User) -> None:
     Parameters
     ----------
     classes: List[Class]
-    username: str
+    user: User
     """
     # sort the classes by grade taken and then alphabetical
     classes.sort(key=lambda c: (c.grade_taken, c.name))
