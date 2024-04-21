@@ -18,13 +18,37 @@ def check_thread(func: Callable[P, R]) -> Callable[P, R]:
     @functools.wraps(func)
     def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
         if "thread_id" not in session:
-            session["thread_id"] = client.beta.threads.create().id
+            session["thread_id"] = client.beta.threads.create(
+                messages=[
+                    {
+                        'role': 'assistant',
+                        'content': 'Welcome to the GPA Wizard interactive chatbot! How may I help you?'
+                    }
+                ]
+            ).id
         return func(*args, **kwargs)
 
     return wrapper
 
 
 bp = Blueprint("assistant", __name__, url_prefix="/api/assistant")
+
+
+@bp.route("/get_messages", methods=("GET",))
+@check_thread
+def get_messages() -> Any:
+    """
+    Get all messages in the current thread
+
+    Methods
+    -------
+    POST /api/assistant/get_messages:
+        This is called by the frontend and returns a list of messages in the current thread
+    """
+    messages = client.beta.threads.messages.list(thread_id=session["thread_id"], order="asc")
+    return {"messages": [
+        {'content': message.content[0].text.value, 'role': message.role} for message in messages
+    ]}
 
 
 @bp.route("/create_message", methods=("POST",))

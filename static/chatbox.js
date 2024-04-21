@@ -4,14 +4,29 @@ const chatbox = document.querySelector(".chatbox"); //gets the chatbox from the 
 const chatToggle = document.querySelector(".chatbutton"); //gets the button to open/close the chatbot from the base.html file and keeps a reference to that
 
 let userMessage;
-
-const url = "/api/assistant/create_message";
 const inputHeight = chatInput.scrollHeight;
 
 var fetchingResponse = false;
 
+const initMessages = () => {
+    const options = {
+        method: 'GET'
+    }
+    fetch("api/assistant/get_messages", options)
+    .then(response => response.json())
+    .then(response => response["messages"])
+    .then(messages => {
+        messages.forEach(message => {
+            const chatLi = createChatLi(message["content"], message["role"] === "assistant" ? "incoming" : "outgoing");
+            chatbox.appendChild(chatLi);
+        })
+    });
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+}
+
 const createChatLi = (message, className) => {
     //creates a chat <li> element with the passed message and className
+    console.log(message);
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);
     let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span class = "material-symbols-outlined">smart_toy</span><p>${message}</p>`;
@@ -35,7 +50,7 @@ const generateResponse = (incomingMessage) => {
             stream: true
         }),
     }
-    fetch(url, options)
+    fetch("/api/assistant/create_message", options)
     .then(async (response) => {
         const reader = response.body.getReader()
         const decoder = new TextDecoder("utf-8");
@@ -82,5 +97,5 @@ chatInput.addEventListener("keydown", (press) => {
 })
 
 chatToggle.addEventListener("click", () => document.body.classList.toggle("showchatbot"));
-
 sendChatBtn.addEventListener("click", handleChat); //checks to see if the user has clicked on the span (send button), and runs the 'handleChat' const
+document.addEventListener("DOMContentLoaded", initMessages);
