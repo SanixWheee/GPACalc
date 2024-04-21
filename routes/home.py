@@ -1,7 +1,5 @@
 from typing import Any
 
-from flask import flash
-
 from flask import Blueprint, render_template
 
 bp = Blueprint("home", __name__)
@@ -17,6 +15,4 @@ def home() -> Any:
     GET /:
         Render the template for index.html
     """
-    # flash('message', 'info') 
-    flash('message', 'error')
     return render_template("index.html")
