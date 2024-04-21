@@ -70,6 +70,7 @@ const generateResponse = (incomingMessage) => {
     .catch((error) => {
         messageElement.textContent = "Oops! Something went wrong. Please try again!";
     })
+    chatbox.scrollTo(0, chatbox.scrollHeight);
 }
 
 const handleChat = () => {
