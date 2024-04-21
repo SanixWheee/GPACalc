@@ -5,7 +5,7 @@ from typing import Any, Callable, ParamSpec, TypeVar
 
 from flask import Blueprint, current_app, request, session, stream_with_context
 from flask_login import AnonymousUserMixin, current_user
-from openai.types.beta.assistant_stream_event import ThreadMessageDelta
+from openai.types.beta.assistant_stream_event import ThreadMessageDelta, ThreadMessageCompleted
 
 from .api import client, init_assistant
 
@@ -18,6 +18,8 @@ def check_thread(func: Callable[P, R]) -> Callable[P, R]:
     def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
         if "thread_id" not in session:
             session["thread_id"] = client.beta.threads.create().id
+        else:
+            print(f"Existing thread ID: {session['thread_id']}")
         return func(*args, **kwargs)
 
     return wrapper
