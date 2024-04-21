@@ -42,7 +42,7 @@ def get_messages() -> Any:
 
     Methods
     -------
-    POST /api/assistant/get_messages:
+    GET /api/assistant/get_messages:
         This is called by the frontend and returns a list of messages in the current thread
     """
     messages = client.beta.threads.messages.list(thread_id=session["thread_id"], order="asc")
