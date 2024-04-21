@@ -40,7 +40,7 @@ def init_assistant() -> Assistant:
         )
 
     vector_store = client.beta.vector_stores.create(name='GPA Calculator')
-    file_paths = itertools.chain.from_iterable(glob.glob(f"routes/assistant/*.{file_type}", recursive=True) for file_type in FILE_TYPES)
+    file_paths = itertools.chain.from_iterable(glob.glob(f"routes/assistant/*.{file_type}") for file_type in FILE_TYPES)
     files = [open(path, "rb") for path in file_paths]
 
     client.beta.vector_stores.file_batches.upload_and_poll(
