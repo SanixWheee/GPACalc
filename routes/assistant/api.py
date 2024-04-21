@@ -86,6 +86,3 @@ def init_assistant() -> Assistant:
         )
 
     return assistant
-
-
-init_assistant()
