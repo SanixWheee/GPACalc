@@ -208,6 +208,9 @@ def dashboard() -> Any:
         except ValueError:
             flash("Invalid credits value", "error")
         else:
+            if credits <= 0:
+                flash("Credits must be greater than 0", "error")
+
             cls = Class(
                 user_id=current_user.id,
                 name=name,
