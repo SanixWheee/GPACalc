@@ -37,7 +37,12 @@
         <h1 class = "addLabel">Add Classes</h1> <!--                                      update the 'add a class' text on submission-->
         <form id = "addClass" action="{{ url_for('dashboard.dashboard') }}" method="POST" onsubmit="toggleVisibility()">
 
-              <input type = 'text' id = 'class' class = "enter" name = 'name' placeholder="Enter the class name" required>
+              <input type = 'text' id = 'class' class = "enter" name = 'name' placeholder="Enter the class name" list="possibleClasses" required>
+              <datalist id="possibleClasses">
+                  {% for cls in all_classes %}
+                  <option>{{ cls }}</option>
+                  {% endfor %}
+              </datalist>
               <br>
               <!-- <label for = "grade" class = "dropdownLabel">Grade Recieved:</label> -->
               <select class = "grade dropdown" id="grade" name = "received_grade" required>
@@ -95,10 +100,11 @@
     var table = document.querySelector('.tableDiv');
     var bottomWidget = document.querySelector('.bottomWidget');
     var classWidget = document.querySelector('.classWidget');
+    var classAdded = false;
     window.onload = function () {
-        if (table.getElementsByTagName('table').length >= 1) {
+        if (table.getElementsByTagName('table').length >= 1 && !classAdded) {
             classWidget.classList.add('fadeout');
-
+            classAdded = true;
             setTimeout(function () {
                 classWidget.style.transform = 'translateX(200%)';
                 leftWidget.classList.add('visible');

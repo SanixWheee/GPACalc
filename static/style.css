@@ -555,23 +555,6 @@ input[type = submit] {
 
 }
 
-.classWidget.visible{
-    background-color: #c2ffdd;
-    width: 300px;
-    border-radius: 15px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
-    flex: 1; /* Add flex: 1 */
-    margin-left: 30px; /* Add margin-left */
-    text-align: center;
-    margin-bottom: 30px;
-    display: block;
-    font-size: 15px;
-    animation: slideinRightClass 1000ms forwards;
-    font-size: 15px;
-}
-
 
 @keyframes slideinRight {
     from {
@@ -595,11 +578,6 @@ input[type = submit] {
     padding: 20px;
     display: none;
     transform: translateX(200%);
-}
-
-.bottomWidget.visible{
-    display: flex;
-    animation: slideinRight 1000ms forwards;
 }
 
 

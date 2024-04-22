@@ -63,7 +63,8 @@ const generateResponse = (incomingMessage) => {
                 break;
             }
             const decodedWord = decoder.decode(value);
-            messageElement.textContent += decodedWord
+            messageElement.textContent += decodedWord;
+            chatbox.scrollTo(0, chatbox.scrollHeight);
         }
     })
     .catch((error) => {

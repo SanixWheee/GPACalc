@@ -187,6 +187,10 @@ def create_pdf(classes: List[Class], user: User) -> None:
     )
 
 
+with open('all_classes.txt', 'r') as f:
+    ALL_CLASSES: List[str] = f.read().split('\n')
+
+
 @bp.route("/dashboard", methods=("GET", "POST"))
 @login_required
 def dashboard() -> Any:
@@ -243,7 +247,7 @@ def dashboard() -> Any:
         sorted_classes[cls.grade_taken].append(cls)
 
     return render_template(
-        "dashboard.html", classes_by_grade=sorted_classes, **gpa_kwargs
+        "dashboard.html", classes_by_grade=sorted_classes, all_classes=ALL_CLASSES, **gpa_kwargs
     )
 
 
