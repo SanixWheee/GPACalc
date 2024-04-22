@@ -34,14 +34,20 @@ h2{
     margin-bottom: 5px;
 }
 
+h3{
+  font-family: 'Roboto Mono', monospace;
+    margin-top: 35px;
+    margin-bottom: 5px;
+}
+
 /* Initial style for the navbar */
 .navbar {
-  /*position: fixed;*/
   top: 0; /* Move the navbar above the viewport initially */
   left: 0;
   width: 100%;
   background-color: #9FFFCB;
   transition: top 0.3s; /* Add smooth transition for the top property */
+  display: inline-block;
 }
 
 /* Style for the navbar when it's visible */
@@ -158,6 +164,16 @@ h2{
     max-height: 100%;
 }
 
+.gitLink {
+  margin-left: auto;
+}
+
+.github {
+  height: 30px;
+  width: 30px;
+  float: right;
+}
+
 .text, .image {
     flex: 1;
 }
@@ -250,7 +266,7 @@ h2{
   font-size: 40px;
   font-family: 'Metrophobic', monospace;
   color: white;
-    margin-top: 10px;
+  margin-top: 10px;
   
 }
 

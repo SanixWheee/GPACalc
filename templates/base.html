@@ -41,6 +41,9 @@
         <!-- This button only shows up if the user is not logged in -->
         <a class="navLink" href="{{ url_for('auth.login') }}">Login/Signup</a>
         {% endif %}
+        <a class = "gitLink" href="https://github.com/SanixWheee/GPACalc">
+          <img style = "height: 30px; width: 30px; float: right;" class = "github" src="{{ url_for('static', filename='github-mark.png') }}">
+        </a>
       </div>
     </div>
     <!-- div for the chatbot -->
@@ -57,9 +60,6 @@
     <!-- Div for the bottom nav bar -->
     <div class="bottomBar">
       <p class="footer-text">By Kaushal Dabbiru, Tejas Panja, Safwan Hasan</p>
-      <a href="https://github.com/SanixWheee/GPACalc">
-        <img src="{{ url_for('static', filename='github-mark.png') }}">
-      </a>
       <button class = "chatbutton">
         <span class = "material-symbols-outlined">mode_comment</span>
         <span class = "material-symbols-outlined">close</span>
