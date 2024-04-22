@@ -33,7 +33,8 @@ def create_app() -> Flask:
     init_report_dir(app)
 
     # initialize the blueprints (sections of the website)
-    from routes import assistant, auth, dashboard, home
+    from routes import auth, dashboard, home
+    from routes.api import assistant
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(home.bp)
