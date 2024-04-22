@@ -111,7 +111,7 @@ def create_pdf(classes: List[Class], user: User) -> None:
     ] + [
         (
             str(cls.grade_taken),
-            f"{cls.type} {cls.name}".strip(),  # no honors or AP leaves an empty space at the start
+            cls.full_name(),
             cls.received_grade,
             str(cls.credits),
             letter_to_gpa[cls.received_grade],
@@ -123,8 +123,7 @@ def create_pdf(classes: List[Class], user: User) -> None:
     # format the table with colors and a specific width
     column_count = len(data[0])
 
-    #                             500 is the target width
-    table = Table(data, colWidths=[500 / column_count] * column_count)
+    table = Table(data, colWidths=[70, 150, 80, 50, 80, 80])  # the name column needs extra room
     style = TableStyle(
         [
             ("BACKGROUND", (0, 0), (-1, 0), colors.grey),

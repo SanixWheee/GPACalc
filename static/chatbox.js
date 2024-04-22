@@ -26,7 +26,6 @@ const initMessages = () => {
 
 const createChatLi = (message, className) => {
     //creates a chat <li> element with the passed message and className
-    console.log(message);
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);
     let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span class = "material-symbols-outlined">smart_toy</span><p>${message}</p>`;
