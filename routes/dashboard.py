@@ -74,6 +74,24 @@ def calculate_weighted_gpa(classes: Sequence[Class]) -> float:
     return statistics.harmonic_mean(data=data, weights=weights)
 
 
+def dot_dot_dot(s: str, max_length: int) -> str:
+    """
+    A method to shorten a string to a certain length and add '...' to the end
+
+    Parameters
+    ----------
+    s: str
+    max_length: int
+
+    Returns
+    -------
+    str
+    """
+    if len(s) > max_length:
+        return s[:max_length - 3] + "..."
+    return s
+
+
 def create_pdf(classes: List[Class], user: User) -> None:
     """
     A method to create a report pdf from a list of classes and a username
@@ -111,7 +129,7 @@ def create_pdf(classes: List[Class], user: User) -> None:
     ] + [
         (
             str(cls.grade_taken),
-            cls.full_name(),
+            dot_dot_dot(cls.full_name(), 30),
             cls.received_grade,
             str(cls.credits),
             letter_to_gpa[cls.received_grade],
@@ -123,7 +141,7 @@ def create_pdf(classes: List[Class], user: User) -> None:
     # format the table with colors and a specific width
     column_count = len(data[0])
 
-    table = Table(data, colWidths=[70, 150, 80, 50, 80, 80])  # the name column needs extra room
+    table = Table(data, colWidths=[70, 160, 90, 45, 90, 90])  # the name column needs extra room
     style = TableStyle(
         [
             ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
