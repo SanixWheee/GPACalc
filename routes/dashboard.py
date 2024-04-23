@@ -203,6 +203,7 @@ def dashboard() -> Any:
         Render the template for dashboard.html
     """
     if request.method == "POST":
+        added_class = False
         name = request.form["name"]
         type = request.form["type"]
         grade_taken = int(request.form["grade_taken"])
@@ -214,18 +215,20 @@ def dashboard() -> Any:
         else:
             if credits <= 0:
                 flash("Credits must be greater than 0", "error")
+            else:
+                cls = Class(
+                    user_id=current_user.id,
+                    name=name,
+                    type=type,
+                    grade_taken=grade_taken,
+                    received_grade=received_grade,
+                    credits=credits,
+                )
+                db.session.add(cls)
+                db.session.commit()
+                added_class = True
 
-            cls = Class(
-                user_id=current_user.id,
-                name=name,
-                type=type,
-                grade_taken=grade_taken,
-                received_grade=received_grade,
-                credits=credits,
-            )
-            db.session.add(cls)
-            db.session.commit()
-        return redirect(url_for('dashboard.dashboard'))
+        return redirect(url_for('dashboard.dashboard', added_class=added_class))
 
     classes = Class.query.filter_by(user_id=current_user.id).all()
 
@@ -247,7 +250,8 @@ def dashboard() -> Any:
         sorted_classes[cls.grade_taken].append(cls)
 
     return render_template(
-        "dashboard.html", classes_by_grade=sorted_classes, all_classes=ALL_CLASSES, **gpa_kwargs
+        "dashboard.html", classes_by_grade=sorted_classes, all_classes=ALL_CLASSES,
+        run_animation=request.args.get('added_class', False) and len(classes) == 1, **gpa_kwargs
     )
 
 
