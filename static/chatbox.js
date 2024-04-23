@@ -28,7 +28,20 @@ const createChatLi = (message, className) => {
     //creates a chat <li> element with the passed message and className
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);
-    let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span class = "material-symbols-outlined">smart_toy</span><p>${message}</p>`;
+
+    // Convert markdown to HTML
+    let html = marked.parse(message);
+
+    // Create a new DOM parser
+    let parser = new DOMParser();
+
+    // Use the DOM parser to convert the HTML string into a document
+    let doc = parser.parseFromString(html, 'text/html');
+
+    // Get the plain text content of the document
+    let plainText = doc.body.textContent || "";
+
+    let chatContent = className === "outgoing" ? `<p>${plainText}</p>` : `<span class = "material-symbols-outlined">smart_toy</span><p>${plainText}</p>`;
     chatLi.innerHTML = chatContent;
     chatInput.value = '';
     return chatLi;

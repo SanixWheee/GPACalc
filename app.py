@@ -6,6 +6,11 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
+from logger import get_logger
+
+# get the logger with proper formatting
+log = get_logger(__name__)
+
 # Load the environment variables
 load_dotenv()
 
@@ -15,6 +20,7 @@ db = SQLAlchemy()
 
 def init_report_dir(app: Flask) -> None:
     if not os.path.exists("/reports"):
+        log.info('Created "/reports" directory to store user PDF reports')
         os.mkdir("/reports")
 
     app.config["REPORT_DIR"] = "/reports"

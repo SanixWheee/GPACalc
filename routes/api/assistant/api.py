@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-import sys
 import glob
-import logging
 import itertools
 import os
 from typing import TYPE_CHECKING
@@ -10,20 +8,13 @@ from typing import TYPE_CHECKING
 import openai
 
 from .constants import FILE_TYPES, INSTRUCTIONS, NAME
+from logger import get_logger
 
 if TYPE_CHECKING:
     from openai.types.beta import Assistant
 
 
-log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
-
-handler = logging.StreamHandler(stream=sys.stderr)
-formatter = logging.Formatter('[%(asctime)s] %(levelname)s in %(name)s: %(message)s')
-handler.setFormatter(formatter)
-
-log.addHandler(handler)
-
+log = get_logger(__name__)
 
 client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 

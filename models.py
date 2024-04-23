@@ -6,9 +6,13 @@ from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import db
+from logger import get_logger
 
 if TYPE_CHECKING:
     from flask import Flask
+
+
+log = get_logger(__name__)
 
 
 class User(UserMixin, db.Model):
@@ -86,6 +90,8 @@ def init_db(app: Flask) -> None:
     # it is ensured that all models have been loaded
     # because then this function is imported
     # all models above also are
+    log.info('Creating database tables...')
     db.init_app(app)
     with app.app_context():
         db.create_all()
+    log.info('Database tables created')
