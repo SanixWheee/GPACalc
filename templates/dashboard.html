@@ -76,7 +76,7 @@
                 <option value="Honors">Honors</option>
               </select>
               <br>
-              <button type="submit" class="submitButton">Add Class</button>
+              <button type="submit" class="submitButton" onClick="reformatPage()">Add Class</button>
 
         </form>
       </div>
@@ -100,11 +100,20 @@
     var table = document.querySelector('.tableDiv');
     var bottomWidget = document.querySelector('.bottomWidget');
     var classWidget = document.querySelector('.classWidget');
-    var classAdded = false;
     window.onload = function () {
-        if (table.getElementsByTagName('table').length >= 1 && !classAdded) {
+        if (table.getElementsByTagName('table').length < 1) {
+
+
+            bottomWidget.classList.add('away');
+            leftWidget.classList.add('away');
+            classWidget.classList.add('full');
+
+        }
+    };
+    function reformatPage() {
+        if(table.getElementsByTagName('table').length < 1){
+
             classWidget.classList.add('fadeout');
-            classAdded = true;
             setTimeout(function () {
                 classWidget.style.transform = 'translateX(200%)';
                 leftWidget.classList.add('visible');
@@ -112,7 +121,7 @@
                 classWidget.classList.add('visible');
             }, 250);
         }
-    };
+    }
 
 
 
@@ -127,8 +136,8 @@
             classWidget.classList.add('visible');
         }, 250);
     });
+*/
 
- */
 
 
 

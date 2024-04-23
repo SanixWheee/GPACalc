@@ -497,18 +497,18 @@ input[type = submit] {
     max-height: 100vw;
     overflow: auto;
     padding: 20px;
-    display: none;
-    transform: translateX(-200%);
-}
-
-.leftWidget.exists{
     display: flex;
     transform: translateX(0);
 }
 
+.leftWidget.away{
+    display: none;
+    transform: translateX(-200%);
+}
+
 .leftWidget.visible{
     display: flex;
-    animation: slideinLeft 1000ms forwards;
+    animation: slideinLeft 250ms forwards;
 }
 
 .rightWidgets {
@@ -577,7 +577,7 @@ input[type = submit] {
     margin-bottom: 30px;
     display: block;
     font-size: 15px;
-    animation: slideinRightClass 1000ms forwards;
+    animation: slideinRightClass 250ms forwards;
     font-size: 15px;
 }
 
@@ -617,18 +617,18 @@ input[type = submit] {
     margin-left: 30px;
     width: 300px;
     padding: 20px;
-    display: none;
-    transform: translateX(200%);
-}
-
-.bottomWidget.exists{
     display: flex;
     transform: translateX(0);
 }
 
+.bottomWidget.away{
+    display: none;
+    transform: translateX(200%);
+}
+
 .bottomWidget.visible{
     display: flex;
-    animation: slideinRight 1000ms forwards;
+    animation: slideinRight 250ms forwards;
 }
 
 
