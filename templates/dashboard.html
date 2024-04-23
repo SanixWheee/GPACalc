@@ -76,7 +76,7 @@
                 <option value="Honors">Honors</option>
               </select>
               <br>
-              <button type="submit" class="submitButton" onClick="reformatPage()">Add Class</button>
+              <button type="submit" class="submitButton">Add Class</button>
 
         </form>
       </div>
@@ -111,8 +111,6 @@
         }
     };
     function reformatPage() {
-        if(table.getElementsByTagName('table').length < 1){
-
             classWidget.classList.add('fadeout');
             setTimeout(function () {
                 classWidget.style.transform = 'translateX(200%)';
@@ -120,10 +118,12 @@
                 bottomWidget.classList.add('visible');
                 classWidget.classList.add('visible');
             }, 250);
-        }
+
     }
 
-
+    {% if run_animation %}
+    document.addEventListener("DOMContentLoaded", reformatPage);
+    {% endif %}
 
 /*
     document.addEventListener('click', function(event) {
