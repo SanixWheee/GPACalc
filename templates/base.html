@@ -64,7 +64,6 @@
         <span class = "material-symbols-outlined">mode_comment</span>
         <span class = "material-symbols-outlined">close</span>
       </button>
-
     </div>
 
 
@@ -82,8 +81,7 @@
         {% for category, message in messages %}
         <p id="message{{ loop.index }}" class="{{ category }}">{{ message }}</p>
         <span id="closeButton{{ loop.index }}" class = "material-symbols-outlined {{ category }}" onclick="makeInvisible('{{loop.index}}')">close</span>
-        {% endfor %}
-        
+        {% endfor %}  
     </div>
     
     {% endif %} {% endwith %}
@@ -130,34 +128,7 @@
     </script>
 
     {% if has_classes %}
-    <style>
-      .leftWidget.visible{
-        display: flex;
-        animation: slideinLeft 1000ms forwards;
-      }
-
-      .classWidget.visible{
-        background-color: #c2ffdd;
-        width: 300px;
-        border-radius: 15px;
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        transition: transform 0.3s ease-in-out;
-        flex: 1; /* Add flex: 1 */
-        margin-left: 30px; /* Add margin-left */
-        text-align: center;
-        margin-bottom: 30px;
-        display: block;
-        font-size: 15px;
-        animation: slideinRightClass 1000ms forwards;
-        font-size: 15px;
-      }
-
-      .bottomWidget.visible{
-        display: flex;
-        animation: slideinRight 1000ms forwards;
-      }
-    </style>
+    
 
     {% endif %}
   </body>
