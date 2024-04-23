@@ -59,7 +59,7 @@
       </div>
     </div>
     <!-- Div for the bottom nav bar -->
-    <div class="bottomBar">
+    <div id = "bottomBar" class="bottomBar">
       <p class="footer-text">By Kaushal Dabbiru, Tejas Panja, Safwan Hasan</p>
       <button class = "chatbutton">
         <span class = "material-symbols-outlined">mode_comment</span>
@@ -113,9 +113,6 @@
               }
           }
       });
-    </script>
-
-    <script>
 
     document.addEventListener("DOMContentLoaded", function() {
         var navbar = document.getElementById("navbar");
@@ -123,6 +120,15 @@
         // Check if it's the home page
         if (window.location.pathname === '/') {
             navbar.style.position = "fixed";
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var bottomBar = document.getElementById("bottomBar");
+
+        // Check if it's the home page
+        if (window.location.pathname !== '/') {
+            bottomBar.style.bottom = 0;
         }
     });
 
