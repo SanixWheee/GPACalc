@@ -21,11 +21,11 @@
   background: #70ffb0;
 }
 
-
 /* Creates a background color for the entire website */
 body {
   margin: 0;
   background-color: #25A18E;
+  overflow-x: hidden;
 }
 
 h2{
@@ -431,6 +431,7 @@ input[type = submit] {
   padding: 10px;
   overflow: hidden;
   transition: bottom 0.3s;
+  z-index: 1;
 }
 
 .bottomBar.visible {
@@ -992,6 +993,7 @@ input[type = submit] {
     transform-origin: bottom right;
     font-family: 'Metrophobic', sans-serif;
     transition: all 0.1s ease;
+    z-index: 1;
   }
 
   .showchatbot .chatbot {

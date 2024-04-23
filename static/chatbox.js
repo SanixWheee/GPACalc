@@ -4,7 +4,6 @@ const chatbox = document.querySelector(".chatbox"); //gets the chatbox from the 
 const chatToggle = document.querySelector(".chatbutton"); //gets the button to open/close the chatbot from the base.html file and keeps a reference to that
 
 let userMessage;
-const inputHeight = chatInput.scrollHeight;
 
 var fetchingResponse = false;
 
@@ -29,8 +28,15 @@ const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", className);
 
+    let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span class = "material-symbols-outlined">smart_toy</span><p>${message}</p>`;
+    chatLi.innerHTML = chatContent;
+    chatInput.value = '';
+    return chatLi;
+}
+
+const stripMarkdown = (text) => {
     // Convert markdown to HTML
-    let html = marked.parse(message);
+    let html = marked.parse(text);
 
     // Create a new DOM parser
     let parser = new DOMParser();
@@ -40,11 +46,8 @@ const createChatLi = (message, className) => {
 
     // Get the plain text content of the document
     let plainText = doc.body.textContent || "";
+    return plainText;
 
-    let chatContent = className === "outgoing" ? `<p>${plainText}</p>` : `<span class = "material-symbols-outlined">smart_toy</span><p>${plainText}</p>`;
-    chatLi.innerHTML = chatContent;
-    chatInput.value = '';
-    return chatLi;
 }
 
 const generateResponse = (incomingMessage) => {
@@ -79,6 +82,8 @@ const generateResponse = (incomingMessage) => {
             messageElement.textContent += decodedWord;
             chatbox.scrollTo(0, chatbox.scrollHeight);
         }
+
+        messageElement.textContent = stripMarkdown(messageElement.textContent);
     })
     .catch((error) => {
         messageElement.textContent = "Oops! Something went wrong. Please try again!";
