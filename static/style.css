@@ -55,13 +55,10 @@ h3{
     top: 0;
 }
 
-
-
 /* Add this CSS to handle navbar position for non-home pages */
 .homepage {
   top: -80px;
 }
-
 
 /* Initial style for the title */
 .mainTitle {
@@ -122,7 +119,6 @@ h3{
     flex-direction: column;
 }
 
-
 .widget{
     margin: 30px;
     margin-bottom: 40px;
@@ -148,7 +144,6 @@ h3{
 .bottom-widget-text{
     font-size: 18px;
 }
-
 
 .image {
     display: flex;
@@ -187,8 +182,6 @@ h3{
 .footer-right {
   margin-right: 25px; /* Pushes the text to the right by taking up all available space */
 }
-
-
 
 .logo {
   float: left;
@@ -237,8 +230,6 @@ h3{
     flex: 1;
     flex-direction: column;
 }
-
-
 
   /* Creates a box for the login form to go on */
 .loginBox {
