@@ -66,7 +66,7 @@ def register() -> Any:
             if User.query.filter_by(username=username).scalar():
                 error = "Username already taken"
             else:
-                user = User(username=username)
+                user = User(username=username, has_completed_tutorial=False)
                 user.set_password(password)
 
                 db.session.add(user)

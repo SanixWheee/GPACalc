@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<link rel = "stylesheet" 
+<link rel = "stylesheet"
           href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
 <div class = "dashboardContainer">
     <div class="leftWidget visible">
@@ -96,10 +96,10 @@
 
 
 <script>
-    var leftWidget = document.querySelector('.leftWidget');
-    var table = document.querySelector('.tableDiv');
-    var bottomWidget = document.querySelector('.bottomWidget');
-    var classWidget = document.querySelector('.classWidget');
+    const leftWidget = document.querySelector('.leftWidget');
+    const table = document.querySelector('.tableDiv');
+    const bottomWidget = document.querySelector('.bottomWidget');
+    const classWidget = document.querySelector('.classWidget');
 
 
     window.onload = function () {
@@ -115,9 +115,6 @@
 
 
         }
-
-
-
     };
 
 
@@ -130,10 +127,11 @@
 */
 
 
-
-
-
 </script>
+
+    {% if tutorial %}
+         code goes here for tutirla
+    {% endif %}
 
 
 {% endblock %}

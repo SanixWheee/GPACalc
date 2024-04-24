@@ -2,69 +2,61 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GPA Wizard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"/>
-    <link href="https://fonts.googleapis.com/css2?family=Metrophobic&display=swap"
-          rel="stylesheet"/>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{url_for('static', filename='style.css')}}"
-    />
-    <link rel = "stylesheet" 
-          href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Metrophobic&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="{{url_for('static', filename='chatbox.js')}}" defer></script>
-      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  </head>
-  <body>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
     <!-- Div for the top navigation bar -->
     <div class="navbar" id="navbar">
-      <div class="nav-container">
-        <!-- prettier-ignore -->
-        <a class="header" href = "{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
-        <a class="navLink" href="{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
-        {% if current_user and current_user.is_authenticated %}
-        <!-- These buttons only show up if the user is logged in -->
-        <a class="navLink" href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
-        <a class="navLink" href="{{ url_for('auth.logout') }}">Logout</a>
+        <div class="nav-container">
+            <!-- prettier-ignore -->
+            <a class="header" href="{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
+            <a class="navLink" href="{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
+            {% if current_user and current_user.is_authenticated %}
+            <!-- These buttons only show up if the user is logged in -->
+            <a class="navLink" href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
+            <a class="navLink" href="{{ url_for('auth.logout') }}">Logout</a>
 
-        {% else %}
-        <!-- This button only shows up if the user is not logged in -->
-        <a class="navLink" href="{{ url_for('auth.login') }}">Login/Signup</a>
-        {% endif %}
-        <a class = "gitLink" href="https://github.com/SanixWheee/GPACalc">
-          <img style = "height: 30px; width: 30px; float: right;" class = "github" src="{{ url_for('static', filename='github-mark.png') }}">
-        </a>
-      </div>
+            {% else %}
+            <!-- This button only shows up if the user is not logged in -->
+            <a class="navLink" href="{{ url_for('auth.login') }}">Login/Signup</a>
+            {% endif %}
+            <a class="gitLink" href="https://github.com/SanixWheee/GPACalc">
+                <img style="height: 30px; width: 30px; float: right;" class="github" src="{{ url_for('static', filename='github-mark.png') }}">
+            </a>
+        </div>
     </div>
     <!-- div for the chatbot -->
     <div class="chatbot">
-      <header>
-        <h2>GPA Wizard Chatbot</h2>
-      </header>
-      <ul class="chatbox"></ul>
-      <div class = "messageinput">
-        <textarea placeholder="Enter a Message" required></textarea>
-        <span id="sendbutton" class = "material-symbols-outlined">send</span>
-      </div>
+        <header>
+            <h2>GPA Wizard Chatbot</h2>
+        </header>
+        <ul class="chatbox"></ul>
+        <div class="messageinput">
+            <textarea placeholder="Enter a Message" required></textarea>
+            <span id="sendbutton" class="material-symbols-outlined">send</span>
+        </div>
     </div>
     <!-- Div for the bottom nav bar -->
-    <div id = "bottomBar" class="bottomBar">
-      <p class="footer-text">By Kaushal Dabbiru, Tejas Panja, Safwan Hasan</p>
-      <button class = "chatbutton">
-        <span class = "material-symbols-outlined">mode_comment</span>
-        <span class = "material-symbols-outlined">close</span>
-      </button>
+    <div id="bottomBar" class="bottomBar">
+        <p class="footer-text">By Kaushal Dabbiru, Tejas Panja, Safwan Hasan</p>
+        <button class="chatbutton">
+            <span class="material-symbols-outlined">mode_comment</span>
+            <span class="material-symbols-outlined">close</span>
+        </button>
     </div>
 
 
@@ -72,66 +64,68 @@
     messages %}
     <script>
         function makeInvisible(id) {
-            var flashMessage = document.getElementById(`message${id}`);
+            const flashMessage = document.getElementById(`message${id}`);
             flashMessage.style.display = 'none';
-            var flashX = document.getElementById(`closeButton${id}`);
+            const flashX = document.getElementById(`closeButton${id}`);
             flashX.style.display = 'none';
         }
     </script>
-    <div class = "flashes">
+    <div class="flashes">
         {% for category, message in messages %}
         <p id="message{{ loop.index }}" class="{{ category }}">{{ message }}</p>
-        <span id="closeButton{{ loop.index }}" class = "material-symbols-outlined {{ category }}" onclick="makeInvisible('{{loop.index}}')">close</span>
-        {% endfor %}  
+        <span id="closeButton{{ loop.index }}" class="material-symbols-outlined {{ category }}" onclick="makeInvisible('{{loop.index}}')">close</span>
+        {% endfor %}
     </div>
-    
+
     {% endif %} {% endwith %}
 
     <div id="content">{% block content %}{% endblock %}</div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          var isHomePage = "{{ request.path }}" === "/";
-          var navbar = document.querySelector('.navbar');
+        document.addEventListener('DOMContentLoaded', function() {
+            const isHomePage = "{{ request.path }}" === "/";
+            const navbar = document.querySelector('.navbar');
 
-          if (isHomePage) {
-              navbar.classList.add('homepage');
-          } else {
-              navbar.classList.remove('homepage')
-          }
-      });
+            if (isHomePage) {
+                navbar.classList.add('homepage');
+            } else {
+                navbar.classList.remove('homepage')
+            }
+        });
     </script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          // Check if the URL contains #helpScreen
-          if (window.location.href.indexOf('#helpScreen') > -1) {
-              // Scroll to the element with id "helpScreen"
-              var helpScreenElement = document.getElementById('helpScreen');
-              if (helpScreenElement) {
-                  helpScreenElement.scrollIntoView({ behavior: 'smooth' });
-              }
-          }
-      });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if the URL contains #helpScreen
+            if (window.location.href.indexOf('#helpScreen') > -1) {
+                // Scroll to the element with id "helpScreen"
+                const helpScreenElement = document.getElementById('helpScreen');
+                if (helpScreenElement) {
+                    helpScreenElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
 
-    document.addEventListener("DOMContentLoaded", function() {
-        var navbar = document.getElementById("navbar");
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbar = document.getElementById("navbar");
 
-        // Check if it's the home page
-        if (window.location.pathname === '/') {
-            navbar.style.position = "fixed";
-        }
-    });
+            // Check if it's the home page
+            if (window.location.pathname === '/') {
+                navbar.style.position = "fixed";
+            }
+        });
 
-    document.addEventListener("DOMContentLoaded", function() {
-        var bottomBar = document.getElementById("bottomBar");
+        document.addEventListener("DOMContentLoaded", function() {
+            const bottomBar = document.getElementById("bottomBar");
 
-        // Check if it's the home page
-        if (window.location.pathname !== '/') {
-            bottomBar.style.bottom = 0;
-        }
-    });
-
+            // Check if it's the home page
+            if (window.location.pathname !== '/') {
+                bottomBar.style.bottom = 0;
+            }
+        });
     </script>
-  </body>
+</body>
+
 </html>

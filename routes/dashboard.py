@@ -165,7 +165,6 @@ def dashboard() -> Any:
         Render the template for dashboard.html
     """
     if request.method == "POST":
-        added_class = False
         name = request.form["name"]
         type = request.form["type"]
         grade_taken = int(request.form["grade_taken"])
@@ -188,9 +187,8 @@ def dashboard() -> Any:
                 )
                 db.session.add(cls)
                 db.session.commit()
-                added_class = True
 
-        return redirect(url_for("dashboard.dashboard", added_class=added_class))
+        return redirect(url_for("dashboard.dashboard"))
 
     classes = Class.query.filter_by(user_id=current_user.id).all()
 
@@ -215,7 +213,7 @@ def dashboard() -> Any:
         "dashboard.html",
         classes_by_grade=sorted_classes,
         all_classes=ALL_CLASSES,
-        run_animation=request.args.get("added_class", False) and len(classes) == 1,
+        tutorial=not current_user.has_completed_tutorial,
         **gpa_kwargs,
     )
 
@@ -253,3 +251,10 @@ def download_report() -> Any:
         current_user.get_report_filename(),
         as_attachment=True,
     )
+
+
+@bp.route("/update_tutorial_status")
+@login_required
+def update_tutorial_status() -> Any:
+    current_user.has_completed_tutorial = request.form['status']
+    return 200
