@@ -128,8 +128,8 @@ def init_db(app: Flask) -> None:
     # it is ensured that all models have been loaded
     # because then this function is imported
     # all models above also are
-    log.info('Creating database tables...')
+    log.info("Creating database tables...")
     db.init_app(app)
     with app.app_context():
         db.create_all()
-    log.info('Database tables created')
+    log.info("Database tables created")

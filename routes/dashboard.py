@@ -21,7 +21,7 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 from app import db
 from models import Class, User
 
-bp = Blueprint("dashboard", __name__, url_prefix='/dashboard')
+bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
 
 def calculate_gpa(classes: Sequence[Class], *, weighted: bool) -> float:
@@ -52,7 +52,7 @@ def dot_dot_dot(s: str, max_length: int) -> str:
     str
     """
     if len(s) > max_length:
-        return s[:max_length - 3] + "..."
+        return s[: max_length - 3] + "..."
     return s
 
 
@@ -68,9 +68,10 @@ def create_pdf(classes: List[Class], user: User) -> None:
     # sort the classes by grade taken and then alphabetical
     classes.sort(key=lambda c: (c.grade_taken, c.name))
 
-    doc = SimpleDocTemplate(f'{current_app.config["REPORT_DIR"]}/{user.get_report_filename()}',
-                            pagesize=LETTER,
-                            )
+    doc = SimpleDocTemplate(
+        f'{current_app.config["REPORT_DIR"]}/{user.get_report_filename()}',
+        pagesize=LETTER,
+    )
     styles = getSampleStyleSheet()
 
     heading_style = styles["Heading1"]
@@ -100,7 +101,9 @@ def create_pdf(classes: List[Class], user: User) -> None:
         for cls in classes
     ]
 
-    table = Table(data, colWidths=[70, 160, 90, 45, 90, 90])  # the name column needs extra room
+    table = Table(
+        data, colWidths=[70, 160, 90, 45, 90, 90]
+    )  # the name column needs extra room
     style = TableStyle(
         [
             ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
@@ -146,8 +149,8 @@ def create_pdf(classes: List[Class], user: User) -> None:
     )
 
 
-with open('all_classes.txt', 'r') as f:
-    ALL_CLASSES: List[str] = f.read().split('\n')
+with open("all_classes.txt", "r") as f:
+    ALL_CLASSES: List[str] = f.read().split("\n")
 
 
 @bp.route("/", methods=("GET", "POST"))
@@ -187,7 +190,7 @@ def dashboard() -> Any:
                 db.session.commit()
                 added_class = True
 
-        return redirect(url_for('dashboard.dashboard', added_class=added_class))
+        return redirect(url_for("dashboard.dashboard", added_class=added_class))
 
     classes = Class.query.filter_by(user_id=current_user.id).all()
 
@@ -209,8 +212,11 @@ def dashboard() -> Any:
         sorted_classes[cls.grade_taken].append(cls)
 
     return render_template(
-        "dashboard.html", classes_by_grade=sorted_classes, all_classes=ALL_CLASSES,
-        run_animation=request.args.get('added_class', False) and len(classes) == 1, **gpa_kwargs
+        "dashboard.html",
+        classes_by_grade=sorted_classes,
+        all_classes=ALL_CLASSES,
+        run_animation=request.args.get("added_class", False) and len(classes) == 1,
+        **gpa_kwargs,
     )
 
 

@@ -15,5 +15,5 @@ def home() -> Any:
     GET /:
         Render the template for index.html
     """
-    
+
     return render_template("index.html")

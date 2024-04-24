@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import re
 import functools
+import re
 from typing import Any, Callable, ParamSpec, TypeVar
 
 from flask import Blueprint, current_app, request, session, stream_with_context
@@ -21,8 +21,8 @@ def check_thread(func: Callable[P, R]) -> Callable[P, R]:
             session["thread_id"] = client.beta.threads.create(
                 messages=[
                     {
-                        'role': 'assistant',
-                        'content': 'Welcome to the GPA Wizard interactive chatbot! How may I help you?'
+                        "role": "assistant",
+                        "content": "Welcome to the GPA Wizard interactive chatbot! How may I help you?",
                     }
                 ]
             ).id
@@ -45,10 +45,15 @@ def get_messages() -> Any:
     GET /api/assistant/get_messages:
         This is called by the frontend and returns a list of messages in the current thread
     """
-    messages = client.beta.threads.messages.list(thread_id=session["thread_id"], order="asc")
-    return {"messages": [
-        {'content': message.content[0].text.value, 'role': message.role} for message in messages
-    ]}
+    messages = client.beta.threads.messages.list(
+        thread_id=session["thread_id"], order="asc"
+    )
+    return {
+        "messages": [
+            {"content": message.content[0].text.value, "role": message.role}
+            for message in messages
+        ]
+    }
 
 
 @bp.route("/create_message", methods=("POST",))
@@ -88,6 +93,9 @@ def create_message() -> Any:
                 if isinstance(event, ThreadMessageDelta):
                     yield event.data.delta.content[0].text.value
                 elif isinstance(event, ThreadRunFailed):
-                    retry = re.search(r"Please try again in [0-9]+s\.", event.data.last_error.message).group(0)
-                    yield 'We are under a high load right now. ' + retry
+                    retry = re.search(
+                        r"Please try again in [0-9]+s\.", event.data.last_error.message
+                    ).group(0)
+                    yield "We are under a high load right now. " + retry
+
     return generate()  # type: ignore  # stream_with_context seems to be missing an overload
