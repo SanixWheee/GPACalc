@@ -101,46 +101,31 @@
     var bottomWidget = document.querySelector('.bottomWidget');
     var classWidget = document.querySelector('.classWidget');
 
-    var toggle = true;
 
     window.onload = function () {
-        if (table.getElementsByTagName('table').length < 1 && toggle){
-
+        if(table.getElementsByTagName('table').length < 1){
             classWidget.classList.remove('visible');
             leftWidget.classList.remove('visible');
             bottomWidget.classList.remove('visible');
-            toggle = false;
+        }else{
 
-        }
-        if (table.getElementsByTagName('table').length === 1 && !toggle){
             leftWidget.classList.add('visible');
             bottomWidget.classList.add('visible');
             classWidget.classList.add('visible');
-            toggle = true;
+
+
         }
 
-        /*
-        classWidget.classList.add('fadeout');
-        setTimeout(function () {
-            classWidget.style.transform = 'translateX(200%)';
-            leftWidget.classList.add('visible');
-            bottomWidget.classList.add('visible');
-            classWidget.classList.add('visible');
-        }, 250);*/
+
 
     };
 
 
 /*
     document.addEventListener('click', function(event) {
-        classWidget.classList.add('fadeout');
-
-        setTimeout(function() {
-            classWidget.style.transform = 'translateX(200%)';
-            leftWidget.classList.add('visible');
-            bottomWidget.classList.add('visible');
-            classWidget.classList.add('visible');
-        }, 250);
+        classWidget.classList.remove('visible');
+        leftWidget.classList.remove('visible');
+        bottomWidget.classList.remove('visible');
     });
 */
 
