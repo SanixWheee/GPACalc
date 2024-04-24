@@ -115,6 +115,6 @@ chatInput.addEventListener("keydown", (press) => {
     }
 })
 
-chatToggle.addEventListener("click", () => document.body.classList.toggle("showchatbot"));
+chatToggle.addEventListener("click", () => document.body.classList.toggle("showchatbot"), chatbox.scrollTo(0, chatbox.scrollHeight));
 sendChatBtn.addEventListener("click", handleChat); //checks to see if the user has clicked on the span (send button), and runs the 'handleChat' const
 document.addEventListener("DOMContentLoaded", initMessages);
