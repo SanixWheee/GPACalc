@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import enum
 from typing import TYPE_CHECKING, Dict
 
 from flask_login import UserMixin
@@ -27,6 +28,21 @@ letter_to_gpa: Dict[str, float] = {
 }
 
 
+class TutorialStatus(enum.Enum):
+    """
+    An enum to represent the status of a tutorial
+
+    Attributes
+    ----------
+    PART_ONE: int
+    PART_TWO: int
+    FINISHED: int
+    """
+    PART_ONE = 1
+    PART_TWO = 2
+    FINISHED = 3
+
+
 class User(UserMixin, db.Model):
     """
     A model to represent a user
@@ -36,12 +52,13 @@ class User(UserMixin, db.Model):
     id: int
     username: str
     password: str
+    tutorial_status: TutorialStatus
     """
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    has_completed_tutorial = db.Column(db.Boolean, nullable=False)
+    tutorial_status = db.Column(db.Enum(TutorialStatus), nullable=False)
 
     def set_password(self, password: str) -> None:
         """

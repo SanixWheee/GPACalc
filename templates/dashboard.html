@@ -129,8 +129,10 @@
 
 </script>
 
-    {% if tutorial %}
-         code goes here for tutirla
+    {% if tutorial_status == TutorialStatus.PART_ONE %}
+         code goes here for first half
+    {% elif tutorial_status == TutorialStatus.PART_TWO %}
+        code goes here for second half
     {% endif %}
 
 

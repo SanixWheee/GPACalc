@@ -19,7 +19,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 from app import db
-from models import Class, User
+from models import Class, User, TutorialStatus
 
 bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
@@ -213,7 +213,8 @@ def dashboard() -> Any:
         "dashboard.html",
         classes_by_grade=sorted_classes,
         all_classes=ALL_CLASSES,
-        tutorial=not current_user.has_completed_tutorial,
+        tutorial_status=current_user.tutorial_status,
+        TutorialStatus=TutorialStatus,
         **gpa_kwargs,
     )
 
@@ -253,8 +254,8 @@ def download_report() -> Any:
     )
 
 
-@bp.route("/update_tutorial_status")
+@bp.route("/update_tutorial_status", methods=("GET",))
 @login_required
 def update_tutorial_status() -> Any:
-    current_user.has_completed_tutorial = request.form['status']
+    current_user.tutorial_status = TutorialStatus(current_user.tutorial_status.value + 1)
     return 200
