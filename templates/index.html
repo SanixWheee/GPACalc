@@ -44,16 +44,16 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Check if the current page is the home page
-        var isHomePage = window.location.pathname === '/'; // Modify the condition based on your home page URL
+        const isHomePage = window.location.pathname === '/'; // Modify the condition based on your home page URL
         // Get the path from Flask routing
-        var currentPagePath = "{{ request.path }}";
+        const currentPagePath = "{{ request.path }}";
 
         // If it's the home page, add scroll behavior
         if (isHomePage || currentPagePath === '/') {
             document.addEventListener('scroll', function() {
-                var navbar = document.querySelector('.navbar');
-                var footer = document.querySelector('.bottomBar');
-                var mainTitle = document.querySelector('.mainTitle');
+                const navbar = document.querySelector('.navbar');
+                const footer = document.querySelector('.bottomBar');
+                const mainTitle = document.querySelector('.mainTitle');
 
                 // Check if the user has scrolled beyond a certain point
                 if (window.scrollY > 90) {

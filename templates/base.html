@@ -64,9 +64,9 @@
     messages %}
     <script>
         function makeInvisible(id) {
-            var flashMessage = document.getElementById(`message${id}`);
+            const flashMessage = document.getElementById(`message${id}`);
             flashMessage.style.display = 'none';
-            var flashX = document.getElementById(`closeButton${id}`);
+            const flashX = document.getElementById(`closeButton${id}`);
             flashX.style.display = 'none';
         }
     </script>
@@ -83,8 +83,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var isHomePage = "{{ request.path }}" === "/";
-            var navbar = document.querySelector('.navbar');
+            const isHomePage = "{{ request.path }}" === "/";
+            const navbar = document.querySelector('.navbar');
 
             if (isHomePage) {
                 navbar.classList.add('homepage');
@@ -99,7 +99,7 @@
             // Check if the URL contains #helpScreen
             if (window.location.href.indexOf('#helpScreen') > -1) {
                 // Scroll to the element with id "helpScreen"
-                var helpScreenElement = document.getElementById('helpScreen');
+                const helpScreenElement = document.getElementById('helpScreen');
                 if (helpScreenElement) {
                     helpScreenElement.scrollIntoView({
                         behavior: 'smooth'
@@ -109,7 +109,7 @@
         });
 
         document.addEventListener("DOMContentLoaded", function() {
-            var navbar = document.getElementById("navbar");
+            const navbar = document.getElementById("navbar");
 
             // Check if it's the home page
             if (window.location.pathname === '/') {
@@ -118,7 +118,7 @@
         });
 
         document.addEventListener("DOMContentLoaded", function() {
-            var bottomBar = document.getElementById("bottomBar");
+            const bottomBar = document.getElementById("bottomBar");
 
             // Check if it's the home page
             if (window.location.pathname !== '/') {
