@@ -21,7 +21,7 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 from app import db
 from models import Class, User
 
-bp = Blueprint("dashboard", __name__)
+bp = Blueprint("dashboard", __name__, url_prefix='/dashboard')
 
 letter_to_gpa: Dict[str, float] = {
     "A": 4.0,
@@ -104,11 +104,9 @@ def create_pdf(classes: List[Class], user: User) -> None:
     # sort the classes by grade taken and then alphabetical
     classes.sort(key=lambda c: (c.grade_taken, c.name))
 
-    # the file name is their username + _report.pdf
-    doc = SimpleDocTemplate(
-        f'{current_app.config["REPORT_DIR"]}/{user.get_report_filepath()}',
-        pagesize=LETTER,
-    )
+    doc = SimpleDocTemplate(f'{current_app.config["REPORT_DIR"]}/{user.get_report_filename()}',
+                            pagesize=LETTER,
+                            )
     styles = getSampleStyleSheet()
 
     heading_style = styles["Heading1"]
@@ -191,7 +189,7 @@ with open('all_classes.txt', 'r') as f:
     ALL_CLASSES: List[str] = f.read().split('\n')
 
 
-@bp.route("/dashboard", methods=("GET", "POST"))
+@bp.route("/", methods=("GET", "POST"))
 @login_required
 def dashboard() -> Any:
     """
@@ -255,25 +253,7 @@ def dashboard() -> Any:
     )
 
 
-@bp.route("/dashboard/download", methods=("GET",))
-@login_required
-def download_report() -> Any:
-    """
-    This page downloads the report pdf for a user
-
-    Methods
-    -------
-    GET dashboard/download:
-        Returns the pdf file
-    """
-    return send_from_directory(
-        current_app.config["REPORT_DIR"],
-        current_user.get_report_filepath(),
-        as_attachment=True,
-    )
-
-
-@bp.route("/dashboard/delete_class/<class_id>", methods=("GET",))
+@bp.route("/delete_class/<class_id>", methods=("GET",))
 def delete_class(class_id: int) -> Any:
     """
     This route deletes a class from a user's classes
@@ -288,3 +268,21 @@ def delete_class(class_id: int) -> Any:
     db.session.commit()
 
     return redirect(url_for("dashboard.dashboard"))
+
+
+@bp.route("/download", methods=("GET",))
+@login_required
+def download_report() -> Any:
+    """
+    This page downloads the report pdf for a user
+
+    Methods
+    -------
+    GET dashboard/download:
+        Returns the pdf file
+    """
+    return send_from_directory(
+        current_app.config["REPORT_DIR"],
+        current_user.get_report_filename(),
+        as_attachment=True,
+    )
