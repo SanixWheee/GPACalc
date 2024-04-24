@@ -45,9 +45,11 @@ def create_app() -> Flask:
     app.register_blueprint(auth.bp)
     app.register_blueprint(home.bp)
     app.register_blueprint(dashboard.bp)
-    app.register_blueprint(assistant.bp)
 
-    app.config["ASSISTANT_ID"] = assistant.init_assistant().id
+    ai_assistant = assistant.init_assistant()
+    if ai_assistant is not None:
+        app.config["ASSISTANT_ID"] = ai_assistant.id
+        app.register_blueprint(assistant.bp)
 
     # initialize the login handler
     login_manager = LoginManager()

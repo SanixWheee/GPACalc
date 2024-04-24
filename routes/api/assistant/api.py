@@ -26,44 +26,47 @@ def init_assistant() -> Assistant:
     """
     assistant = None
 
-    log.info("Searching for existing assistant...")
-    assistants = client.beta.assistants.list()
-    for existing_assistant in assistants:
-        if (
-            existing_assistant.name == NAME
-            and existing_assistant.instructions == INSTRUCTIONS
-        ):
-            assistant = existing_assistant
-            log.info("Found existing assistant")
-            break
+    try:
+            log.info("Searching for existing assistant...")
+            assistants = client.beta.assistants.list()
+            for existing_assistant in assistants:
+                if (
+                    existing_assistant.name == NAME
+                    and existing_assistant.instructions == INSTRUCTIONS
+                ):
+                    assistant = existing_assistant
+                    log.info("Found existing assistant")
+                    break
 
-    if assistant is None:
-        log.info("No existing assistant found, creating new assistant...")
-        assistant = client.beta.assistants.create(
-            name=NAME,
-            instructions=INSTRUCTIONS,
-            tools=[{"type": "file_search"}],
-            model="gpt-3.5-turbo-0125",
-        )
-        log.info("New assistant created")
+            if assistant is None:
+                log.info("No existing assistant found, creating new assistant...")
+                assistant = client.beta.assistants.create(
+                    name=NAME,
+                    instructions=INSTRUCTIONS,
+                    tools=[{"type": "file_search"}],
+                    model="gpt-3.5-turbo-0125",
+                )
+                log.info("New assistant created")
 
-    log.info("Uploading training files to vector store...")
-    vector_store = client.beta.vector_stores.create(name="GPA Calculator")
-    file_paths = itertools.chain.from_iterable(
-        glob.glob(f"routes/api/assistant/*.{file_type}") for file_type in FILE_TYPES
-    )
-    files = [open(path, "rb") for path in file_paths]
+            log.info("Uploading training files to vector store...")
+            vector_store = client.beta.vector_stores.create(name="GPA Calculator")
+            file_paths = itertools.chain.from_iterable(
+                glob.glob(f"routes/api/assistant/*.{file_type}") for file_type in FILE_TYPES
+            )
+            files = [open(path, "rb") for path in file_paths]
 
-    client.beta.vector_stores.file_batches.upload_and_poll(
-        vector_store_id=vector_store.id, files=files
-    )
-    log.info(f"Uploaded {len(files)} files to vector store")
+            client.beta.vector_stores.file_batches.upload_and_poll(
+                vector_store_id=vector_store.id, files=files
+            )
+            log.info(f"Uploaded {len(files)} files to vector store")
 
-    log.info("Updating assistant with vector store...")
-    assistant = client.beta.assistants.update(
-        assistant_id=assistant.id,
-        tool_resources={"file_search": {"vector_store_ids": [vector_store.id]}},
-    )
-
-    log.info("Assistant initialization completed")
+            log.info("Updating assistant with vector store...")
+            assistant = client.beta.assistants.update(
+                assistant_id=assistant.id,
+                tool_resources={"file_search": {"vector_store_ids": [vector_store.id]}},
+            )
+    except openai.APIConnectionError:
+        log.error('Failed to connect to OpenAI API, assistant will not be available')
+    else:
+        log.info("Assistant initialization completed")
     return assistant

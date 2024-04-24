@@ -7,21 +7,6 @@ let userMessage;
 
 var fetchingResponse = false;
 
-const initMessages = () => {
-    const options = {
-        method: 'GET'
-    }
-    fetch("/api/assistant/get_messages", options)
-    .then(response => response.json())
-    .then(response => response["messages"])
-    .then(messages => {
-        messages.forEach(message => {
-            const chatLi = createChatLi(stripMarkdown(message["content"]), message["role"] === "assistant" ? "incoming" : "outgoing");
-            chatbox.appendChild(chatLi);
-        })
-    });
-    chatbox.scrollTo(0, chatbox.scrollHeight);
-}
 
 const createChatLi = (message, className) => {
     //creates a chat <li> element with the passed message and className
@@ -32,6 +17,34 @@ const createChatLi = (message, className) => {
     chatLi.innerHTML = chatContent;
     chatInput.value = '';
     return chatLi;
+}
+
+
+const initMessages = () => {
+    const options = {
+        method: 'GET'
+    }
+    fetch("/api/assistant/get_messages", options)
+    .then(response => {
+        if (!response.ok) {
+            if (response.status === 404) {
+                const chatLi = createChatLi("Couldn't connect to chatbot", "incoming");
+                chatbox.appendChild(chatLi);
+                throw new Error('Resource not found');
+            } else {
+                throw new Error('An error occurred');
+            }
+        }
+        return response.json();
+    })
+    .then(response => response["messages"])
+    .then(messages => {
+        messages.forEach(message => {
+            const chatLi = createChatLi(stripMarkdown(message["content"]), message["role"] === "assistant" ? "incoming" : "outgoing");
+            chatbox.appendChild(chatLi);
+        })
+    });
+    chatbox.scrollTo(0, chatbox.scrollHeight);
 }
 
 const stripMarkdown = (text) => {
@@ -67,6 +80,13 @@ const generateResponse = (incomingMessage) => {
     }
     fetch("/api/assistant/create_message", options)
     .then(async (response) => {
+        if (!response.ok) {
+            if (response.status === 404) {
+                throw new Error('Resource not found');
+            } else {
+                throw new Error('An error occurred');
+            }
+        }
         const reader = response.body.getReader()
         const decoder = new TextDecoder("utf-8");
         messageElement.textContent = "";
