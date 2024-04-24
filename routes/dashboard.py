@@ -213,7 +213,7 @@ def dashboard() -> Any:
         "dashboard.html",
         classes_by_grade=sorted_classes,
         all_classes=ALL_CLASSES,
-        tutorial=not current_user.has_completed_tutorial
+        tutorial=not current_user.has_completed_tutorial,
         **gpa_kwargs,
     )
 
