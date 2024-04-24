@@ -11,7 +11,7 @@ const initMessages = () => {
     const options = {
         method: 'GET'
     }
-    fetch("api/assistant/get_messages", options)
+    fetch("/api/assistant/get_messages", options)
     .then(response => response.json())
     .then(response => response["messages"])
     .then(messages => {
