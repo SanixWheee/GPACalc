@@ -3,7 +3,7 @@
 <link rel = "stylesheet" 
           href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
 <div class = "dashboardContainer">
-    <div class="leftWidget">
+    <div class="leftWidget visible">
       <div class = "tableDiv">
       <script>
           function redirect(url) {
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="rightWidgets">
-      <div class = "classWidget">
+      <div class = "classWidget visible">
         <h1 class = "addLabel">Add Classes</h1> <!--                                      update the 'add a class' text on submission-->
         <form id = "addClass" action="{{ url_for('dashboard.dashboard') }}" method="POST" onsubmit="toggleVisibility()">
 
@@ -81,7 +81,7 @@
         </form>
       </div>
 
-      <div class = "bottomWidget">
+      <div class = "bottomWidget visible">
         <h1 class = "infoLabel">Your Report</h1>
         {% if has_classes %}
           <h2 class="gpaText">Unweighted GPA: {{ unweighted_gpa }}</h2>
@@ -100,39 +100,32 @@
     var table = document.querySelector('.tableDiv');
     var bottomWidget = document.querySelector('.bottomWidget');
     var classWidget = document.querySelector('.classWidget');
+
+
     window.onload = function () {
-        if (table.getElementsByTagName('table').length < 1) {
-            bottomWidget.classList.add('away');
-            leftWidget.classList.add('away');
-            classWidget.classList.add('full');
+        if(table.getElementsByTagName('table').length < 1){
+            classWidget.classList.remove('visible');
+            leftWidget.classList.remove('visible');
+            bottomWidget.classList.remove('visible');
+        }else{
 
-        }
-    };
-    function reformatPage() {
-            classWidget.classList.add('fadeout');
-            setTimeout(function () {
-                classWidget.style.transform = 'translateX(200%)';
-                leftWidget.classList.add('visible');
-                bottomWidget.classList.add('visible');
-                classWidget.classList.add('visible');
-            }, 5000);
-
-    }
-
-    {% if run_animation %}
-    document.addEventListener("DOMContentLoaded", reformatPage);
-    {% endif %}
-
-/*
-    document.addEventListener('click', function(event) {
-        classWidget.classList.add('fadeout');
-
-        setTimeout(function() {
-            classWidget.style.transform = 'translateX(200%)';
             leftWidget.classList.add('visible');
             bottomWidget.classList.add('visible');
             classWidget.classList.add('visible');
-        }, 250);
+
+
+        }
+
+
+
+    };
+
+
+/*
+    document.addEventListener('click', function(event) {
+        classWidget.classList.remove('visible');
+        leftWidget.classList.remove('visible');
+        bottomWidget.classList.remove('visible');
     });
 */
 

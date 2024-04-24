@@ -1,6 +1,6 @@
 import statistics
 from collections import defaultdict
-from typing import Any, Dict, List, Sequence, Tuple
+from typing import Any, List, Sequence
 
 from flask import (
     Blueprint,
@@ -21,55 +21,19 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 from app import db
 from models import Class, User
 
-bp = Blueprint("dashboard", __name__)
-
-letter_to_gpa: Dict[str, float] = {
-    "A": 4.0,
-    "B+": 3.3,
-    "B": 3.0,
-    "B-": 2.7,
-    "C+": 2.3,
-    "C": 2.0,
-    "C-": 1.7,
-    "N": 0.0,
-}
+bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
 
-def get_statistical_data(classes: Sequence[Class]) -> Tuple[List[float], List[float]]:
+def calculate_gpa(classes: Sequence[Class], *, weighted: bool) -> float:
     """
-    Get the data to pass into statistics.harmonic_mean(), this includes the actual data
-    and the data's weightages
+    A method to calculate the GPA of a list of classes
     """
     data = []
     weights = []  # a class with 2 credits is worth twice as much with a class with 1
     # the weights account for this problem
     for cls in classes:
-        data.append(letter_to_gpa[cls.received_grade])
+        data.append(cls.get_gpa(weighted=weighted))
         weights.append(cls.credits)
-
-    return data, weights
-
-
-def calculate_unweighted_gpa(classes: Sequence[Class]) -> float:
-    """Calculate unweighted GPA for a sequence of classes"""
-    return statistics.harmonic_mean(*get_statistical_data(classes))
-
-
-def get_weighted_gpa_bonus(cls: Class) -> float:
-    """Returns the bonus a class gets for a weighted GPA"""
-    if cls.type == "AP":
-        return 1.0
-    elif cls.type == "Honors":
-        return 0.5
-    return 0.0
-
-
-def calculate_weighted_gpa(classes: Sequence[Class]) -> float:
-    data, weights = get_statistical_data(classes)
-
-    # classes is an ordered list so we can just go through the data and add the bonus
-    for i, cls in enumerate(classes):
-        data[i] += get_weighted_gpa_bonus(cls)
 
     return statistics.harmonic_mean(data=data, weights=weights)
 
@@ -88,7 +52,7 @@ def dot_dot_dot(s: str, max_length: int) -> str:
     str
     """
     if len(s) > max_length:
-        return s[:max_length - 3] + "..."
+        return s[: max_length - 3] + "..."
     return s
 
 
@@ -104,9 +68,8 @@ def create_pdf(classes: List[Class], user: User) -> None:
     # sort the classes by grade taken and then alphabetical
     classes.sort(key=lambda c: (c.grade_taken, c.name))
 
-    # the file name is their username + _report.pdf
     doc = SimpleDocTemplate(
-        f'{current_app.config["REPORT_DIR"]}/{user.get_report_filepath()}',
+        f'{current_app.config["REPORT_DIR"]}/{user.get_report_filename()}',
         pagesize=LETTER,
     )
     styles = getSampleStyleSheet()
@@ -132,16 +95,15 @@ def create_pdf(classes: List[Class], user: User) -> None:
             dot_dot_dot(cls.full_name(), 30),
             cls.received_grade,
             str(cls.credits),
-            letter_to_gpa[cls.received_grade],
-            letter_to_gpa[cls.received_grade] + get_weighted_gpa_bonus(cls),
+            cls.get_gpa(weighted=False),
+            cls.get_gpa(weighted=True),
         )
         for cls in classes
     ]
 
-    # format the table with colors and a specific width
-    column_count = len(data[0])
-
-    table = Table(data, colWidths=[70, 160, 90, 45, 90, 90])  # the name column needs extra room
+    table = Table(
+        data, colWidths=[70, 160, 90, 45, 90, 90]
+    )  # the name column needs extra room
     style = TableStyle(
         [
             ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
@@ -157,8 +119,8 @@ def create_pdf(classes: List[Class], user: User) -> None:
 
     # can't calculate GPA if they have no classes added
     if classes:
-        unweighted_gpa = calculate_unweighted_gpa(classes)
-        weighted_gpa = calculate_weighted_gpa(classes)
+        unweighted_gpa = calculate_gpa(classes, weighted=False)
+        weighted_gpa = calculate_gpa(classes, weighted=True)
     else:
         unweighted_gpa = "Add classes first"
         weighted_gpa = "Add classes first"
@@ -187,11 +149,11 @@ def create_pdf(classes: List[Class], user: User) -> None:
     )
 
 
-with open('all_classes.txt', 'r') as f:
-    ALL_CLASSES: List[str] = f.read().split('\n')
+with open("all_classes.txt", "r") as f:
+    ALL_CLASSES: List[str] = f.read().split("\n")
 
 
-@bp.route("/dashboard", methods=("GET", "POST"))
+@bp.route("/", methods=("GET", "POST"))
 @login_required
 def dashboard() -> Any:
     """
@@ -228,7 +190,7 @@ def dashboard() -> Any:
                 db.session.commit()
                 added_class = True
 
-        return redirect(url_for('dashboard.dashboard', added_class=added_class))
+        return redirect(url_for("dashboard.dashboard", added_class=added_class))
 
     classes = Class.query.filter_by(user_id=current_user.id).all()
 
@@ -239,8 +201,8 @@ def dashboard() -> Any:
 
         # convert the GPA to 2 decimals
         gpa_kwargs = {
-            "unweighted_gpa": f"{calculate_unweighted_gpa(classes):.2f}",
-            "weighted_gpa": f"{calculate_weighted_gpa(classes):.2f}",
+            "unweighted_gpa": f"{calculate_gpa(classes, weighted=False):.2f}",
+            "weighted_gpa": f"{calculate_gpa(classes, weighted=True):.2f}",
             "has_classes": True,
         }
 
@@ -250,30 +212,15 @@ def dashboard() -> Any:
         sorted_classes[cls.grade_taken].append(cls)
 
     return render_template(
-        "dashboard.html", classes_by_grade=sorted_classes, all_classes=ALL_CLASSES,
-        run_animation=request.args.get('added_class', False) and len(classes) == 1, **gpa_kwargs
+        "dashboard.html",
+        classes_by_grade=sorted_classes,
+        all_classes=ALL_CLASSES,
+        run_animation=request.args.get("added_class", False) and len(classes) == 1,
+        **gpa_kwargs,
     )
 
 
-@bp.route("/dashboard/download", methods=("GET",))
-@login_required
-def download_report() -> Any:
-    """
-    This page downloads the report pdf for a user
-
-    Methods
-    -------
-    GET dashboard/download:
-        Returns the pdf file
-    """
-    return send_from_directory(
-        current_app.config["REPORT_DIR"],
-        current_user.get_report_filepath(),
-        as_attachment=True,
-    )
-
-
-@bp.route("/dashboard/delete_class/<class_id>", methods=("GET",))
+@bp.route("/delete_class/<class_id>", methods=("GET",))
 def delete_class(class_id: int) -> Any:
     """
     This route deletes a class from a user's classes
@@ -288,3 +235,21 @@ def delete_class(class_id: int) -> Any:
     db.session.commit()
 
     return redirect(url_for("dashboard.dashboard"))
+
+
+@bp.route("/download", methods=("GET",))
+@login_required
+def download_report() -> Any:
+    """
+    This page downloads the report pdf for a user
+
+    Methods
+    -------
+    GET dashboard/download:
+        Returns the pdf file
+    """
+    return send_from_directory(
+        current_app.config["REPORT_DIR"],
+        current_user.get_report_filename(),
+        as_attachment=True,
+    )

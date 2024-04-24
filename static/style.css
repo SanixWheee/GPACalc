@@ -42,17 +42,17 @@ h3{
 
 /* Initial style for the navbar */
 .navbar {
-  top: 0; /* Move the navbar above the viewport initially */
+  top: 0;
   left: 0;
   width: 100%;
   background-color: #9FFFCB;
-  transition: top 0.3s; /* Add smooth transition for the top property */
+  transition: top 0.3s;
   display: inline-block;
 }
 
 /* Style for the navbar when it's visible */
 .navbar.visible {
-    top: 0; /* Move the navbar back to its original position */
+    top: 0;
 }
 
 
@@ -69,11 +69,11 @@ h3{
   width: 96.5%;
   font-size: 210px;
   text-align: center;
-  margin-top: 120px; /* Add initial margin */
+  margin-top: 120px;
   color: black;
   background-color: #9FFFCB;
   padding: 20px;
-  transition: font-size 0.3s, margin-top 0.3s; /* Add smooth transition for font size and margin top */
+  transition: font-size 0.3s, margin-top 0.3s;
 }
 
 .mainTitle.small {
@@ -474,7 +474,7 @@ input[type = submit] {
   justify-content: center;
   align-items: flex-start;
   margin-top: 25px;
-  margin-bottom: 25px;
+  margin-bottom: 100px;
 }
 
 @keyframes slideinLeft {
@@ -498,18 +498,13 @@ input[type = submit] {
     max-height: 100vw;
     overflow: auto;
     padding: 20px;
-    display: flex;
-    transform: translateX(0);
-}
-
-.leftWidget.away{
     display: none;
     transform: translateX(-200%);
 }
 
 .leftWidget.visible{
     display: flex;
-    animation: slideinLeft 250ms forwards;
+    animation: slideinLeft 0ms forwards;
 }
 
 .rightWidgets {
@@ -521,7 +516,7 @@ input[type = submit] {
 .classWidget{
 
     background-color: #c2ffdd;
-    width: 300px;
+    width: 600px;
     border-radius: 15px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -529,9 +524,9 @@ input[type = submit] {
     flex: 1; /* Add flex: 1 */
     margin-left: 30px; /* Add margin-left */
     text-align: center;
+    font-size: 25px;
     margin-bottom: 30px;
     display: block;
-    font-size: 15px;
 
 }
 
@@ -577,29 +572,13 @@ input[type = submit] {
     text-align: center;
     margin-bottom: 30px;
     display: block;
+    animation: slideinRightClass 0ms forwards;
     font-size: 15px;
-    animation: slideinRightClass 250ms forwards;
-    font-size: 15px;
-}
-
-.classWidget.full{
-    background-color: #c2ffdd;
-    width: 600px;
-    border-radius: 15px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
-    flex: 1; /* Add flex: 1 */
-    margin-left: 30px; /* Add margin-left */
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 30px;
-    display: block;
-
 }
 
 @keyframes slideinRight {
     from {
+        transform: translateX(200%);
         display: none;
     }
     to{
@@ -618,18 +597,14 @@ input[type = submit] {
     margin-left: 30px;
     width: 300px;
     padding: 20px;
-    display: flex;
-    transform: translateX(0);
-}
-
-.bottomWidget.away{
     display: none;
     transform: translateX(200%);
 }
 
+
 .bottomWidget.visible{
     display: flex;
-    animation: slideinRight 250ms forwards;
+    animation: slideinRight 0ms forwards;
 }
 
 
@@ -649,6 +624,8 @@ input[type = submit] {
   transition: 0.3s ease;
 }
 */
+
+
 .emptyText {
   color: grey;
   font-family: 'Roboto Mono', monospace;

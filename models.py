@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict
 
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -13,6 +13,18 @@ if TYPE_CHECKING:
 
 
 log = get_logger(__name__)
+
+
+letter_to_gpa: Dict[str, float] = {
+    "A": 4.0,
+    "B+": 3.3,
+    "B": 3.0,
+    "B-": 2.7,
+    "C+": 2.3,
+    "C": 2.0,
+    "C-": 1.7,
+    "N": 0.0,
+}
 
 
 class User(UserMixin, db.Model):
@@ -54,7 +66,10 @@ class User(UserMixin, db.Model):
         """
         return check_password_hash(self.password, password)
 
-    def get_report_filepath(self) -> str:
+    def get_report_filename(self) -> str:
+        """
+        Get the filename for the report of the user
+        """
         return f"{self.username}_report.pdf"
 
 
@@ -82,7 +97,30 @@ class Class(db.Model):
     credits = db.Column(db.Float, nullable=False)
 
     def full_name(self) -> str:
+        """
+        Get the full name of the class
+        """
         return f"{self.type} {self.name}".strip()
+
+    def get_gpa(self, *, weighted: bool) -> float:
+        """
+        Get the GPA of the user
+
+        Parameters
+        ----------
+        weighted: bool
+
+        Returns
+        -------
+        float
+        """
+        gpa = letter_to_gpa[self.received_grade]
+        if weighted:
+            if self.type == "AP":
+                gpa += 1.0
+            elif self.type == "Honors":
+                gpa += 0.5
+        return gpa
 
 
 def init_db(app: Flask) -> None:
@@ -90,8 +128,8 @@ def init_db(app: Flask) -> None:
     # it is ensured that all models have been loaded
     # because then this function is imported
     # all models above also are
-    log.info('Creating database tables...')
+    log.info("Creating database tables...")
     db.init_app(app)
     with app.app_context():
         db.create_all()
-    log.info('Database tables created')
+    log.info("Database tables created")
