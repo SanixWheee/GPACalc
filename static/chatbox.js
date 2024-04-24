@@ -16,7 +16,7 @@ const initMessages = () => {
     .then(response => response["messages"])
     .then(messages => {
         messages.forEach(message => {
-            const chatLi = createChatLi(message["content"], message["role"] === "assistant" ? "incoming" : "outgoing");
+            const chatLi = createChatLi(stripMarkdown(message["content"]), message["role"] === "assistant" ? "incoming" : "outgoing");
             chatbox.appendChild(chatLi);
         })
     });
