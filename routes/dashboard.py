@@ -1,3 +1,6 @@
+import json
+import io
+import zipfile
 import statistics
 from collections import defaultdict
 from typing import Any, List, Sequence
@@ -11,6 +14,7 @@ from flask import (
     request,
     send_from_directory,
     url_for,
+    send_file
 )
 from flask_login import current_user, login_required
 from reportlab.lib import colors
@@ -19,7 +23,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 from app import db
-from models import Class, User
+from models import Class, User, TutorialStatus
 
 bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
@@ -27,6 +31,15 @@ bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 def calculate_gpa(classes: Sequence[Class], *, weighted: bool) -> float:
     """
     A method to calculate the GPA of a list of classes
+
+    Parameters
+    ----------
+    classes: Sequence[Class]
+    weighted: bool
+
+    Returns
+    -------
+    float
     """
     data = []
     weights = []  # a class with 2 credits is worth twice as much with a class with 1
@@ -213,7 +226,8 @@ def dashboard() -> Any:
         "dashboard.html",
         classes_by_grade=sorted_classes,
         all_classes=ALL_CLASSES,
-        tutorial=not current_user.has_completed_tutorial,
+        tutorial_status=current_user.tutorial_status,
+        TutorialStatus=TutorialStatus,
         **gpa_kwargs,
     )
 
@@ -253,8 +267,72 @@ def download_report() -> Any:
     )
 
 
-@bp.route("/update_tutorial_status")
+@bp.route("/update_tutorial_status", methods=("GET",))
 @login_required
 def update_tutorial_status() -> Any:
-    current_user.has_completed_tutorial = request.form['status']
+    current_user.tutorial_status = TutorialStatus(current_user.tutorial_status.value + 1)
     return 200
+
+
+@bp.route("get_backup_data", methods=("GET",))
+@login_required
+def get_backup_data() -> Any:
+    """
+    Get the backup data as a zip file
+
+    Methods
+    -------
+    GET dashboard/get_backup_data:
+        Get the backup data as a zip file
+    """
+    classes = Class.query.filter_by(user_id=current_user.id).all()
+    data = [cls.to_json() for cls in classes]
+
+    data_bytes = json.dumps(data).encode()
+    file = io.BytesIO()
+    with zipfile.ZipFile(file, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("data.json", data_bytes)
+
+    file.seek(0)
+    return send_file(file, as_attachment=True, download_name="backup.zip")
+
+
+@bp.route("restore_backup_data", methods=("POST",))
+@login_required
+def restore_backup_data() -> Any:
+    """
+    Restore the backup data from a zip file
+
+    Methods
+    -------
+    POST dashboard/restore_backup_data:
+        Restore the backup data from a zip file
+    """
+    file = request.files['file']
+    file_bytes = io.BytesIO(file.read())
+
+    with zipfile.ZipFile(file_bytes, 'r') as z:
+        with z.open('data.json') as f:
+            data_bytes = f.read()
+
+    json_string = data_bytes.decode()
+    data = json.loads(json_string)
+
+    classes = Class.query.filter_by(user_id=current_user.id).all()
+    class_ids = {cls.id for cls in classes}
+
+    for cls in data:
+        # make sure that we are not uploading duplicate classes
+        if cls['id'] in class_ids:
+            continue
+
+        new_cls = Class(
+            id=cls['id'],
+            user_id=current_user.id,
+            name=cls['name'],
+            type=cls['type'],
+            grade_taken=cls['grade_taken'],
+            received_grade=cls['received_grade'],
+            credits=cls['credits']
+        )
+        db.session.add(new_cls)

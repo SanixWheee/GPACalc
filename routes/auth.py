@@ -5,7 +5,7 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
 
 from app import db
-from models import User
+from models import User, TutorialStatus
 
 bp = Blueprint("auth", __name__)
 
@@ -66,7 +66,7 @@ def register() -> Any:
             if User.query.filter_by(username=username).scalar():
                 error = "Username already taken"
             else:
-                user = User(username=username, has_completed_tutorial=False)
+                user = User(username=username, tutorial_status=TutorialStatus.PART_ONE)
                 user.set_password(password)
 
                 db.session.add(user)
