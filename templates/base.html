@@ -1,4 +1,5 @@
 <!-- base.html allows us to make a consistent theme across each page on the website, giving each page a heading bar and a bottom bar, as well as a background color -->
+
 <!doctype html>
 <html lang="en">
 
@@ -23,17 +24,17 @@
         <div class="nav-container">
             <!-- prettier-ignore -->
             <a class="header" href="{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
-            <a class="nav-link" href="{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
+            <a class="navLink" href="{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
             {% if current_user and current_user.is_authenticated %}
             <!-- These buttons only show up if the user is logged in -->
-            <a class="nav-link" href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
-            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+            <a class="navLink" href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
+            <a class="navLink" href="{{ url_for('auth.logout') }}">Logout</a>
 
             {% else %}
             <!-- This button only shows up if the user is not logged in -->
-            <a class="nav-link" href="{{ url_for('auth.login') }}">Login/Signup</a>
+            <a class="navLink" href="{{ url_for('auth.login') }}">Login/Signup</a>
             {% endif %}
-            <a class="git-link" href="https://github.com/SanixWheee/GPACalc">
+            <a class="gitLink" href="https://github.com/SanixWheee/GPACalc">
                 <img style="height: 30px; width: 30px; float: right;" class="github" src="{{ url_for('static', filename='github-mark.png') }}">
             </a>
         </div>
@@ -41,19 +42,18 @@
     <!-- div for the chatbot -->
     <div class="chatbot">
         <header>
-            <h2 style="margin-top: -1px">GPA Wizard Chatbot</h2>
-            <p style="margin-top: -4px; margin-bottom: -1px">Powered by OpenAI Assistant Beta V2</p>
+            <h2>GPA Wizard Chatbot</h2>
         </header>
         <ul class="chatbox"></ul>
-        <div class="message-input">
+        <div class="messageinput">
             <textarea placeholder="Enter a Message" required></textarea>
-            <span id="send-button" class="material-symbols-outlined">send</span>
+            <span id="sendbutton" class="material-symbols-outlined">send</span>
         </div>
     </div>
     <!-- Div for the bottom nav bar -->
-    <div id="bottom-bar" class="bottom-bar">
+    <div id="bottomBar" class="bottomBar">
         <p class="footer-text">By Kaushal Dabbiru, Tejas Panja, Safwan Hasan</p>
-        <button class="chat-button">
+        <button class="chatbutton">
             <span class="material-symbols-outlined">mode_comment</span>
             <span class="material-symbols-outlined">close</span>
         </button>
@@ -118,7 +118,7 @@
         });
 
         document.addEventListener("DOMContentLoaded", function() {
-            const bottomBar = document.getElementById("bottom-bar");
+            const bottomBar = document.getElementById("bottomBar");
 
             // Check if it's the home page
             if (window.location.pathname !== '/') {
@@ -127,4 +127,5 @@
         });
     </script>
 </body>
+
 </html>

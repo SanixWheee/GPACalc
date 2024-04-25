@@ -28,13 +28,13 @@ body {
   overflow-x: hidden;
 }
 
-h2 {
+h2{
   font-family: 'Roboto Mono', monospace;
     margin-top: 35px;
     margin-bottom: 5px;
 }
 
-h3 {
+h3{
   font-family: 'Roboto Mono', monospace;
     margin-top: 35px;
     margin-bottom: 5px;
@@ -61,7 +61,7 @@ h3 {
 }
 
 /* Initial style for the title */
-.main-title {
+.mainTitle {
   font-family: 'Roboto Mono', monospace;
   width: 96.5%;
   font-size: 210px;
@@ -73,19 +73,19 @@ h3 {
   transition: font-size 0.3s, margin-top 0.3s;
 }
 
-.main-title.small {
+.mainTitle.small {
   font-size: 40px;
   margin-top: 20px;
 }
 
-.nav-container {
+.nav-container{
     margin-left: 25px;
     margin-right: 25px;
     display: flex;
     align-items: center;
 }
 
-.header {
+.header{
     font-family: 'Roboto Mono', monospace;
     font-size: 36px;
     margin-top: 10px;
@@ -95,7 +95,7 @@ h3 {
     font-weight: bold;
 }
 
-.nav-link {
+.navLink{
     font-family: 'Roboto Mono', monospace;
     font-size: 15px;
     margin-left: 30px;
@@ -105,7 +105,7 @@ h3 {
     transition: 0.3s;
 }
 
-.nav-link:hover {
+.navLink:hover {
     text-decoration: underline;
     font-size: 17px;
 }
@@ -159,7 +159,7 @@ h3 {
     max-height: 100%;
 }
 
-.git-link {
+.gitLink {
   margin-left: auto;
 }
 
@@ -188,29 +188,29 @@ h3 {
   font-family: 'Honk', system-ui;;
 }
 
-.login-widget {
+.loginWidget{
     display: flex;
     width: 100%;
     max-width: 1000px;
     max-height: 371px;
-    margin: 70px auto;
+    margin: 70px auto 100px;
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
     overflow: hidden; /* Ensure the shadow doesn't overflow */
 }
 
-.register-widget{
+.registerWidget{
     display: flex;
     width: 100%;
     max-width: 1000px;
     max-height: 371px;
-    margin: 70px auto;
+    margin: 70px auto 100px;
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
     overflow: hidden; /* Ensure the shadow doesn't overflow */
 }
 
-.login-image{
+.loginImage{
     flex: 1;
     display: flex;
     justify-content: center;
@@ -218,21 +218,23 @@ h3 {
     overflow: hidden;
 }
 
-.login-image img{
+.loginImage img{
     width: 100%; /* Let the browser adjust width based on height to maintain aspect ratio */
     max-width: none; /* Remove any maximum width constraints */
     height: auto; /* Match the height of the container */
 }
 
-.login-container{
+.loginContainer{
     justify-content: center;
     align-items: center;
     flex: 1;
     flex-direction: column;
+
 }
 
   /* Creates a box for the login form to go on */
-.login-box {
+.loginBox {
+    height: 100%;
     padding: 20px;
     background-color: #c2ffdd;
     flex-direction: column;
@@ -242,7 +244,7 @@ h3 {
   }
 
   /* Makes the login text better formatted within the loginBox */
-.user-login {
+.userLogin {
   text-align: center;
   font-size: 20px;
   color: black;
@@ -261,13 +263,13 @@ h3 {
   
 }
 
-.login-text{
+.loginText{
     font-family: 'Roboto Mono', monospace;
     margin-top: 5px;
     margin-bottom: 20px;
 }
 
-.login-field {
+.loginField {
     font-family: "Roboto Mono", monospace;
     border-radius: 10px;
     padding: 5px;
@@ -276,7 +278,7 @@ h3 {
     border-color: #ddd;
 }
 
-.login-buttons{
+.loginButtons{
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -292,7 +294,7 @@ input[type = submit] {
 }
 
 /* The button that takes you between the login page and the register page */
-.register-button {
+.registerButton {
   font-family: 'Montserrat', sans-serif;
   color: #27a8ee;
 }
@@ -347,7 +349,38 @@ input[type = submit] {
   background-color: red;
 }
 
-.main-screen {
+/* 
+
+.error {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+  position:absolute;
+  z-index: 1;
+}
+
+.info {
+  background-color: #080F0F;
+  color: white;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  background-color: #d1ecf1;
+  color: #0c5460;
+  padding: 10px;
+  border: 1px solid #bee5eb;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+} */ */
+
+.mainScreen {
   height: 650px;
   padding-top: 1px;
   background-color: #18637B;
@@ -355,7 +388,7 @@ input[type = submit] {
   border-bottom-right-radius: 25px;
 }
 
-.help-screen {
+.helpScreen {
   height: 650px;
   margin-top: 10px;
   padding-top: 10px;
@@ -372,7 +405,7 @@ input[type = submit] {
   padding-right: 10px;
 }
 
-.help-title {
+.helpTitle {
   font-family: 'Montserrat', sans-serif;
   font-size: 50px;
   text-align: center;
@@ -380,7 +413,7 @@ input[type = submit] {
 }
 
 /* Adds a bottom bar to every page for the copyright information */
-.bottom-bar {
+.bottomBar {
   display: flex;
   justify-content: space-between; /* Align items to the start and end of the container */
   align-items: center;
@@ -391,14 +424,14 @@ input[type = submit] {
   padding: 10px;
   overflow: hidden;
   transition: bottom 0.3s;
-  z-index: 1;
+  z-index: 2;
 }
 
-.bottom-bar.visible {
+.bottomBar.visible {
   bottom: 0; /* Move the footer back to its original position */
 }
 
-.main-creators {
+.mainCreators {
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
   display: flex;
@@ -406,13 +439,102 @@ input[type = submit] {
   padding-left: 10px;
   padding-right: 10px;
 }
+/*
+.dashboardContainer .tableDiv:hover{
+  margin-top: 10vh;
+  margin-left: 0.5vw;
+  height: 89vh;
+  width: 51vw;
+}
 
-.dashboard-container{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 25px;
-  margin-bottom: 100px;
+.dashboardContainer .addDiv:hover{
+  margin-top: 10vh;
+  margin-left: 0.5vw;
+  height: 49vh;
+  width: 48vw;
+}
+
+.dashboardContainer .infoDiv:hover{
+  margin-top: 1vh;
+  margin-left: 0.5vw;
+  height: 40vh;
+  width: 48vw;
+}
+*/
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: none;
+}
+
+
+.helpWidget {
+    flex-direction: column;
+    position: absolute;
+    top: 200px;
+    left: 45px;
+    width: 180px;
+    height: 190px;
+    margin: 30px 30px 40px;
+    padding: 20px;
+    background-color: #74BAE6;
+    border: 5px solid #1E70A3;
+    border-radius: 10px;
+    display: none;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.helpWidgetText{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+
+.helpButtons{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    margin-top: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.help-button{
+    padding: 5px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 8px;
+    width: 80px;
+    height: 25px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background: #80FFDB;
+    color: black;
+    cursor:pointer;
+    transition: 0.3s;
+    margin-right: 4%;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.dashboardContainer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 25px;
+    margin-bottom: 100px;
 }
 
 @keyframes slideinLeft {
@@ -426,7 +548,7 @@ input[type = submit] {
 
 }
 
-.left-widget {
+.leftWidget {
     flex-direction: column;
     float: left;
     background-color: #c2ffdd;
@@ -440,18 +562,18 @@ input[type = submit] {
     transform: translateX(-200%);
 }
 
-.left-widget.visible{
+.leftWidget.visible{
     display: flex;
     animation: slideinLeft 0ms forwards;
 }
 
-.right-widgets {
+.rightWidgets {
     display: flex; /* Remove flex: 1 */
     flex-direction: column;
     justify-content: space-between;
 }
 
-.class-widget{
+.classWidget{
 
     background-color: #c2ffdd;
     width: 600px;
@@ -472,13 +594,16 @@ input[type = submit] {
 @keyframes fadeout {
     from {
         display: block;
+
     }
     to {
+
         opacity: 0;
+
     }
 }
 
-.class-widget.fadeout{
+.classWidget.fadeout{
     animation: fadeout 250ms;
     display: none;
 }
@@ -495,7 +620,7 @@ input[type = submit] {
 
 }
 
-.class-widget.visible{
+.classWidget.visible{
     background-color: #c2ffdd;
     width: 300px;
     border-radius: 15px;
@@ -523,7 +648,7 @@ input[type = submit] {
 
 }
 
-.bottom-widget {
+.bottomWidget {
     flex-direction: column;
     float: left;
     background-color: #c2ffdd;
@@ -537,7 +662,7 @@ input[type = submit] {
 }
 
 
-.bottom-widget.visible{
+.bottomWidget.visible{
     display: flex;
     animation: slideinRight 0ms forwards;
 }
@@ -560,6 +685,14 @@ input[type = submit] {
 }
 */
 
+
+.emptyText {
+  color: grey;
+  font-family: 'Roboto Mono', monospace;
+  visibility: visible;
+  margin-left: 3%;
+}
+
 .delete {
   color: red;
   border: 0.3vmin solid red;
@@ -574,7 +707,7 @@ input[type = submit] {
   color: white;
 }
 
-.grade-label { 
+.gradeLabel { 
   padding-top: 1%;
   padding-left: 2%;
   font-family: 'Roboto Mono', monospace;
@@ -606,7 +739,7 @@ input[type = submit] {
   color:black;
 }
 
-.add-div {
+.addDiv {
   display: flex;
   flex-direction: column;
   float: left;
@@ -616,14 +749,14 @@ input[type = submit] {
   border-radius: 10px;
 }
 
-.add-label {
+.addLabel {
   font-family: 'Roboto Mono', monospace;
   text-align: center;;
 }
 
 .enter {
   padding: 1%;
-  width: 75%;
+    width: 75%;
   font-family: 'Roboto Mono', monospace;
   border-radius: 10px;
   border: none;
@@ -643,11 +776,11 @@ input[type = submit] {
   cursor:pointer;
 }
 
-.init-choice {
+.initChoice {
     color: grey;
 }
 
-.submit-button {
+.submitButton {
   padding: 1.5%;
   text-decoration: none;
   text-align: center;
@@ -665,11 +798,11 @@ input[type = submit] {
   transition: 0.3s;
 }
 
-.submit-button:hover {
+.submitButton:hover {
   background: #358157;
 }
 
-.info-div {
+.infoDiv {
   display: flex;
   flex-direction: column;
   float: left;
@@ -683,7 +816,7 @@ input[type = submit] {
   border-radius: 10px;
 }
 
-.info-label {
+.infoLabel {
   padding-top: 1%;
   font-family: 'Roboto Mono', monospace;
   text-align: center;
@@ -691,7 +824,7 @@ input[type = submit] {
   align-items: center;
 }
 
-.gpa-text {
+.gpaText {
   font-family: 'Roboto Mono', monospace;
   text-align: center;
 }
@@ -738,7 +871,7 @@ input[type = submit] {
 } */
 
 /* CSS for table headers */
-.table-header {
+.tableHeader {
   background-color: #3B8D61; /* Header background color */
   color: #fff; /* Header text color */
   text-align: center;
@@ -748,13 +881,13 @@ input[type = submit] {
 }
 
 /* CSS for table cells */
-.table-content {
+.tableContent {
   text-align: center;
   padding: 1px;
 }
 
 /* CSS for add button */
-.add-button button {
+.addButton button {
   padding: 5px 10px;
   background-color: #165751; /* Button background color */
   color: #fff; /* Button text color */
@@ -765,12 +898,12 @@ input[type = submit] {
 }
 
 /* CSS for add button hover */
-.add-button button:hover {
+.addButton button:hover {
   background-color: #3B8D61; /* Hover background color */
 }
 /*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
 
-.grade-form {
+.gradeForm {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -779,7 +912,7 @@ input[type = submit] {
   text-align: center;
 }
 
-.gpa-report {
+.gpaReport {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -788,7 +921,7 @@ input[type = submit] {
   color: #ddd;
 }
 
-.pdf-button {
+.pdfButton {
   padding: 5px 15px;
   border: 0 none;
   display: flex;
@@ -802,7 +935,7 @@ input[type = submit] {
 
 /*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
   /* CSS for the popup form */
-  .grade-form {
+  .gradeForm {
     display: none;
     position: fixed;
     top: 50%;
@@ -813,19 +946,19 @@ input[type = submit] {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
+    z-index: 1;
     font-family: 'Montserrat', sans-serif; /* Font family */
   }
 
   /* CSS for form elements */
-  .grade-form label {
+  .gradeForm label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
   }
 
-  .grade-form input,
-  .grade-form select {
+  .gradeForm input,
+  .gradeForm select {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
@@ -834,7 +967,7 @@ input[type = submit] {
     box-sizing: border-box;
   }
 
-  .grade-form button {
+  .gradeForm button {
     width: 100%;
     padding: 10px;
     background-color: #165751; /* Button background color */
@@ -845,14 +978,14 @@ input[type = submit] {
     font-family: 'Montserrat', sans-serif; /* Font family */
   }
 
-  .grade-form button.button-cancel {
+  .gradeForm button.buttonCancel {
     background-color: #dc3545; /* Cancel button background color */
     margin-top: 10px;
   }
 /*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
 
   /* start of chatbot css */
-  .chat-button {
+  .chatbutton {
     margin-right: 20px;
     height: 50px;
     width: 50px;
@@ -867,19 +1000,19 @@ input[type = submit] {
     border-radius: 50%;
     transition: all 0.2s ease;
   }
-  .show-chatbot .chat-button {
+  .showchatbot .chatbutton {
     transform: rotate(90deg);
   }
-  .chat-button span {
+  .chatbutton span {
     position: absolute;
   }
 
-  .show-chatbot .chat-button span:first-child,
-  .chat-button span:last-child {
+  .showchatbot .chatbutton span:first-child,
+  .chatbutton span:last-child {
     opacity: 0;
   }
 
-  .show-chatbot .chat-button span:last-child {
+  .showchatbot .chatbutton span:last-child {
     opacity: 1;
   }
 
@@ -900,7 +1033,7 @@ input[type = submit] {
     z-index: 1;
   }
 
-  .show-chatbot .chatbot {
+  .showchatbot .chatbot {
     transform: (scale(1));
     opacity: 1;
     pointer-events: auto;
@@ -966,7 +1099,7 @@ input[type = submit] {
     margin: 0 10px 7px 0;
   }
 
-  .chatbot .message-input {
+  .chatbot .messageinput {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -977,7 +1110,7 @@ input[type = submit] {
     border-top: 1px solid #ccc;
   }
 
-  .message-input textarea {
+  .messageinput textarea {
     height: 22px;
     width: 82%;
     border: none;
@@ -987,7 +1120,7 @@ input[type = submit] {
     padding: 16px 15px 16px 0;
   }
 
-  .message-input span {
+  .messageinput span {
     align-self: flex-end;
     height:55px;
     line-height: 55px;
@@ -997,19 +1130,19 @@ input[type = submit] {
     visibility: hidden;
   }
 
-  .message-input textarea:valid ~ span {
+  .messageinput textarea:valid ~ span {
     visibility: visible;
   }
 
 @media(max-width: 490px) {
-  .chat-bot {
+  .chatbot {
     right: 0;
     bottom: 0;
     width: 100%;
     height: 100%;
     border-radius: 0;
   }
-  .chat-bot .chat-box {
+  .chatbot .chatbox {
     height: 90%;
   }
 }

@@ -2,38 +2,38 @@
 
 {% extends "base.html" %} {% block content %}
 <!-- Title for the page -->
-<div class="login-widget">
-    <div class="login-container">
+<div class="loginWidget">
+    <div class="loginContainer">
 
         <!-- Div for the box that the form sits on -->
-        <div class="login-box">
-            <h2 class="login-text">Login</h2>
+        <div class="loginBox">
+            <h2 class="loginText">Login</h2>
             <!-- Form that sends an action to auth.login to check if the username and password exist within the database using the POST method -->
             <form action="{{ url_for('auth.login') }}" method="POST" class="login">
                 <!-- The class for the username, contains the Username label and the text box for inputting it -->
-                <div class="user-login">
+                <div class="userLogin">
                     <label for="username">Username:</label>
-                    <input class="login-field" type="text" id="username" name="username" placeholder="Username" required />
+                    <input class="loginField" type="text" id="username" name="username" placeholder="Username" required />
                 </div>
                 <br />
                 <!-- The class for the password, contains the Password label and the text box for inputting it -->
-                <div class="user-login">
+                <div class="userLogin">
                     <label for="password">Password:</label>
-                    <input class="login-field" type="password" id="password" name="password" placeholder="Password" required />
+                    <input class="loginField" type="password" id="password" name="password" placeholder="Password" required />
                 </div>
                 <br />
-                <div class="login-buttons">
+                <div class="loginButtons">
                     <!-- Submit button -->
-                    <input class="submit-button" type="submit" name="submit" value="Login" />
+                    <input class="submitButton" type="submit" name="submit" value="Login" />
                     <h3> No Account?</h3>
                     <!-- Link to swap to the register page -->
-                    <a class="submit-button" href="{{ url_for( 'auth.register') }}">Register Here</a>
+                    <a class="submitButton" href="{{ url_for( 'auth.register') }}">Register Here</a>
                 </div>
 
   </form>
 </div>
 </div>
-<div class="login-image">
+<div class="loginImage">
     <img src="{{ url_for('static', filename='Review1.jpg') }}" />
 </div>
 </div>
