@@ -238,12 +238,12 @@ h3 {
   /* Creates a box for the login form to go on */
 .login-box {
     padding: 20px;
+    height: 100%;
     background-color: #c2ffdd;
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
   }
 
   /* Makes the login text better formatted within the loginBox */
@@ -528,7 +528,7 @@ input[type = submit] {
 
 }
 
-.bottom-widget {
+.results-widget {
     flex-direction: column;
     float: left;
     background-color: #c2ffdd;
@@ -542,7 +542,7 @@ input[type = submit] {
 }
 
 
-.bottom-widget.visible{
+.results-widget.visible{
     display: flex;
     animation: slideinRight 0ms forwards;
 }

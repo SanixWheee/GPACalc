@@ -23,7 +23,7 @@
         <div class="nav-container">
             <!-- prettier-ignore -->
             <a class="header" href="{{ url_for('home.home') + '#mainScreen'}}">GPAWIZARD</a>
-            <a class="nav-link" href="{{ url_for('home.home') + '#helpScreen' }}">How To Use</a>
+            <a class="nav-link" href="{{ url_for('home.home') + '#help-screen' }}">How To Use</a>
             {% if current_user and current_user.is_authenticated %}
             <!-- These buttons only show up if the user is logged in -->
             <a class="nav-link" href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
@@ -97,9 +97,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Check if the URL contains #helpScreen
-            if (window.location.href.indexOf('#helpScreen') > -1) {
+            if (window.location.href.indexOf('#help-screen') > -1) {
                 // Scroll to the element with id "helpScreen"
-                const helpScreenElement = document.getElementById('helpScreen');
+                const helpScreenElement = document.getElementById('help-screen');
                 if (helpScreenElement) {
                     helpScreenElement.scrollIntoView({
                         behavior: 'smooth'
