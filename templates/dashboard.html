@@ -92,6 +92,11 @@
                 <br>
                 <button type="submit" class="submit-button" id="tutorial">Add Class</button>
             </form>
+            {% if not has_classes %}
+            <form id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
+                <label for="fileInput" class="submit-button">Upload Backup Data</label>
+                <input style="display: none" type="file" name="file" id="fileInput">
+            </form>
 
             <script>
                 document.getElementById('fileInput').addEventListener('change', function() {
@@ -99,7 +104,6 @@
                 });
             </script>
             {% endif %}
-        </div>
 
         <div class="results-widget visible">
             <h1 class="info-label">Your Report</h1>
@@ -108,26 +112,13 @@
             <h2 class="gpa-text">Weighted GPA: {{ weighted_gpa }}</h2>
             <!-- prettier-ignore -->
             <a class="getPDF" href="{{ url_for('dashboard.download_report') }}">Download PDF</a>
+            <a class="getPDF" href="{{ url_for('dashboard.get_backup_data') }}">Download Backup Data</a>
             {% endif %}
         </div>
-        <div class="results-widget visible">
-            <a class="getPDF" href="{{ url_for('dashboard.get_backup_data') }}">Download Backup Data</a>
-            <form id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
-                <label for="fileInput">Upload Backup Data</label>
-                <input class="submit-button" type="file" name="file" id="fileInput">
-            </form>
-
-            <script>
-                document.getElementById('fileInput').addEventListener('change', function() {
-                    document.getElementById('backupForm').submit();
-                });
-            </script>
-        </div>
-    </div>
 </div>
+    </div>
 
-
-
+</div>
 <script>
     const leftWidget = document.querySelector('.left-widget');
     const table = document.querySelector('.table-div');
