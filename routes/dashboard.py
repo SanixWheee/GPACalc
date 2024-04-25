@@ -176,6 +176,15 @@ def dashboard() -> Any:
     -------
     GET /dashboard:
         Render the template for dashboard.html
+    POST /dashboard:
+        Add a class to the user's classes
+
+        Form Data:
+            name: str
+            type: str
+            grade_taken: int
+            received_grade: str
+            credits: float
     """
     if request.method == "POST":
         name = request.form["name"]
@@ -270,6 +279,14 @@ def download_report() -> Any:
 @bp.route("/update_tutorial_status", methods=("GET",))
 @login_required
 def update_tutorial_status() -> Any:
+    """
+    Update the tutorial status of a user
+
+    Methods
+    -------
+    GET dashboard/update_tutorial_status:
+        Update the tutorial status of a user
+    """
     current_user.tutorial_status = TutorialStatus(
         current_user.tutorial_status.value + 1
     )
@@ -321,7 +338,6 @@ def restore_backup_data() -> Any:
 
     json_string = data_bytes.decode()
     data = json.loads(json_string)
-
     classes = Class.query.filter_by(user_id=current_user.id).all()
     class_ids = {cls.id for cls in classes}
 
@@ -340,3 +356,7 @@ def restore_backup_data() -> Any:
             credits=cls["credits"],
         )
         db.session.add(new_cls)
+        class_ids.add(cls["id"])
+
+    db.session.commit()
+    return redirect(url_for("dashboard.dashboard"))
