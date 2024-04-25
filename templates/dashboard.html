@@ -90,11 +90,11 @@
                     <option value="Honors">Honors</option>
                 </select>
                 <br>
-                <button type="submit" class="submit-button" id="tutorial">Add Class</button>
+                <button type="submit" class="submit-button" id="tutorial" style="padding: 1%">Add Class</button>
             </form>
             {% if not has_classes %}
             <form style="margin-top: 10px;"id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
-                <label for="fileInput" class="submit-button">Upload Backup Data</label>
+                <label for="fileInput" class="submit-button" style="padding: 1%">Upload Backup Data</label>
                 <input style="display: none" type="file" name="file" id="fileInput">
             </form>
 
@@ -151,6 +151,7 @@
     var helpText = document.getElementById('helpText');
     var helpNext = document.getElementById('next');
     var helpBack = document.getElementById('back');
+    var footer = document.querySelector('.bottom-bar');
 
     function next() {
         step++;
@@ -184,6 +185,7 @@
             helpText.textContent = "Welcome to the full dashboard! Let's walk through the elements of this page.";
             helpBack.style.display = 'none';
             helpNext.style.display = 'flex';
+            footer.style.display = 'none';
         }
         if (step === 3) {
             overlay.style.display = 'block';
@@ -229,17 +231,31 @@
             helpWidget.style.display = 'flex';
             classWidget.style.zIndex = '0';
             leftWidget.style.zIndex = '0';
-            bottomWidget.style.zIndex = '0';
+            bottomWidget.style.zIndex = '2';
             helpWidget.style.left = '500px';
-            helpWidget.style.top = '200px';
-            helpWidget.style.height = "160px"
-            helpText.textContent = "You have now completed the tutorial! Hit the 'continue' button to finish and happy calculating!";
-            helpBack.style.display = 'none';
+            helpWidget.style.top = '500px';
+            helpWidget.style.height = "210px"
+            helpText.textContent = "The 'Download Backup Data' button allows you to download a zip of your data. Upload it when you are adding your first class, and your data will be imported!";
+            helpBack.style.display = 'flex';
             helpNext.style.display = 'flex';
         }
         if (step === 7) {
+            overlay.style.display = 'block';
+            helpWidget.style.display = 'flex';
+            classWidget.style.zIndex = '0';
+            leftWidget.style.zIndex = '0';
+            bottomWidget.style.zIndex = '0';
+            helpWidget.style.left = '500px';
+            helpWidget.style.top = '200px';
+            helpWidget.style.height = "240px"
+            helpText.textContent = "You have now completed the tutorial! Hit the 'continue' button to finish and happy calculating! If you need extra assistance with any GPA-related questions, use our chatbot found in the footer!";
+            helpBack.style.display = 'flex';
+            helpNext.style.display = 'flex';
+        }
+        if (step === 8) {
             overlay.style.display = 'none';
             helpWidget.style.display = 'none';
+            footer.style.display = 'flex';
             await fetch("/dashboard/update_tutorial_status");
         }
     }
@@ -248,18 +264,19 @@
 
 
     {% if tutorial_status == TutorialStatus.PART_ONE %}
-    if (step === 0) {
-        overlay.style.display = 'block';
-        helpWidget.style.display = 'flex';
-        classWidget.style.zIndex = '0';
-        helpText.textContent = "Welcome to our interactive click-through tutorial! Click the green button to continue, and click the red button to go back a step!";
-        helpBack.style.display = 'none';
-        helpNext.style.display = 'flex';
-    }
+        if (step === 0) {
+            overlay.style.display = 'block';
+            helpWidget.style.display = 'flex';
+            classWidget.style.zIndex = '0';
+            helpText.textContent = "Welcome to our interactive click-through tutorial! Click the green button to continue, and click the red button to go back a step!";
+            helpBack.style.display = 'none';
+            helpNext.style.display = 'flex';
+            footer.style.display = 'none';
+        }
 
     {% elif tutorial_status == TutorialStatus.PART_TWO %}
-    step = 2;
-    showStep();
+        step = 2;
+        showStep();
 
     {% endif %}
 </script>
