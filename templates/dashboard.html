@@ -1,32 +1,32 @@
 {% extends "base.html" %} {% block content %}
 <div class="overlay"></div>
-<div class="helpWidget">
-    <div class="helpWidgetText" id="help-text">
+<div class="help-widget">
+    <div class="help-widget-text" id="helpText">
 
     </div>
-    <div class="helpButtons">
+    <div class="help-buttons">
         <div class="help-button" onclick="next()" id="next">
             Continue
         </div>
         <div class="help-button" style="background: #ED3A46" onclick="back()" id="back">
             Go Back
         </div>
-    </div>
+    </div>  
 
 </div>
 
 <link rel = "stylesheet"
           href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
-<div class = "dashboardContainer">
-    <div class="leftWidget visible">
-      <div class = "tableDiv">
+<div class = "dashboard-container">
+    <div class="left-widget visible">
+      <div class = "table-div">
       <script>
           function redirect(url) {
               window.location.href = url;
           }
       </script>
         {% for grade, classes in classes_by_grade.items() %}
-            <h1 class = "gradeLabel">{{ grade }}th Grade</h1>
+            <h1 class = "grade-label">{{ grade }}th Grade</h1>
             <table class = "{{ grade }} grades">
                 <tr>
                 <th>Class     </th>
@@ -47,13 +47,13 @@
         {% endfor %}
       </div>
     </div>
-    <div class="rightWidgets">
-      <div class = "classWidget visible">
-        <h1 class = "addLabel">Add Classes</h1> <!--                                      update the 'add a class' text on submission-->
+    <div class="right-widgets">
+      <div class = "class-widget visible">
+        <h1 class = "add-label">Add Classes</h1> <!--                                      update the 'add a class' text on submission-->
         <form id = "addClass" action="{{ url_for('dashboard.dashboard') }}" method="POST" onsubmit="toggleVisibility()">
 
               <input type = 'text' id = 'class' class = "enter" name = 'name' placeholder="Enter the class name" list="possibleClasses" required>
-              <datalist id="possibleClasses">
+              <datalist id="possible-classes">
                   {% for cls in all_classes %}
                   <option>{{ cls }}</option>
                   {% endfor %}
@@ -76,7 +76,7 @@
               <br>
               <!-- <label for = "year" class = "dropdownLabel">Year Taken:</label> -->
               <select class = "year dropdown" id="year" name = "grade_taken" required>
-                <option value = "" disabled selected class = "initChoice">Year</option>
+                <option value = "" disabled selected class = "init-choice">Year</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
                 <option value="11">11</option>
@@ -85,22 +85,22 @@
               <br>
               <!-- <label for = "type" class = "dropdownLabel">Class Type:</label> -->
               <select class = "type dropdown" id="type" name = "type" required>
-                <option value = "" disabled selected class = "initChoice">Class Type</option>
+                <option value = "" disabled selected class = "init-choice">Class Type</option>
                 <option value="">Normal</option>
                 <option value="AP">AP</option>
                 <option value="Honors">Honors</option>
               </select>
               <br>
-              <button type="submit" class="submitButton" id="tutorial">Add Class</button>
+              <button type="submit" class="submit-button" id="tutorial">Add Class</button>
 
         </form>
       </div>
 
-      <div class = "bottomWidget visible">
-        <h1 class = "infoLabel">Your Report</h1>
+      <div class = "bottom-widget visible">
+        <h1 class = "info-label">Your Report</h1>
         {% if has_classes %}
-          <h2 class="gpaText">Unweighted GPA: {{ unweighted_gpa }}</h2>
-          <h2 class="gpaText">Weighted GPA: {{ weighted_gpa }}</h2>
+          <h2 class="gpa-text">Unweighted GPA: {{ unweighted_gpa }}</h2>
+          <h2 class="gpa-text">Weighted GPA: {{ weighted_gpa }}</h2>
           <!-- prettier-ignore -->
           <a class = "getPDF" href = "{{ url_for('dashboard.download_report') }}">Download PDF</a>
     {% endif %}
@@ -111,10 +111,10 @@
 
 
 <script>
-    const leftWidget = document.querySelector('.leftWidget');
-    const table = document.querySelector('.tableDiv');
-    const bottomWidget = document.querySelector('.bottomWidget');
-    const classWidget = document.querySelector('.classWidget');
+    const leftWidget = document.querySelector('.left-widget');
+    const table = document.querySelector('.table-div');
+    const bottomWidget = document.querySelector('.bottom-widget');
+    const classWidget = document.querySelector('.class-widget');
     var addClass = document.getElementById('tutorial');
 
 
@@ -136,8 +136,8 @@
 
     var step = 0;
     var overlay = document.querySelector('.overlay');
-    var helpWidget = document.querySelector('.helpWidget');
-    var helpText = document.getElementById('help-text');
+    var helpWidget = document.querySelector('.help-widget');
+    var helpText = document.getElementById('helpText');
     var helpNext = document.getElementById('next');
     var helpBack = document.getElementById('back');
 
