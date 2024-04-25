@@ -312,7 +312,9 @@ def restore_backup_data() -> Any:
     POST dashboard/restore_backup_data:
         Restore the backup data from a zip file
     """
+    print("here", request.files)
     file = request.files["file"]
+    print("here")
     file_bytes = io.BytesIO(file.read())
 
     with zipfile.ZipFile(file_bytes, "r") as z:
@@ -321,7 +323,6 @@ def restore_backup_data() -> Any:
 
     json_string = data_bytes.decode()
     data = json.loads(json_string)
-
     classes = Class.query.filter_by(user_id=current_user.id).all()
     class_ids = {cls.id for cls in classes}
 
@@ -340,3 +341,6 @@ def restore_backup_data() -> Any:
             credits=cls["credits"],
         )
         db.session.add(new_cls)
+        class_ids.add(cls["id"])
+
+    return redirect(url_for("dashboard.dashboard"))

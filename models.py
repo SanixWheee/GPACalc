@@ -151,7 +151,8 @@ class Class(db.Model):
         """
         return {
             "id": self.id,
-            "name": self.full_name(),
+            "name": self.name,
+            "type": self.type,
             "grade_taken": self.grade_taken,
             "received_grade": self.received_grade,
             "credits": self.credits,

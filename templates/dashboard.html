@@ -92,11 +92,21 @@
               </select>
               <br>
               <button type="submit" class="submit-button" id="tutorial">Add Class</button>
-
         </form>
+                {% if not has_classes %}
+                    <form id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
+                      <input class="submit-button" type="file" name="file" id="fileInput">
+                    </form>
+
+                    <script>
+                    document.getElementById('fileInput').addEventListener('change', function() {
+                      document.getElementById('backupForm').submit();
+                    });
+                    </script>
+               {% endif %}
       </div>
 
-      <div class = "bottom-widget visible">
+      <div class = "results-widget visible">
         <h1 class = "info-label">Your Report</h1>
         {% if has_classes %}
           <h2 class="gpa-text">Unweighted GPA: {{ unweighted_gpa }}</h2>
@@ -113,7 +123,7 @@
 <script>
     const leftWidget = document.querySelector('.left-widget');
     const table = document.querySelector('.table-div');
-    const bottomWidget = document.querySelector('.bottom-widget');
+    const bottomWidget = document.querySelector('.results-widget');
     const classWidget = document.querySelector('.class-widget');
     var addClass = document.getElementById('tutorial');
 
