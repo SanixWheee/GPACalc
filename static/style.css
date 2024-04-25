@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
 
+/* CSS styling for the scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -40,75 +41,82 @@ h3 {
     margin-bottom: 5px;
 }
 
-/* Initial style for the navbar */
-.navbar {
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #9FFFCB;
-  transition: top 0.3s;
-  display: inline-block;
-}
+/* NAVBAR STYLING */
+  /* Initial style for the navbar */
+  .navbar {
+    top: 0; 
+    left: 0;
+    width: 100%;
+    background-color: #9FFFCB;
+    transition: top 0.3s;
+    display: inline-block;
+  }
 
-/* Style for the navbar when it's visible */
-.navbar.visible {
-    top: 0;
-}
+  /* Style for the navbar when it's visible */
+  .navbar.visible {
+      top: 0;
+  }
 
-/* Add this CSS to handle navbar position for non-home pages */
-.homepage {
-  top: -80px;
-}
+  /* Add this CSS to handle navbar position for non-home pages */
+  .homepage {
+    top: -80px; /* Positions the bar above the screen so that it can scroll into view */
+  }
 
-/* Initial style for the title */
-.main-title {
-  font-family: 'Roboto Mono', monospace;
-  width: 96.5%;
-  font-size: 210px;
-  text-align: center;
-  margin-top: 120px;
-  color: black;
-  background-color: #9FFFCB;
-  padding: 20px;
-  transition: font-size 0.3s, margin-top 0.3s;
-}
-
-.main-title.small {
-  font-size: 40px;
-  margin-top: 20px;
-}
-
-.nav-container {
-    margin-left: 25px;
-    margin-right: 25px;
-    display: flex;
-    align-items: center;
-}
-
-.header {
+  /* Initial style for the title */
+  .main-title {
     font-family: 'Roboto Mono', monospace;
-    font-size: 36px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-decoration: none;
+    width: 96.5%;
+    font-size: 210px;
+    text-align: center;
+    margin-top: 120px;
     color: black;
-    font-weight: bold;
-}
+    background-color: #9FFFCB;
+    padding: 20px;
+    transition: font-size 0.3s, margin-top 0.3s;
+  }
 
-.nav-link {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 15px;
-    margin-left: 30px;
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-    transition: 0.3s;
-}
+  /* Allows the title to shrink when you scroll past a certain point */
+  .main-title.small {
+    font-size: 40px;
+    margin-top: 20px;
+  }
 
-.nav-link:hover {
-    text-decoration: underline;
-    font-size: 17px;
-}
+  /* CSS styling for all of the links within the navbar */
+  .nav-container {
+      margin-left: 25px;
+      margin-right: 25px;
+      display: flex;
+      align-items: center;
+  }
+
+  /* CSS styling for the website name in the navbar */
+  .header {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 36px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+  }
+
+  /* CSS styling for the rest of the links within the navbar */
+  .nav-link {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 15px;
+      margin-left: 30px;
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+      transition: 0.3s;
+  }
+
+  /* Makes the nav-links respond when you hover over them */
+  .nav-link:hover {
+      text-decoration: underline;
+      font-size: 17px;
+  }
+
 
 .container {
     display: flex;
@@ -118,97 +126,100 @@ h3 {
     font-family: 'Metrophobic', sans-serif;
     flex-direction: column;
 }
+/* WIDGET STYLING */
+  /* The general styling class for all of our widgets on all pages */
+  .widget{
+      margin: 30px;
+      margin-bottom: 40px;
+      padding: 20px;
+      background-color: #c2ffdd;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-.widget{
-    margin: 30px;
-    margin-bottom: 40px;
-    padding: 20px;
-    background-color: #c2ffdd;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+  .bottom-widget{
+      margin-bottom: 75px
+  }
 
-.bottom-widget{
-    margin-bottom: 75px
-}
+  .widget-text{
+      margin: 30px;
+      text-align: center;
+      font-size: 24px;
+      max-width: 400px;
+  }
 
-.widget-text{
-    margin: 30px;
-    text-align: center;
-    font-size: 24px;
-    max-width: 400px;
-}
+  .bottom-widget-text{
+      font-size: 18px;
+  }
 
-.bottom-widget-text{
-    font-size: 18px;
-}
+  .image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 400px;
+      max-height: 400px;
+      border-radius: 10px;
+  }
 
-.image {
-    display: flex;
+  .image img {
+      max-width: 100%;
+      max-height: 100%;
+  }
+
+  .git-link {
+    margin-left: auto;
+  }
+
+  .github {
+    height: 30px;
+    width: 30px;
+    float: right;
+  }
+
+  .text, .image {
+      flex: 1;
+  }
+
+  .footer-text{
+      font-family: 'Roboto Mono', monospace;
+      font-size: 12px;
+      margin-right: 10px;
+  }
+
+  .footer-right {
+    margin-right: 25px; /* Pushes the text to the right by taking up all available space */
+  }
+
+  .login-container{
     justify-content: center;
     align-items: center;
-    max-width: 400px;
-    max-height: 400px;
-    border-radius: 10px;
-}
-
-.image img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.git-link {
-  margin-left: auto;
-}
-
-.github {
-  height: 30px;
-  width: 30px;
-  float: right;
-}
-
-.text, .image {
     flex: 1;
-}
+    flex-direction: column;
+  }
 
-.footer-text{
-    font-family: 'Roboto Mono', monospace;
-    font-size: 12px;
-    margin-right: 10px;
-}
+  .login-widget {
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      max-height: 371px;
+      margin: 70px auto;
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+      overflow: hidden; /* Ensure the shadow doesn't overflow */
+  }
 
-.footer-right {
-  margin-right: 25px; /* Pushes the text to the right by taking up all available space */
-}
-
-.logo {
-  float: left;
-  font-family: 'Honk', system-ui;;
-}
-
-.login-widget {
-    display: flex;
-    width: 100%;
-    max-width: 1000px;
-    max-height: 371px;
-    margin: 70px auto;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-    overflow: hidden; /* Ensure the shadow doesn't overflow */
-}
-
-.register-widget{
-    display: flex;
-    width: 100%;
-    max-width: 1000px;
-    max-height: 371px;
-    margin: 70px auto;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-    overflow: hidden; /* Ensure the shadow doesn't overflow */
-}
+  .register-widget{
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      max-height: 371px;
+      margin: 70px auto;
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+      overflow: hidden; /* Ensure the shadow doesn't overflow */
+  }
 
 .login-image{
     flex: 1;
@@ -222,13 +233,6 @@ h3 {
     width: 100%; /* Let the browser adjust width based on height to maintain aspect ratio */
     max-width: none; /* Remove any maximum width constraints */
     height: auto; /* Match the height of the container */
-}
-
-.login-container{
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    flex-direction: column;
 }
 
   /* Creates a box for the login form to go on */
@@ -716,61 +720,6 @@ input[type = submit] {
   background: #358157;
 }
 
-/*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
-/* .table {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  width: 95%;
-  padding: 30px;
-  background-color: #18637B;
-  border-radius: 25px;
-  margin: auto;
-  margin-top: 20px;
-  border-collapse: collapse;
-  border: 5px solid #3B8D61;
-} */
-
-/* table td, th {
-  border: 3px solid #3B8D61;
-  color: #ddd;
-} */
-
-/* CSS for table headers */
-.table-header {
-  background-color: #3B8D61; /* Header background color */
-  color: #fff; /* Header text color */
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #ddd; /* Border color */
-  border-collapse: collapse;
-}
-
-/* CSS for table cells */
-.table-content {
-  text-align: center;
-  padding: 1px;
-}
-
-/* CSS for add button */
-.add-button button {
-  padding: 5px 10px;
-  background-color: #165751; /* Button background color */
-  color: #fff; /* Button text color */
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif; /* Font family */
-}
-
-/* CSS for add button hover */
-.add-button button:hover {
-  background-color: #3B8D61; /* Hover background color */
-}
-/*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
-
 .grade-form {
   display: flex;
   align-content: center;
@@ -798,61 +747,8 @@ input[type = submit] {
   font-family: 'Montserrat', sans-serif;
 }
 
-
-
-
-/*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
-  /* CSS for the popup form */
-  .grade-form {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #18637B; /* Background color */
-    color: #ddd; /* Text color */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
-    font-family: 'Montserrat', sans-serif; /* Font family */
-  }
-
-  /* CSS for form elements */
-  .grade-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-
-  .grade-form input,
-  .grade-form select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #3B8D61; /* Border color */
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-
-  .grade-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #165751; /* Button background color */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif; /* Font family */
-  }
-
-  .grade-form button.button-cancel {
-    background-color: #dc3545; /* Cancel button background color */
-    margin-top: 10px;
-  }
-/*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
-
-  /* start of chatbot css */
+/* CHATBOT CSS */
+  /* The button to open/close the chatbot */
   .chat-button {
     margin-right: 20px;
     height: 50px;
@@ -868,13 +764,18 @@ input[type = submit] {
     border-radius: 50%;
     transition: all 0.2s ease;
   }
+
+  /* Adds an animation when you click the chat-button */
   .show-chatbot .chat-button {
     transform: rotate(90deg);
   }
+
+  /* Centers the icons on the chat-button */
   .chat-button span {
     position: absolute;
   }
 
+  /*  */
   .show-chatbot .chat-button span:first-child,
   .chat-button span:last-child {
     opacity: 0;
@@ -884,6 +785,9 @@ input[type = submit] {
     opacity: 1;
   }
 
+  /* Creates the container for the chatbot
+  Starts off as hidden, and when a class is
+  added to the main div */
   .chatbot {
     position: fixed;
     right: 40px;
@@ -901,44 +805,55 @@ input[type = submit] {
     z-index: 1;
   }
 
+  /* When the chatbot is visible,
+  it grows in and becomes visible */
   .show-chatbot .chatbot {
     transform: (scale(1));
     opacity: 1;
     pointer-events: auto;
   }
 
+  /* Heading background for the chatbot */
   .chatbot header {
     background: #18637B;
     padding: 16px 0;
     text-align: center;
   }
 
+  /* Heading text */
   .chatbot header h2  {
     color: black;
     font-size: 1.4rem;
   }
 
+  /* styling for the messages within the chatbot */
   .chatbot ul {
-    list-style-type: none;
+    list-style-type: none; /* removes the dot in front of the list elements */
     padding: 5px;
     margin: 0;
   }
 
+  /* The area that the messages take up */
   .chatbot .chatbox {
     height: 400px;
-    overflow-y: auto;
+    overflow-y: auto; /* Allows the user to scroll down when there are too many messages */
     padding: 30px 20px 100px;
   }
 
-  .chatbox .chat {
-    display: flex;
-  }
-
+  /* All of the user-sent messages,
+  pushes it to the right side of the chatbox */
   .chatbox .outgoing {
     margin: 20px 0;
     justify-content: flex-end;
   }
 
+  /* Makes the messages able to be aligned vertically */
+  .chatbox .chat {
+    display: flex;
+  }
+
+  /* The text within the ul element
+  -> the messages that are sent */
   .chatbot .chat p {
     color: black;
     max-width: 75%;
@@ -949,12 +864,15 @@ input[type = submit] {
     background: #18637B;
   }
 
+  /* The styling for the bots messages */
   .chatbot .incoming p {
     color: #000;
     border-radius: 10px 10px 10px 0;
     background: #f2f2f2;
   }
 
+  /* The robot icon that appears next to the
+  incoming messages */
   .chatbot .incoming span {
     height: 32px;
     width: 32px;
@@ -967,6 +885,7 @@ input[type = submit] {
     margin: 0 10px 7px 0;
   }
 
+  /* Positions the message input at the bottom of the chatbot */
   .chatbot .message-input {
     position: absolute;
     bottom: 0;
@@ -978,19 +897,21 @@ input[type = submit] {
     border-top: 1px solid #ccc;
   }
 
+  /* The area where the user can input their message */
   .message-input textarea {
     height: 22px;
     width: 82%;
     border: none;
     outline: none;
     font-size: 0.95rem;
-    resize: none;
+    resize: none; /* Makes it so you cant resize the chatbot */
     padding: 16px 15px 16px 0;
   }
 
+  /* CSS for the send button */
   .message-input span {
     align-self: flex-end;
-    height:55px;
+    height: 55px;
     line-height: 55px;
     color: #18637B;
     font-size: 1.35rem;
@@ -1002,15 +923,95 @@ input[type = submit] {
     visibility: visible;
   }
 
-@media(max-width: 490px) {
-  .chat-bot {
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
+
+  /* Snaps the chatbot to both sides of the screen if
+  the screen width is less than 490px */
+  @media(max-width: 490px) {
+    .chat-bot {
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+    .chat-bot .chat-box {
+      height: 90%;
+    }
   }
-  .chat-bot .chat-box {
-    height: 90%;
-  }
+
+
+/* CLICKTHROUGH TUTORIAL CSS */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: none;
+}
+
+
+.help-widget {
+  flex-direction: column;
+  position: absolute;
+  top: 200px;
+  left: 45px;
+  width: 180px;
+  height: 190px;
+  margin: 30px 30px 40px;
+  padding: 20px;
+  background-color: #74BAE6;
+  border: 5px solid #1E70A3;
+  border-radius: 10px;
+  display: none;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.help-widget-text {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+
+.help-buttons {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  margin-top: 5px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.help-button {
+  padding: 5px;
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  border-radius: 8px;
+  width: 80px;
+  height: 25px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: #80FFDB;
+  color: black;
+  cursor:pointer;
+  transition: 0.3s;
+  margin-right: 4%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 25px;
+  margin-bottom: 100px;
 }
