@@ -653,6 +653,7 @@ h3 {
 
 /* CHATBOT CSS */
   /* The button to open/close the chatbot */
+
   .chat-button {
     margin-right: 20px;
     height: 50px;
@@ -701,7 +702,7 @@ h3 {
     background: #114454;
     border-radius: 15px;
     overflow: hidden;
-    transform: (scale(0.5));
+    transform: scale(0.75);
     opacity: 0;
     pointer-events: none;
     transform-origin: bottom right;
@@ -713,7 +714,7 @@ h3 {
   /* When the chatbot is visible,
   it grows in and becomes visible */
   .show-chatbot .chatbot {
-    transform: (scale(1));
+    transform: scale(0.75);
     opacity: 1;
     pointer-events: auto;
   }
@@ -868,8 +869,8 @@ h3 {
   height: 190px;
   margin: 30px 30px 40px;
   padding: 20px;
-  background-color: #74BAE6;
-  border: 5px solid #1E70A3;
+  background-color: #114454;
+  border: 5px solid #18637B;
   border-radius: 10px;
   display: none;
   align-items: center;
@@ -880,8 +881,7 @@ h3 {
 .help-widget-text {
   font-family: 'Roboto Mono', monospace;
   font-size: 14px;
-  font-weight: bold;
-  color: black;
+  color: white;
 }
 
 .help-buttons {
