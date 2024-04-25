@@ -176,6 +176,15 @@ def dashboard() -> Any:
     -------
     GET /dashboard:
         Render the template for dashboard.html
+    POST /dashboard:
+        Add a class to the user's classes
+
+        Form Data:
+            name: str
+            type: str
+            grade_taken: int
+            received_grade: str
+            credits: float
     """
     if request.method == "POST":
         name = request.form["name"]
