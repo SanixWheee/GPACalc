@@ -26,8 +26,9 @@
 body {
   margin: 0;
   background-color: #25A18E;
-  overflow-x: hidden;
+  overflow-x: hidden; /* makes anything that goes past the screen width hidden */
 }
+
 
 h2 {
   font-family: 'Roboto Mono', monospace;
@@ -39,6 +40,25 @@ h3 {
   font-family: 'Roboto Mono', monospace;
     margin-top: 35px;
     margin-bottom: 5px;
+}
+
+/* Styling for the div that holds the main page content */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  font-family: 'Metrophobic', sans-serif;
+  flex-direction: column;
+}
+
+/* Styling for the div that holds all the dashboard content */
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 25px;
+  margin-bottom: 100px;
 }
 
 /* NAVBAR STYLING */
@@ -117,15 +137,6 @@ h3 {
       font-size: 17px;
   }
 
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 100vw;
-    font-family: 'Metrophobic', sans-serif;
-    flex-direction: column;
-}
 /* WIDGET STYLING */
   /* The general styling class for all of our widgets on all pages */
   .widget{
@@ -139,10 +150,7 @@ h3 {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  .bottom-widget{
-      margin-bottom: 75px
-  }
-
+  /* The text on all the widgets */
   .widget-text{
       margin: 30px;
       text-align: center;
@@ -150,10 +158,18 @@ h3 {
       max-width: 400px;
   }
 
-  .bottom-widget-text{
+  /* Makes sure that the bottom-bar doesn't
+  cover any of the content on the page */
+  .instruction-widget{
+    margin-bottom: 75px
+}
+
+  /* Makes the font size smaller for the instcutions */
+  .instruction-widget-text{
       font-size: 18px;
   }
 
+  /* Stylng for the images that appear in the widgets */
   .image {
       display: flex;
       justify-content: center;
@@ -163,589 +179,507 @@ h3 {
       border-radius: 10px;
   }
 
+  /* Allows the images to fill the entire space that it is assigned to */
   .image img {
       max-width: 100%;
       max-height: 100%;
   }
 
+  /* The link for the github repository */
   .git-link {
     margin-left: auto;
   }
 
+  /* the image for the github repository link */
   .github {
     height: 30px;
     width: 30px;
     float: right;
   }
 
-  .text, .image {
+  /* Makes sure that all the images are t */
+  .text,
+  .image {
       flex: 1;
   }
 
-  .footer-text{
-      font-family: 'Roboto Mono', monospace;
-      font-size: 12px;
-      margin-right: 10px;
-  }
-
-  .footer-right {
-    margin-right: 25px; /* Pushes the text to the right by taking up all available space */
-  }
-
-  .login-container{
+/* LOGIN/REGISTER PAGE CSS */
+  /* Contains all of the content for the login and register page */
+  .login-container {
     justify-content: center;
     align-items: center;
     flex: 1;
     flex-direction: column;
   }
 
+  /* The widget for the login form + image */
   .login-widget {
       display: flex;
       width: 100%;
       max-width: 1000px;
       max-height: 371px;
       margin: 70px auto;
-      border-radius: 10px; /* Rounded corners */
+      border-radius: 10px;
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-      overflow: hidden; /* Ensure the shadow doesn't overflow */
+      overflow: hidden;
   }
 
-  .register-widget{
+  /* The widget for the register form + image */
+  .register-widget {
       display: flex;
       width: 100%;
       max-width: 1000px;
       max-height: 371px;
       margin: 70px auto;
-      border-radius: 10px; /* Rounded corners */
+      border-radius: 10px;
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-      overflow: hidden; /* Ensure the shadow doesn't overflow */
+      overflow: hidden; 
   }
 
-.login-image{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+  /* Styling for the image on the login and register page */
+  .login-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+  }
 
-.login-image img{
-    width: 100%; /* Let the browser adjust width based on height to maintain aspect ratio */
-    max-width: none; /* Remove any maximum width constraints */
-    height: auto; /* Match the height of the container */
-}
+  /* Makes the image on the login and register page fill the defined area */
+  .login-image img {
+      width: 100%;
+      max-width: none;
+      height: auto;
+  }
 
   /* Creates a box for the login form to go on */
-.login-box {
-    padding: 20px;
-    height: 100%;
-    background-color: #c2ffdd;
-    flex-direction: column;
+  .login-box {
+      padding: 20px;
+      height: 100%;
+      background-color: #c2ffdd;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  /* Makes the login text better formatted within the loginBox */
+  .user-login {
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    font-family: 'Roboto Mono', monospace;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* The header for each page, makes it look bigger and centered */
+  .title {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Metrophobic', monospace;
+    color: white;
+    margin-top: 10px;
+    
+  }
+
+  .login-text{
+      font-family: 'Roboto Mono', monospace;
+      margin-top: -30px;
+      margin-bottom: 20px;
+  }
+
+  .login-field {
+      font-family: "Roboto Mono", monospace;
+      border-radius: 10px;
+      padding: 5px;
+      border-width: 2px;
+      border-style: solid;
+      border-color: #ddd;
+  }
+
+  .login-buttons{
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  /* Changes the input button to look better with no border and a better font */
+  input[type = submit] {
+    padding: 5px 15px;
+    border: 0 none;
+    margin: 5px;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  /* The button that takes you between the login page and the register page */
+  .register-button {
+    font-family: 'Montserrat', sans-serif;
+    color: #27a8ee;
+  }
+
+/* FLASHED MESSAGES CSS */
+  /* General styling for the flashes */
+  .flashes {
     display: flex;
+    font-family: 'Roboto Mono', monospace;
+    text-align: justify;
+    width: 10vw;
+    border-radius: 10px;
+    margin: 20px auto 0;
     align-items: center;
     justify-content: center;
   }
 
-  /* Makes the login text better formatted within the loginBox */
-.user-login {
-  text-align: center;
-  font-size: 20px;
-  color: black;
-  font-family: 'Roboto Mono', monospace;
-  justify-content: center;
-  align-items: center;
-}
+  /* Styling for the flashed text */
+  .flashes p {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    white-space: nowrap;
+  }
 
-/* The header for each page, makes it look bigger and centered */
-.title {
-  text-align: center;
-  font-size: 40px;
-  font-family: 'Metrophobic', monospace;
-  color: white;
-  margin-top: 10px;
-  
-}
+  /* Styling for the close button */
+  .flashes span {
+    margin-left: auto;
+    padding: 13px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 25px;
+    transition: 0.1s;
+    border-left: none;
+  }
 
-.login-text{
+  /* When you hover over the close button it increases in size */
+  .flashes span:hover {
+    font-size: 30px;
+    padding: 10.5px;
+    cursor:pointer;
+  }
+
+  /* makes the text color white and adds a border */
+  .info,
+  .error {
+    color: white;
+    border: 3px solid white;
+  }
+
+  /* For the flashes that are for information, the background is black */
+  .info {
+    background-color: #000;
+  }
+
+  /* For the flashes that are for errors, the background is red */
+  .error {
+    background-color: red;
+  }
+
+/* BOTTOM BAR CSS  */
+  /* Adds a bottom bar to every page for the copyright information */
+  .bottom-bar {
+    display: flex;
+    justify-content: space-between; /* Align items to the start and end of the container */
+    align-items: center;
+    position: fixed;
+    bottom: -90px; /* Starts the bottom bar below the screen so it can slide up with animation */
+    width: 100%;
+    background-color: #9FFFCB;
+    padding: 10px;
+    overflow: hidden;
+    transition: bottom 0.3s;
+    z-index: 1;
+  }
+
+  /* Moves the bottom bar back up to the bottom of the screen */
+  .bottom-bar.visible {
+    bottom: 0; /* Move the footer back to its original position */
+  }
+
+  /* Styling for the text on the bottom bar */
+  .footer-text{
     font-family: 'Roboto Mono', monospace;
-    margin-top: -30px;
-    margin-bottom: 20px;
-}
+    font-size: 12px;
+    margin-right: 10px;
+  }
 
-.login-field {
-    font-family: "Roboto Mono", monospace;
-    border-radius: 10px;
-    padding: 5px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #ddd;
-}
-
-.login-buttons{
-    flex-direction: column;
+/* DASHBOARD CSS */
+  /* Contains all the content for the dashboard */
+  .dashboard-container{
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    margin-top: 25px;
+    margin-bottom: 100px;
+  }
+
+  /* Widget that contains the class tables */
+  .left-widget {
+      flex-direction: column;
+      float: left;
+      background-color: #c2ffdd;
+      border-radius: 15px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      width: 50vw;
+      max-height: 100vw;
+      overflow: auto;
+      padding: 20px;
+      display: none;
+      transform: translateX(-200%); /* Starts the widget off the screen so it is not seen */
+  }
+
+  /*  */
+  .left-widget.visible{
+      display: flex;
+      animation: slideinLeft 0ms forwards;
+  }
+
+  .right-widgets {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+
+  .class-widget{
+
+      background-color: #c2ffdd;
+      width: 600px;
+      border-radius: 15px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease-in-out;
+      flex: 1;
+      margin-left: 30px;
+      text-align: center;
+      font-size: 25px;
+      margin-bottom: 30px;
+      display: block;
+
+  }
+
+  .class-widget.fadeout{
+      animation: fadeout 250ms;
+      display: none;
+  }
+
+  .class-widget.visible{
+      background-color: #c2ffdd;
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease-in-out;
+      flex: 1;
+      margin-left: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+      display: block;
+      animation: slideinRightClass 0ms forwards;
+      font-size: 15px;
+  }
+
+
+  .results-widget {
+      flex-direction: column;
+      float: left;
+      background-color: #c2ffdd;
+      border-radius: 15px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      margin-left: 30px;
+      width: 300px;
+      padding: 20px;
+      display: none;
+      transform: translateX(200%);
+  }
+
+  .results-widget.visible{
+      display: flex;
+      animation: slideinRight 0ms forwards;
+  }
+
+  .delete {
+    color: red;
+    border: 0.3vmin solid red;
+    padding: 8px;
+    height: auto;
+    transition: 0.3s;
+  }
+
+  .delete:hover {
+    cursor:pointer;
+    background-color: red;
+    color: white;
+  }
+
+  .grade-label { 
+    padding-top: 1%;
+    padding-left: 2%;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .grades {
+    margin-left: 1%;
+    margin-right: 1%;
     align-items: center;
-}
+    padding-inline: 2%;
+    font-family: 'Roboto Mono', monospace;
+    margin-bottom: 1%;
+  }
 
-/* Changes the input button to look better with no border and a better font */
-input[type = submit] {
-  padding: 5px 15px;
-  border: 0 none;
-  margin: 5px;
-  font-family: 'Roboto Mono', monospace;
-}
+  .grades th {
+    text-align: left;
+    text-decoration: bold;
+    font-size: 20px;
+    padding-right: 50px;
+  }
 
-/* The button that takes you between the login page and the register page */
-.register-button {
-  font-family: 'Montserrat', sans-serif;
-  color: #27a8ee;
-}
+  .grades td {
+    border: 3px solid #18637B;
+    border-spacing: 0 1px;
+    padding-right: 10px;
+    padding-left: 5px;
+    transition: 0.3s;
+    color:black;
+  }
 
-
-.flashes {
-  display: flex;
-  font-family: 'Roboto Mono', monospace;
-  text-align: justify;
-  width: 10vw;
-  border-radius: 10px;
-  margin: 20px auto 0;
-  align-items: center;
-}
-
-.flashes p {
-  flex: 1;
-  margin: 0;
-  text-align: center;
-  padding: 15px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  white-space: nowrap;
-}
-
-.flashes span {
-  margin-left: auto;
-  padding: 13px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  font-size: 25px;
-  transition: 0.1s;
-}
-
-.flashes span:hover {
-  font-size: 30px;
-  padding: 10.5px;
-  cursor:pointer;
-}
-
-.info,
-.error {
-  color: white;
-  border: 3px solid white;
-}
-
-.info {
-  background-color: #000;
-}
-
-.error {
-  background-color: red;
-}
-
-.main-screen {
-  height: 650px;
-  padding-top: 1px;
-  background-color: #18637B;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-}
-
-.help-screen {
-  height: 650px;
-  margin-top: 10px;
-  padding-top: 10px;
-  background-color: #3B8D61;
-  border-radius: 25px;
-}
-
-.steps {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 35px;
-  text-align: center;
-  color: #ddd;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.help-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 50px;
-  text-align: center;
-  color: #ddd;
-}
-
-/* Adds a bottom bar to every page for the copyright information */
-.bottom-bar {
-  display: flex;
-  justify-content: space-between; /* Align items to the start and end of the container */
-  align-items: center;
-  position: fixed;
-  bottom: -90px;
-  width: 100%;
-  background-color: #9FFFCB;
-  padding: 10px;
-  overflow: hidden;
-  transition: bottom 0.3s;
-  z-index: 1;
-}
-
-.bottom-bar.visible {
-  bottom: 0; /* Move the footer back to its original position */
-}
-
-.main-creators {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  display: flex;
-  color: #000000;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.dashboard-container{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 25px;
-  margin-bottom: 100px;
-}
-
-@keyframes slideinLeft {
-    from {
-        display: none;
-    }
-    to{
-        transform: translateX(0);
-        display: flex;
-    }
-
-}
-
-.left-widget {
+  .add-div {
+    display: flex;
     flex-direction: column;
     float: left;
-    background-color: #c2ffdd;
-    border-radius: 15px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    width: 50vw;
-    max-height: 100vw;
-    overflow: auto;
-    padding: 20px;
-    display: none;
-    transform: translateX(-200%);
-}
+    background: #18637B;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+    border-radius: 10px;
+  }
 
-.left-widget.visible{
+  .add-label {
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;;
+  }
+
+  .enter {
+    padding: 1%;
+    width: 75%;
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 2%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor:text;
+  }
+
+  .dropdown {
+    padding: 1%;
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 10px;
+    width: 77%;
+    border: none;
+    margin-bottom: 2%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+  }
+
+  .init-choice {
+      color: grey;
+  }
+
+  .submit-button {
+    padding: 1.5%;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 10px;
+    width: 40%;
+    margin-top: 3%;
+    border: none;
+    margin-bottom: 1%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background: #3B8D61;
+    color: white;
+    cursor:pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+  .submit-button:hover {
+    background: #358157;
+  }
+
+  .info-div {
     display: flex;
-    animation: slideinLeft 0ms forwards;
-}
-
-.right-widgets {
-    display: flex; /* Remove flex: 1 */
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.class-widget{
-
-    background-color: #c2ffdd;
-    width: 600px;
-    border-radius: 15px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
-    flex: 1; /* Add flex: 1 */
-    margin-left: 30px; /* Add margin-left */
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 30px;
-    display: block;
-
-}
-
-
-@keyframes fadeout {
-    from {
-        display: block;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-.class-widget.fadeout{
-    animation: fadeout 250ms;
-    display: none;
-}
-
-
-@keyframes slideinRightClass {
-    from {
-        display: none;
-    }
-    to{
-        transform: translateX(0);
-        display: block;
-    }
-
-}
-
-.class-widget.visible{
-    background-color: #c2ffdd;
-    width: 300px;
-    border-radius: 15px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
-    flex: 1; /* Add flex: 1 */
-    margin-left: 30px; /* Add margin-left */
-    text-align: center;
-    margin-bottom: 30px;
-    display: block;
-    animation: slideinRightClass 0ms forwards;
-    font-size: 15px;
-}
-
-@keyframes slideinRight {
-    from {
-        transform: translateX(200%);
-        display: none;
-    }
-    to{
-        transform: translateX(0);
-        display: flex;
-    }
-
-}
-
-.results-widget {
     flex-direction: column;
     float: left;
-    background-color: #c2ffdd;
-    border-radius: 15px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    margin-left: 30px;
-    width: 300px;
+    margin-top: 2vh;
+    margin-left: 2vh;
+    height: 38vh;
+    width: 47vw;
+    background: #18637B;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+    border-radius: 10px;
+  }
+
+  .info-label {
+    padding-top: 1%;
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gpa-text {
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+  }
+
+  .getPDF {
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    border-radius: 10px;
+    align-self: center;
     padding: 20px;
-    display: none;
-    transform: translateX(200%);
-}
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background: #3B8D61;
+    cursor:pointer;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    margin: 20px;
+  }
 
+  .getPDF:hover {
+    background: #358157;
+  }
 
-.results-widget.visible{
+  .grade-form {
     display: flex;
-    animation: slideinRight 0ms forwards;
-}
+    align-content: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #ddd;
+    text-align: center;
+  }
 
+  .gpa-report {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    color: #ddd;
+  }
 
-/*
-.tableDiv {
-  display: flex;
-  flex-direction: column;
-  float: left;
-  margin-top: 11vh;
-  margin-left: 1vw;
-  background:#c2ffdd;
-  height: 87vh;
-  width: 50vw;
-  border-radius: 10px;
-  overflow-y: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
-}
-*/
-
-.delete {
-  color: red;
-  border: 0.3vmin solid red;
-  padding: 8px;
-  height: auto;
-  transition: 0.3s;
-}
-
-.delete:hover {
-  cursor:pointer;
-  background-color: red;
-  color: white;
-}
-
-.grade-label { 
-  padding-top: 1%;
-  padding-left: 2%;
-  font-family: 'Roboto Mono', monospace;
-}
-
-.grades {
-  margin-left: 1%;
-  margin-right: 1%;
-  align-items: center;
-  padding-inline: 2%;
-  font-family: 'Roboto Mono', monospace;
-  margin-bottom: 1%;
-}
-
-.grades th {
-  text-align: left;
-  text-decoration: bold;
-  font-size: 20px;
-  padding-right: 50px;
-}
-
-.grades td {
-  /* text-align: left; */
-  border: 3px solid #18637B;
-  border-spacing: 0 1px;
-  padding-right: 10px;
-  padding-left: 5px;
-  transition: 0.3s;
-  color:black;
-}
-
-.add-div {
-  display: flex;
-  flex-direction: column;
-  float: left;
-  background: #18637B;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
-  border-radius: 10px;
-}
-
-.add-label {
-  font-family: 'Roboto Mono', monospace;
-  text-align: center;;
-}
-
-.enter {
-  padding: 1%;
-  width: 75%;
-  font-family: 'Roboto Mono', monospace;
-  border-radius: 10px;
-  border: none;
-  margin-bottom: 2%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  cursor:text;
-}
-
-.dropdown {
-  padding: 1%;
-  font-family: 'Roboto Mono', monospace;
-  border-radius: 10px;
-  width: 77%;
-  border: none;
-  margin-bottom: 2%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  cursor:pointer;
-}
-
-.init-choice {
-    color: grey;
-}
-
-.submit-button {
-  padding: 1.5%;
-  text-decoration: none;
-  text-align: center;
-  font-family: 'Roboto Mono', monospace;
-  border-radius: 10px;
-  width: 40%;
-  margin-top: 3%;
-  border: none;
-  margin-bottom: 1%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  background: #3B8D61;
-  color: white;
-  cursor:pointer;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.submit-button:hover {
-  background: #358157;
-}
-
-.info-div {
-  display: flex;
-  flex-direction: column;
-  float: left;
-  margin-top: 2vh;
-  margin-left: 2vh;
-  height: 38vh;
-  width: 47vw;
-  background: #18637B;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
-  border-radius: 10px;
-}
-
-.info-label {
-  padding-top: 1%;
-  font-family: 'Roboto Mono', monospace;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.gpa-text {
-  font-family: 'Roboto Mono', monospace;
-  text-align: center;
-}
-
-.getPDF {
-  font-family: 'Roboto Mono', monospace;
-  text-align: center;
-  border-radius: 10px;
-  align-self: center;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  background: #3B8D61;
-  cursor:pointer;
-  text-decoration: none;
-  color: white;
-  transition: 0.3s;
-  margin: 20px;
-}
-
-.getPDF:hover {
-  background: #358157;
-}
-
-.grade-form {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  font-family: 'Montserrat', sans-serif;
-  color: #ddd;
-  text-align: center;
-}
-
-.gpa-report {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  color: #ddd;
-}
-
-.pdf-button {
-  padding: 5px 15px;
-  border: 0 none;
-  display: flex;
-  margin: auto;
-  align-content: center;
-  font-family: 'Montserrat', sans-serif;
-}
+  .pdf-button {
+    padding: 5px 15px;
+    border: 0 none;
+    display: flex;
+    margin: auto;
+    align-content: center;
+    font-family: 'Montserrat', sans-serif;
+  }
 
 /* CHATBOT CSS */
   /* The button to open/close the chatbot */
@@ -968,7 +902,7 @@ input[type = submit] {
   display: none;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 2;
+  z-index: 100;
 }
 
 .help-widget-text {
@@ -1007,11 +941,43 @@ input[type = submit] {
   font-weight: bold;
 }
 
+/* KEYFRAME ANIMATIONS */
+  @keyframes slideinLeft {
+    from {
+        display: none;
+    }
+    to{
+        transform: translateX(0);
+        display: flex;
+    }
+  }
 
-.dashboard-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 25px;
-  margin-bottom: 100px;
-}
+  @keyframes slideinRight {
+    from {
+        transform: translateX(200%);
+        display: none;
+    }
+    to{
+        transform: translateX(0);
+        display: flex;
+    }
+  }
+
+  @keyframes slideinRightClass {
+    from {
+        display: none;
+    }
+    to{
+        transform: translateX(0);
+        display: block;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+        display: block;
+    }
+    to {
+        opacity: 0;
+    }
+  }
