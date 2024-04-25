@@ -27,7 +27,6 @@
             <!-- These buttons only show up if the user is logged in -->
             <a class="nav-link" href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
             <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
-
             {% else %}
             <!-- This button only shows up if the user is not logged in -->
             <a class="nav-link" href="{{ url_for('auth.login') }}">Login/Signup</a>
@@ -58,7 +57,7 @@
         </button>
     </div>
 
-
+    <!-- Script for the message flashing -->
     {% with messages = get_flashed_messages(with_categories=True) %} {% if
     messages %}
     <script>
@@ -69,6 +68,7 @@
             flashX.style.display = 'none';
         }
     </script>
+    <!-- Div for the flashes -->
     <div class="flashes">
         {% for category, message in messages %}
         <p id="message{{ loop.index }}" class="{{ category }}">{{ message }}</p>
@@ -93,6 +93,7 @@
         });
     </script>
 
+    <!-- Scrolls down to the help screen when the help button is pressed -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Check if the URL contains #helpScreen
@@ -107,6 +108,7 @@
             }
         });
 
+        //If the page is not the home page, the navbar is always visible
         document.addEventListener("DOMContentLoaded", function() {
             const navbar = document.getElementById("navbar");
 
@@ -116,6 +118,7 @@
             }
         });
 
+        //If the page is not the home page, the bottombar is always visible
         document.addEventListener("DOMContentLoaded", function() {
             const bottomBar = document.getElementById("bottom-bar");
 
