@@ -90,11 +90,10 @@
                     <option value="Honors">Honors</option>
                 </select>
                 <br>
-                <button type="submit" class="submit-button" id="tutorial">Add Class</button>
+                <button type="submit" class="submit-button" id="tutorial" style="width: 25%">Add Class</button>
             </form>
-        </div>
             {% if not has_classes %}
-            <form id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
+            <form style="margin-top: 10px;"id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
                 <label for="fileInput" class="submit-button">Upload Backup Data</label>
                 <input style="display: none" type="file" name="file" id="fileInput">
             </form>
@@ -105,6 +104,7 @@
                 });
             </script>
             {% endif %}
+        </div>
 
         <div class="results-widget visible">
             <h1 class="info-label">Your Report</h1>
@@ -112,10 +112,12 @@
             <h2 class="gpa-text">Unweighted GPA: {{ unweighted_gpa }}</h2>
             <h2 class="gpa-text">Weighted GPA: {{ weighted_gpa }}</h2>
             <!-- prettier-ignore -->
+
             <a class="getPDF" href="{{ url_for('dashboard.download_report') }}">Download PDF</a>
             <a class="getPDF" href="{{ url_for('dashboard.get_backup_data') }}">Download Backup Data</a>
             {% endif %}
         </div>
+
     </div>
 
 </div>
@@ -150,18 +152,6 @@
     var helpNext = document.getElementById('next');
     var helpBack = document.getElementById('back');
 
-    /*
-        document.addEventListener('click', function(event) {
-            if(step === 0){
-                overlay.style.display = 'block';
-                helpWidget.style.display = 'flex';
-                classWidget.style.zIndex = '0';
-                helpText.textContent = "Welcome to our interactive click-through tutorial! Click the green button to continue, and click the red button to go back a step!";
-                helpBack.style.display = 'none';
-                helpNext.style.display = 'flex';
-            }
-        });
-    */
     function next() {
         step++;
         showStep();
@@ -173,12 +163,7 @@
         }
         showStep();
     }
-    /*
-        addClass.addEventListener('click', function() {
-            step = 2;
-            showStep();
-        });
-    */
+
     async function showStep() {
         if (step === 1) {
             classWidget.style.zIndex = '2';
