@@ -270,6 +270,14 @@ def download_report() -> Any:
 @bp.route("/update_tutorial_status", methods=("GET",))
 @login_required
 def update_tutorial_status() -> Any:
+    """
+    Update the tutorial status of a user
+
+    Methods
+    -------
+    GET dashboard/update_tutorial_status:
+        Update the tutorial status of a user
+    """
     current_user.tutorial_status = TutorialStatus(
         current_user.tutorial_status.value + 1
     )
