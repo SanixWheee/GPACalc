@@ -27,6 +27,15 @@ bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 def calculate_gpa(classes: Sequence[Class], *, weighted: bool) -> float:
     """
     A method to calculate the GPA of a list of classes
+
+    Parameters
+    ----------
+    classes: Sequence[Class]
+    weighted: bool
+
+    Returns
+    -------
+    float
     """
     data = []
     weights = []  # a class with 2 credits is worth twice as much with a class with 1

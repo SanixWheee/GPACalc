@@ -19,6 +19,7 @@ db = SQLAlchemy()
 
 
 def init_report_dir(app: Flask) -> None:
+    """Create the directory to store user reports if it doesn't exist."""
     if not os.path.exists("/reports"):
         log.info('Created "/reports" directory to store user PDF reports')
         os.mkdir("/reports")
