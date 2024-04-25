@@ -1,17 +1,17 @@
 {% extends "base.html" %} {% block content %}
 
-<div class="registerWidget">
-  <div class="loginImage">
+<div class="register-widget">
+  <div class="login-image">
     <img src="{{ url_for('static', filename='Review2.jpg') }}" />
   </div>
-<div class="loginContainer">
-    <div class="loginBox">
-        <h2 class="loginText">Register</h2>
+<div class="login-container">
+    <div class="login-box">
+        <h2 class="login-text">Register</h2>
         <form action="{{ url_for('auth.register') }}" method="POST" class="register">
-            <div class="userLogin">
+            <div class="user-login">
                 <label for="username">Username:</label>
                 <label for="username"></label>
-                <input class = "loginField"
+                <input class="login-field"
                     type="text"
                     id="username"
                     name="username"
@@ -20,9 +20,9 @@
                 />
             </div>
             <br />
-            <div class="userLogin">
+            <div class="user-login">
                 <label for="password">Password:</label>
-                <input class = "loginField"
+                <input class="login-field"
                     type="password"
                     id="password"
                     name="password"
@@ -31,10 +31,10 @@
                 />
             </div>
             <br />
-            <div class="loginButtons">
-                <input class="submitButton" type="submit" name="submit" value="Register" />
+            <div class="login-buttons">
+                <input class="submit-button" type="submit" name="submit" value="Register" />
                 <h3> Already have an Account? </h3>
-                <a class="submitButton" href="{{ url_for('auth.login') }}">Log in Here</a>
+                <a class="submit-button" href="{{ url_for('auth.login') }}">Log in Here</a>
             </div>
         </form>
     </div>

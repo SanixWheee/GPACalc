@@ -3,7 +3,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-    <h1 class="mainTitle">GPAWIZARD</h1>
+    <h1 class="main-title">GPAWIZARD</h1>
     <div class="widget">
         <div class="image">
             <img src="https://i.ibb.co/r4Wq3G6/img1gpa.png" />
@@ -23,7 +23,7 @@
             <img src="https://i.ibb.co/h2kPLLS/img1gpa-02.png" />
         </div>
     </div>
-    <div class="widget bottom-widget" id="helpScreen">
+    <div class="widget bottom-widget" id="help-screen">
         <div class="image">
             <img src="https://placehold.co/400x400" />
         </div>
@@ -35,7 +35,7 @@
             <p>Step 4: Repeat steps 3 until you have put all the classes you want</p>
             <p>Step 5: Press 'Download PDF' to download your GPA table</p>
             <br>
-            <a class="getPDF" href="{{ url_for('static', filename='website-overview.pdf') }}" download="website-overview.pdf">Download Tutorial</a>
+            <a class="get-pdf" href="{{ url_for('static', filename='website-overview.pdf') }}" download="website-overview.pdf">Download Tutorial</a>
         </div>
     </div>
     <div style="height: 50px"></div>
@@ -52,20 +52,20 @@
         if (isHomePage || currentPagePath === '/') {
             document.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
-                const footer = document.querySelector('.bottomBar');
-                const mainTitle = document.querySelector('.mainTitle');
+                const footer = document.querySelector('.bottom-bar');
+                const mainTitle = document.querySelector('.main-title');
 
                 // Check if the user has scrolled beyond a certain point
                 if (window.scrollY > 90) {
                     // Add class to make navbar visible
                     navbar.classList.add('visible');
-                    // Add class to make mainTitle smaller and move to top left
-                    mainTitle.classList.add('small');
+                    // Add class to make main-title smaller and move to top left
+                    main-title.classList.add('small');
                     footer.classList.add('visible');
                 } else {
                     // Remove classes if the user scrolls back up
                     navbar.classList.remove('visible');
-                    mainTitle.classList.remove('small');
+                    main-title.classList.remove('small');
                     footer.classList.remove('visible');
                 }
             });

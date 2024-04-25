@@ -28,13 +28,13 @@ body {
   overflow-x: hidden;
 }
 
-h2{
+h2 {
   font-family: 'Roboto Mono', monospace;
     margin-top: 35px;
     margin-bottom: 5px;
 }
 
-h3{
+h3 {
   font-family: 'Roboto Mono', monospace;
     margin-top: 35px;
     margin-bottom: 5px;
@@ -61,7 +61,7 @@ h3{
 }
 
 /* Initial style for the title */
-.mainTitle {
+.main-title {
   font-family: 'Roboto Mono', monospace;
   width: 96.5%;
   font-size: 210px;
@@ -73,19 +73,19 @@ h3{
   transition: font-size 0.3s, margin-top 0.3s;
 }
 
-.mainTitle.small {
+.main-title.small {
   font-size: 40px;
   margin-top: 20px;
 }
 
-.nav-container{
+.nav-container {
     margin-left: 25px;
     margin-right: 25px;
     display: flex;
     align-items: center;
 }
 
-.header{
+.header {
     font-family: 'Roboto Mono', monospace;
     font-size: 36px;
     margin-top: 10px;
@@ -95,7 +95,7 @@ h3{
     font-weight: bold;
 }
 
-.navLink{
+.nav-link {
     font-family: 'Roboto Mono', monospace;
     font-size: 15px;
     margin-left: 30px;
@@ -105,7 +105,7 @@ h3{
     transition: 0.3s;
 }
 
-.navLink:hover {
+.nav-link:hover {
     text-decoration: underline;
     font-size: 17px;
 }
@@ -159,7 +159,7 @@ h3{
     max-height: 100%;
 }
 
-.gitLink {
+.git-link {
   margin-left: auto;
 }
 
@@ -188,7 +188,7 @@ h3{
   font-family: 'Honk', system-ui;;
 }
 
-.loginWidget{
+.login-widget {
     display: flex;
     width: 100%;
     max-width: 1000px;
@@ -199,7 +199,7 @@ h3{
     overflow: hidden; /* Ensure the shadow doesn't overflow */
 }
 
-.registerWidget{
+.register-widget{
     display: flex;
     width: 100%;
     max-width: 1000px;
@@ -210,7 +210,7 @@ h3{
     overflow: hidden; /* Ensure the shadow doesn't overflow */
 }
 
-.loginImage{
+.login-image{
     flex: 1;
     display: flex;
     justify-content: center;
@@ -218,13 +218,13 @@ h3{
     overflow: hidden;
 }
 
-.loginImage img{
+.login-image img{
     width: 100%; /* Let the browser adjust width based on height to maintain aspect ratio */
     max-width: none; /* Remove any maximum width constraints */
     height: auto; /* Match the height of the container */
 }
 
-.loginContainer{
+.login-container{
     justify-content: center;
     align-items: center;
     flex: 1;
@@ -232,7 +232,7 @@ h3{
 }
 
   /* Creates a box for the login form to go on */
-.loginBox {
+.login-box {
     padding: 20px;
     background-color: #c2ffdd;
     flex-direction: column;
@@ -242,7 +242,7 @@ h3{
   }
 
   /* Makes the login text better formatted within the loginBox */
-.userLogin {
+.user-login {
   text-align: center;
   font-size: 20px;
   color: black;
@@ -261,13 +261,13 @@ h3{
   
 }
 
-.loginText{
+.login-text{
     font-family: 'Roboto Mono', monospace;
     margin-top: 5px;
     margin-bottom: 20px;
 }
 
-.loginField {
+.login-field {
     font-family: "Roboto Mono", monospace;
     border-radius: 10px;
     padding: 5px;
@@ -276,7 +276,7 @@ h3{
     border-color: #ddd;
 }
 
-.loginButtons{
+.login-buttons{
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -292,7 +292,7 @@ input[type = submit] {
 }
 
 /* The button that takes you between the login page and the register page */
-.registerButton {
+.register-button {
   font-family: 'Montserrat', sans-serif;
   color: #27a8ee;
 }
@@ -347,38 +347,7 @@ input[type = submit] {
   background-color: red;
 }
 
-/* 
-
-.error {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 10px;
-  border: 1px solid #f5c6cb;
-  border-radius: 5px;
-  text-align: center;
-  display: inline-block;
-  position:absolute;
-  z-index: 1;
-}
-
-.info {
-  background-color: #080F0F;
-  color: white;
-  overflow: hidden;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
-  background-color: #d1ecf1;
-  color: #0c5460;
-  padding: 10px;
-  border: 1px solid #bee5eb;
-  border-radius: 5px;
-  text-align: center;
-  display: inline-block;
-} */ */
-
-.mainScreen {
+.main-screen {
   height: 650px;
   padding-top: 1px;
   background-color: #18637B;
@@ -386,7 +355,7 @@ input[type = submit] {
   border-bottom-right-radius: 25px;
 }
 
-.helpScreen {
+.help-screen {
   height: 650px;
   margin-top: 10px;
   padding-top: 10px;
@@ -403,7 +372,7 @@ input[type = submit] {
   padding-right: 10px;
 }
 
-.helpTitle {
+.help-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 50px;
   text-align: center;
@@ -411,7 +380,7 @@ input[type = submit] {
 }
 
 /* Adds a bottom bar to every page for the copyright information */
-.bottomBar {
+.bottom-bar {
   display: flex;
   justify-content: space-between; /* Align items to the start and end of the container */
   align-items: center;
@@ -425,11 +394,11 @@ input[type = submit] {
   z-index: 1;
 }
 
-.bottomBar.visible {
+.bottom-bar.visible {
   bottom: 0; /* Move the footer back to its original position */
 }
 
-.mainCreators {
+.main-creators {
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
   display: flex;
@@ -437,30 +406,8 @@ input[type = submit] {
   padding-left: 10px;
   padding-right: 10px;
 }
-/*
-.dashboardContainer .tableDiv:hover{
-  margin-top: 10vh;
-  margin-left: 0.5vw;
-  height: 89vh;
-  width: 51vw;
-}
 
-.dashboardContainer .addDiv:hover{
-  margin-top: 10vh;
-  margin-left: 0.5vw;
-  height: 49vh;
-  width: 48vw;
-}
-
-.dashboardContainer .infoDiv:hover{
-  margin-top: 1vh;
-  margin-left: 0.5vw;
-  height: 40vh;
-  width: 48vw;
-}
-*/
-
-.dashboardContainer{
+.dashboard-container{
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -479,7 +426,7 @@ input[type = submit] {
 
 }
 
-.leftWidget {
+.left-widget {
     flex-direction: column;
     float: left;
     background-color: #c2ffdd;
@@ -493,18 +440,18 @@ input[type = submit] {
     transform: translateX(-200%);
 }
 
-.leftWidget.visible{
+.left-widget.visible{
     display: flex;
     animation: slideinLeft 0ms forwards;
 }
 
-.rightWidgets {
+.right-widgets {
     display: flex; /* Remove flex: 1 */
     flex-direction: column;
     justify-content: space-between;
 }
 
-.classWidget{
+.class-widget{
 
     background-color: #c2ffdd;
     width: 600px;
@@ -525,16 +472,13 @@ input[type = submit] {
 @keyframes fadeout {
     from {
         display: block;
-
     }
     to {
-
         opacity: 0;
-
     }
 }
 
-.classWidget.fadeout{
+.class-widget.fadeout{
     animation: fadeout 250ms;
     display: none;
 }
@@ -551,7 +495,7 @@ input[type = submit] {
 
 }
 
-.classWidget.visible{
+.class-widget.visible{
     background-color: #c2ffdd;
     width: 300px;
     border-radius: 15px;
@@ -579,7 +523,7 @@ input[type = submit] {
 
 }
 
-.bottomWidget {
+.bottom-widget {
     flex-direction: column;
     float: left;
     background-color: #c2ffdd;
@@ -593,7 +537,7 @@ input[type = submit] {
 }
 
 
-.bottomWidget.visible{
+.bottom-widget.visible{
     display: flex;
     animation: slideinRight 0ms forwards;
 }
@@ -616,14 +560,6 @@ input[type = submit] {
 }
 */
 
-
-.emptyText {
-  color: grey;
-  font-family: 'Roboto Mono', monospace;
-  visibility: visible;
-  margin-left: 3%;
-}
-
 .delete {
   color: red;
   border: 0.3vmin solid red;
@@ -638,7 +574,7 @@ input[type = submit] {
   color: white;
 }
 
-.gradeLabel { 
+.grade-label { 
   padding-top: 1%;
   padding-left: 2%;
   font-family: 'Roboto Mono', monospace;
@@ -670,7 +606,7 @@ input[type = submit] {
   color:black;
 }
 
-.addDiv {
+.add-div {
   display: flex;
   flex-direction: column;
   float: left;
@@ -680,14 +616,14 @@ input[type = submit] {
   border-radius: 10px;
 }
 
-.addLabel {
+.add-label {
   font-family: 'Roboto Mono', monospace;
   text-align: center;;
 }
 
 .enter {
   padding: 1%;
-    width: 75%;
+  width: 75%;
   font-family: 'Roboto Mono', monospace;
   border-radius: 10px;
   border: none;
@@ -707,11 +643,11 @@ input[type = submit] {
   cursor:pointer;
 }
 
-.initChoice {
+.init-choice {
     color: grey;
 }
 
-.submitButton {
+.submit-button {
   padding: 1.5%;
   text-decoration: none;
   text-align: center;
@@ -729,11 +665,11 @@ input[type = submit] {
   transition: 0.3s;
 }
 
-.submitButton:hover {
+.submit-button:hover {
   background: #358157;
 }
 
-.infoDiv {
+.info-div {
   display: flex;
   flex-direction: column;
   float: left;
@@ -747,7 +683,7 @@ input[type = submit] {
   border-radius: 10px;
 }
 
-.infoLabel {
+.info-label {
   padding-top: 1%;
   font-family: 'Roboto Mono', monospace;
   text-align: center;
@@ -755,7 +691,7 @@ input[type = submit] {
   align-items: center;
 }
 
-.gpaText {
+.gpa-text {
   font-family: 'Roboto Mono', monospace;
   text-align: center;
 }
@@ -802,7 +738,7 @@ input[type = submit] {
 } */
 
 /* CSS for table headers */
-.tableHeader {
+.table-header {
   background-color: #3B8D61; /* Header background color */
   color: #fff; /* Header text color */
   text-align: center;
@@ -812,13 +748,13 @@ input[type = submit] {
 }
 
 /* CSS for table cells */
-.tableContent {
+.table-content {
   text-align: center;
   padding: 1px;
 }
 
 /* CSS for add button */
-.addButton button {
+.add-button button {
   padding: 5px 10px;
   background-color: #165751; /* Button background color */
   color: #fff; /* Button text color */
@@ -829,12 +765,12 @@ input[type = submit] {
 }
 
 /* CSS for add button hover */
-.addButton button:hover {
+.add-button button:hover {
   background-color: #3B8D61; /* Hover background color */
 }
 /*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
 
-.gradeForm {
+.grade-form {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -843,7 +779,7 @@ input[type = submit] {
   text-align: center;
 }
 
-.gpaReport {
+.gpa-report {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -852,7 +788,7 @@ input[type = submit] {
   color: #ddd;
 }
 
-.pdfButton {
+.pdf-button {
   padding: 5px 15px;
   border: 0 none;
   display: flex;
@@ -866,7 +802,7 @@ input[type = submit] {
 
 /*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
   /* CSS for the popup form */
-  .gradeForm {
+  .grade-form {
     display: none;
     position: fixed;
     top: 50%;
@@ -882,14 +818,14 @@ input[type = submit] {
   }
 
   /* CSS for form elements */
-  .gradeForm label {
+  .grade-form label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
   }
 
-  .gradeForm input,
-  .gradeForm select {
+  .grade-form input,
+  .grade-form select {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
@@ -898,7 +834,7 @@ input[type = submit] {
     box-sizing: border-box;
   }
 
-  .gradeForm button {
+  .grade-form button {
     width: 100%;
     padding: 10px;
     background-color: #165751; /* Button background color */
@@ -909,14 +845,14 @@ input[type = submit] {
     font-family: 'Montserrat', sans-serif; /* Font family */
   }
 
-  .gradeForm button.buttonCancel {
+  .grade-form button.button-cancel {
     background-color: #dc3545; /* Cancel button background color */
     margin-top: 10px;
   }
 /*KAUSHALS CSS STUFF FOR THE DASHBOARD*/
 
   /* start of chatbot css */
-  .chatbutton {
+  .chat-button {
     margin-right: 20px;
     height: 50px;
     width: 50px;
@@ -931,19 +867,19 @@ input[type = submit] {
     border-radius: 50%;
     transition: all 0.2s ease;
   }
-  .showchatbot .chatbutton {
+  .show-chatbot .chat-button {
     transform: rotate(90deg);
   }
-  .chatbutton span {
+  .chat-button span {
     position: absolute;
   }
 
-  .showchatbot .chatbutton span:first-child,
-  .chatbutton span:last-child {
+  .show-chatbot .chat-button span:first-child,
+  .chat-button span:last-child {
     opacity: 0;
   }
 
-  .showchatbot .chatbutton span:last-child {
+  .show-chatbot .chat-button span:last-child {
     opacity: 1;
   }
 
@@ -964,7 +900,7 @@ input[type = submit] {
     z-index: 1;
   }
 
-  .showchatbot .chatbot {
+  .show-chatbot .chatbot {
     transform: (scale(1));
     opacity: 1;
     pointer-events: auto;
@@ -1030,7 +966,7 @@ input[type = submit] {
     margin: 0 10px 7px 0;
   }
 
-  .chatbot .messageinput {
+  .chatbot .message-input {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -1041,7 +977,7 @@ input[type = submit] {
     border-top: 1px solid #ccc;
   }
 
-  .messageinput textarea {
+  .message-input textarea {
     height: 22px;
     width: 82%;
     border: none;
@@ -1051,7 +987,7 @@ input[type = submit] {
     padding: 16px 15px 16px 0;
   }
 
-  .messageinput span {
+  .message-input span {
     align-self: flex-end;
     height:55px;
     line-height: 55px;
@@ -1061,19 +997,19 @@ input[type = submit] {
     visibility: hidden;
   }
 
-  .messageinput textarea:valid ~ span {
+  .message-input textarea:valid ~ span {
     visibility: visible;
   }
 
 @media(max-width: 490px) {
-  .chatbot {
+  .chat-bot {
     right: 0;
     bottom: 0;
     width: 100%;
     height: 100%;
     border-radius: 0;
   }
-  .chatbot .chatbox {
+  .chat-bot .chat-box {
     height: 90%;
   }
 }

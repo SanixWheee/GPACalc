@@ -2,16 +2,16 @@
 
 <link rel = "stylesheet"
           href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
-<div class = "dashboardContainer">
-    <div class="leftWidget visible">
-      <div class = "tableDiv">
+<div class = "dashboard-container">
+    <div class="left-widget visible">
+      <div class = "table-div">
       <script>
           function redirect(url) {
               window.location.href = url;
           }
       </script>
         {% for grade, classes in classes_by_grade.items() %}
-            <h1 class = "gradeLabel">{{ grade }}th Grade</h1>
+            <h1 class = "grade-label">{{ grade }}th Grade</h1>
             <table class = "{{ grade }} grades">
                 <tr>
                 <th>Class     </th>
@@ -24,7 +24,7 @@
                     <td>{{class.received_grade}}</td>
                     <td>{{class.credits}}</td>
                     <td style="border: none">
-                        <span class = "material-symbols-outlined delete" id = "deleteButton" onclick="redirect('{{ url_for('dashboard.delete_class', class_id=class.id) }}')">delete</span>
+                        <span class = "material-symbols-outlined delete" id = "delete-button" onclick="redirect('{{ url_for('dashboard.delete_class', class_id=class.id) }}')">delete</span>
                     </td>
                 </tr>
                 {% endfor %}
@@ -32,10 +32,10 @@
         {% endfor %}
       </div>
     </div>
-    <div class="rightWidgets">
-      <div class = "classWidget visible">
-        <h1 class = "addLabel">Add Classes</h1> <!--                                      update the 'add a class' text on submission-->
-        <form id = "addClass" action="{{ url_for('dashboard.dashboard') }}" method="POST" onsubmit="toggleVisibility()">
+    <div class="right-widgets">
+      <div class = "class-widget visible">
+        <h1 class = "add-label">Add Classes</h1> <!--                                      update the 'add a class' text on submission-->
+        <form id = "add-class" action="{{ url_for('dashboard.dashboard') }}" method="POST" onsubmit="toggleVisibility()">
 
               <input type = 'text' id = 'class' class = "enter" name = 'name' placeholder="Enter the class name" list="possibleClasses" required>
               <datalist id="possibleClasses">
@@ -44,7 +44,6 @@
                   {% endfor %}
               </datalist>
               <br>
-              <!-- <label for = "grade" class = "dropdownLabel">Grade Recieved:</label> -->
               <select class = "grade dropdown" id="grade" name = "received_grade" required>
                 <option value = "" disabled selected class = "initChoice">Class grade</option>
                 <option value="A">A</option>
@@ -76,16 +75,16 @@
                 <option value="Honors">Honors</option>
               </select>
               <br>
-              <button type="submit" class="submitButton">Add Class</button>
+              <button type="submit" class="submit-button">Add Class</button>
 
         </form>
       </div>
 
-      <div class = "bottomWidget visible">
-        <h1 class = "infoLabel">Your Report</h1>
+      <div class = "bottom-widget visible">
+        <h1 class = "info-label">Your Report</h1>
         {% if has_classes %}
-          <h2 class="gpaText">Unweighted GPA: {{ unweighted_gpa }}</h2>
-          <h2 class="gpaText">Weighted GPA: {{ weighted_gpa }}</h2>
+          <h2 class="gpa-text">Unweighted GPA: {{ unweighted_gpa }}</h2>
+          <h2 class="gpa-text">Weighted GPA: {{ weighted_gpa }}</h2>
           <!-- prettier-ignore -->
           <a class = "getPDF" href = "{{ url_for('dashboard.download_report') }}">Download PDF</a>
     {% endif %}
@@ -94,13 +93,11 @@
 </div>
 
 
-
 <script>
-    const leftWidget = document.querySelector('.leftWidget');
-    const table = document.querySelector('.tableDiv');
-    const bottomWidget = document.querySelector('.bottomWidget');
-    const classWidget = document.querySelector('.classWidget');
-
+    const leftWidget = document.querySelector('.left-widget');
+    const table = document.querySelector('.table-div');
+    const bottomWidget = document.querySelector('.bottom-widget');
+    const classWidget = document.querySelector('.class-widget');
 
     window.onload = function () {
         if(table.getElementsByTagName('table').length < 1){
@@ -113,10 +110,8 @@
             bottomWidget.classList.add('visible');
             classWidget.classList.add('visible');
 
-
         }
     };
-
 
 /*
     document.addEventListener('click', function(event) {
@@ -126,12 +121,10 @@
     });
 */
 
-
 </script>
 
     {% if tutorial %}
          code goes here for tutirla
     {% endif %}
-
 
 {% endblock %}

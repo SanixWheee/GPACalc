@@ -1,7 +1,7 @@
-const chatInput = document.querySelector(".messageinput textarea"); //gets the textInput field (textbox) from the base.html file and keeps a reference to that
-const sendChatBtn = document.querySelector(".messageinput span"); //gets the span field (send button) from the base.html file and keeps a reference to that
+const chatInput = document.querySelector(".message-input textarea"); //gets the textInput field (textbox) from the base.html file and keeps a reference to that
+const sendChatBtn = document.querySelector(".message-input span"); //gets the span field (send button) from the base.html file and keeps a reference to that
 const chatbox = document.querySelector(".chatbox"); //gets the chatbox from the base.html file and keeps a reference to that
-const chatToggle = document.querySelector(".chatbutton"); //gets the button to open/close the chatbot from the base.html file and keeps a reference to that
+const chatToggle = document.querySelector(".chat-button"); //gets the button to open/close the chatbot from the base.html file and keeps a reference to that
 
 let userMessage;
 
@@ -135,6 +135,6 @@ chatInput.addEventListener("keydown", (press) => {
     }
 })
 
-chatToggle.addEventListener("click", () => document.body.classList.toggle("showchatbot"), chatbox.scrollTo(0, chatbox.scrollHeight));
+chatToggle.addEventListener("click", () => document.body.classList.toggle("show-chatbot"), chatbox.scrollTo(0, chatbox.scrollHeight));
 sendChatBtn.addEventListener("click", handleChat); //checks to see if the user has clicked on the span (send button), and runs the 'handleChat' const
 document.addEventListener("DOMContentLoaded", initMessages);

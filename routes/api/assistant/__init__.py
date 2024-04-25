@@ -22,7 +22,7 @@ def check_thread(func: Callable[P, R]) -> Callable[P, R]:
                 messages=[
                     {
                         "role": "assistant",
-                        "content": "Welcome to the GPA Wizard interactive chatbot! How may I help you?",
+                        "content": "Welcome to the GPA Wizard interactive chatbot, powered by OpenAI! How may I help you?",
                     }
                 ]
             ).id
