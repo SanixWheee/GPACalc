@@ -1,7 +1,7 @@
-import json
 import io
-import zipfile
+import json
 import statistics
+import zipfile
 from collections import defaultdict
 from typing import Any, List, Sequence
 
@@ -12,9 +12,9 @@ from flask import (
     redirect,
     render_template,
     request,
+    send_file,
     send_from_directory,
     url_for,
-    send_file
 )
 from flask_login import current_user, login_required
 from reportlab.lib import colors
@@ -23,7 +23,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 from app import db
-from models import Class, User, TutorialStatus
+from models import Class, TutorialStatus, User
 
 bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
@@ -270,10 +270,12 @@ def download_report() -> Any:
 @bp.route("/update_tutorial_status", methods=("GET",))
 @login_required
 def update_tutorial_status() -> Any:
-    current_user.tutorial_status = TutorialStatus(current_user.tutorial_status.value + 1)
+    current_user.tutorial_status = TutorialStatus(
+        current_user.tutorial_status.value + 1
+    )
     db.session.add(current_user)
     db.session.commit()
-    return ("", 204)
+    return "", 204
 
 
 @bp.route("get_backup_data", methods=("GET",))
@@ -310,11 +312,11 @@ def restore_backup_data() -> Any:
     POST dashboard/restore_backup_data:
         Restore the backup data from a zip file
     """
-    file = request.files['file']
+    file = request.files["file"]
     file_bytes = io.BytesIO(file.read())
 
-    with zipfile.ZipFile(file_bytes, 'r') as z:
-        with z.open('data.json') as f:
+    with zipfile.ZipFile(file_bytes, "r") as z:
+        with z.open("data.json") as f:
             data_bytes = f.read()
 
     json_string = data_bytes.decode()
@@ -325,16 +327,16 @@ def restore_backup_data() -> Any:
 
     for cls in data:
         # make sure that we are not uploading duplicate classes
-        if cls['id'] in class_ids:
+        if cls["id"] in class_ids:
             continue
 
         new_cls = Class(
-            id=cls['id'],
+            id=cls["id"],
             user_id=current_user.id,
-            name=cls['name'],
-            type=cls['type'],
-            grade_taken=cls['grade_taken'],
-            received_grade=cls['received_grade'],
-            credits=cls['credits']
+            name=cls["name"],
+            type=cls["type"],
+            grade_taken=cls["grade_taken"],
+            received_grade=cls["received_grade"],
+            credits=cls["credits"],
         )
         db.session.add(new_cls)

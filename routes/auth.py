@@ -5,7 +5,7 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
 
 from app import db
-from models import User, TutorialStatus
+from models import TutorialStatus, User
 
 bp = Blueprint("auth", __name__)
 

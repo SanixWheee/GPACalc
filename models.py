@@ -38,6 +38,7 @@ class TutorialStatus(enum.Enum):
     PART_TWO: int
     FINISHED: int
     """
+
     PART_ONE = 1
     PART_TWO = 2
     FINISHED = 3
