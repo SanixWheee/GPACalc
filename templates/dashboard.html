@@ -90,7 +90,7 @@
                     <option value="Honors">Honors</option>
                 </select>
                 <br>
-                <button type="submit" class="submit-button" id="tutorial" style="width: 25%">Add Class</button>
+                <button type="submit" class="submit-button" id="tutorial">Add Class</button>
             </form>
             {% if not has_classes %}
             <form style="margin-top: 10px;"id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
