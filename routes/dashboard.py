@@ -271,7 +271,9 @@ def download_report() -> Any:
 @login_required
 def update_tutorial_status() -> Any:
     current_user.tutorial_status = TutorialStatus(current_user.tutorial_status.value + 1)
-    return 200
+    db.session.add(current_user)
+    db.session.commit()
+    return ("", 204)
 
 
 @bp.route("get_backup_data", methods=("GET",))
