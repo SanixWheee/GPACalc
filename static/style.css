@@ -239,6 +239,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
   }
 
   /* Makes the login text better formatted within the loginBox */
@@ -263,7 +264,7 @@ h3 {
 
 .login-text{
     font-family: 'Roboto Mono', monospace;
-    margin-top: 5px;
+    margin-top: -30px;
     margin-bottom: 20px;
 }
 
