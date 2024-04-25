@@ -92,6 +92,7 @@
                 <br>
                 <button type="submit" class="submit-button" id="tutorial">Add Class</button>
             </form>
+        </div>
             {% if not has_classes %}
             <form id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
                 <label for="fileInput" class="submit-button">Upload Backup Data</label>
@@ -115,7 +116,6 @@
             <a class="getPDF" href="{{ url_for('dashboard.get_backup_data') }}">Download Backup Data</a>
             {% endif %}
         </div>
-</div>
     </div>
 
 </div>
