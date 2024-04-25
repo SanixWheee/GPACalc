@@ -312,9 +312,7 @@ def restore_backup_data() -> Any:
     POST dashboard/restore_backup_data:
         Restore the backup data from a zip file
     """
-    print("here", request.files)
     file = request.files["file"]
-    print("here")
     file_bytes = io.BytesIO(file.read())
 
     with zipfile.ZipFile(file_bytes, "r") as z:
@@ -343,4 +341,5 @@ def restore_backup_data() -> Any:
         db.session.add(new_cls)
         class_ids.add(cls["id"])
 
+    db.session.commit()
     return redirect(url_for("dashboard.dashboard"))
