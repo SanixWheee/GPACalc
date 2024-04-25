@@ -92,7 +92,7 @@
                 <br>
                 <button type="submit" class="submit-button" id="tutorial">Add Class</button>
             </form>
-        </div>
+
             {% if not has_classes %}
             <form id="backupForm" action="{{ url_for('dashboard.restore_backup_data') }}" method="POST" enctype="multipart/form-data">
                 <label for="fileInput" class="submit-button">Upload Backup Data</label>
@@ -105,7 +105,7 @@
                 });
             </script>
             {% endif %}
-
+</div>
         <div class="results-widget visible">
             <h1 class="info-label">Your Report</h1>
             {% if has_classes %}
