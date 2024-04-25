@@ -431,20 +431,21 @@ h3 {
       transform: translateX(-200%); /* Starts the widget off the screen so it is not seen */
   }
 
-  /*  */
+  /* When the visible class is added to the left widget, it appears on the screen */
   .left-widget.visible{
       display: flex;
       animation: slideinLeft 0ms forwards;
   }
 
+  /* Styling for the two right widgets */
   .right-widgets {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
   }
 
+  /* Styling for the adding classes widget */
   .class-widget{
-
       background-color: #c2ffdd;
       width: 600px;
       border-radius: 15px;
@@ -457,14 +458,16 @@ h3 {
       font-size: 25px;
       margin-bottom: 30px;
       display: block;
-
   }
 
+  /* When the first class is added, the class widget fades out of view and appears in the top right */
   .class-widget.fadeout{
       animation: fadeout 250ms;
       display: none;
   }
 
+  /* When the visible class is added to the class widget, it appears on the screen 
+  The class widget also gets resized to fit the new dimensions of the dashboard */
   .class-widget.visible{
       background-color: #c2ffdd;
       width: 300px;
@@ -481,7 +484,7 @@ h3 {
       font-size: 15px;
   }
 
-
+  /* Styling for the results widget */
   .results-widget {
       flex-direction: column;
       float: left;
@@ -495,11 +498,13 @@ h3 {
       transform: translateX(200%);
   }
 
+  /* When the visible class is added to the results widget, it appears on the screen */
   .results-widget.visible{
       display: flex;
       animation: slideinRight 0ms forwards;
   }
 
+  /* Styling for the delete button */
   .delete {
     color: red;
     border: 0.3vmin solid red;
@@ -508,18 +513,21 @@ h3 {
     transition: 0.3s;
   }
 
+  /* Makes the delete button background red on hover, and the icon white */
   .delete:hover {
     cursor:pointer;
     background-color: red;
     color: white;
   }
 
+  /* Styling for the big grade label */
   .grade-label { 
     padding-top: 1%;
     padding-left: 2%;
     font-family: 'Roboto Mono', monospace;
   }
 
+  /* Styling for the grade table */
   .grades {
     margin-left: 1%;
     margin-right: 1%;
@@ -529,6 +537,7 @@ h3 {
     margin-bottom: 1%;
   }
 
+  /* Styling for the headers of the grade table */
   .grades th {
     text-align: left;
     text-decoration: bold;
@@ -536,6 +545,7 @@ h3 {
     padding-right: 50px;
   }
 
+  /* Styling for the rows of the grade table */
   .grades td {
     border: 3px solid #18637B;
     border-spacing: 0 1px;
@@ -545,21 +555,13 @@ h3 {
     color:black;
   }
 
-  .add-div {
-    display: flex;
-    flex-direction: column;
-    float: left;
-    background: #18637B;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: 0.3s ease;
-    border-radius: 10px;
-  }
-
+  /* Styling for the class widget header */
   .add-label {
     font-family: 'Roboto Mono', monospace;
     text-align: center;;
   }
 
+  /* Styling for the text-box inputs on the class widget */
   .enter {
     padding: 1%;
     width: 75%;
@@ -571,6 +573,7 @@ h3 {
     cursor:text;
   }
 
+  /* Styling for the dropdown inputs on the class widget */
   .dropdown {
     padding: 1%;
     font-family: 'Roboto Mono', monospace;
@@ -582,10 +585,12 @@ h3 {
     cursor:pointer;
   }
 
+  /* The first choice of the dropdown inputs are not selectable and grey */
   .init-choice {
       color: grey;
   }
 
+  /* Styling for the submit button on the class widget */
   .submit-button {
     padding: 1.5%;
     text-decoration: none;
@@ -604,24 +609,12 @@ h3 {
     transition: 0.3s;
   }
 
+  /* When you hover over the submit button it becomes a darker color */
   .submit-button:hover {
     background: #358157;
   }
 
-  .info-div {
-    display: flex;
-    flex-direction: column;
-    float: left;
-    margin-top: 2vh;
-    margin-left: 2vh;
-    height: 38vh;
-    width: 47vw;
-    background: #18637B;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: 0.3s ease;
-    border-radius: 10px;
-  }
-
+  /* Label for the results widget */
   .info-label {
     padding-top: 1%;
     font-family: 'Roboto Mono', monospace;
@@ -630,17 +623,19 @@ h3 {
     align-items: center;
   }
 
+  /* Styling for the text that displays your gpa */
   .gpa-text {
     font-family: 'Roboto Mono', monospace;
     text-align: center;
   }
 
+  /* Styling for the btton to download a PDF report of your grades */
   .getPDF {
     font-family: 'Roboto Mono', monospace;
     text-align: center;
     border-radius: 10px;
     align-self: center;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     background: #3B8D61;
     cursor:pointer;
@@ -648,37 +643,12 @@ h3 {
     color: white;
     transition: 0.3s;
     margin: 20px;
+    margin-bottom: 0;
   }
 
+  /* Makes the background slightly darker when you hover over the button*/
   .getPDF:hover {
     background: #358157;
-  }
-
-  .grade-form {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    color: #ddd;
-    text-align: center;
-  }
-
-  .gpa-report {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    color: #ddd;
-  }
-
-  .pdf-button {
-    padding: 5px 15px;
-    border: 0 none;
-    display: flex;
-    margin: auto;
-    align-content: center;
-    font-family: 'Montserrat', sans-serif;
   }
 
 /* CHATBOT CSS */
@@ -709,12 +679,13 @@ h3 {
     position: absolute;
   }
 
-  /*  */
+  /* Makes the icon that is not currently in use invisible */
   .show-chatbot .chat-button span:first-child,
   .chat-button span:last-child {
     opacity: 0;
   }
 
+  /* Makes the icon that is in use visible */
   .show-chatbot .chat-button span:last-child {
     opacity: 1;
   }
@@ -853,6 +824,7 @@ h3 {
     visibility: hidden;
   }
 
+  /* Makes the send button only visible if there is text inside the message input */
   .message-input textarea:valid ~ span {
     visibility: visible;
   }
