@@ -140,6 +140,44 @@ class Class(db.Model):
                 gpa += 0.5
         return gpa
 
+    def to_json(self) -> Dict[str, str]:
+        """
+        Convert the class to a JSON object
+
+        Returns
+        -------
+        Dict[str, str]
+        """
+        return {
+            "id": self.id,
+            "name": self.full_name(),
+            "grade_taken": self.grade_taken,
+            "received_grade": self.received_grade,
+            "credits": self.credits,
+        }
+
+    @classmethod
+    def from_json(cls, data: Dict[str, str]) -> Class:
+        """
+        Create a class from a JSON object
+
+        Parameters
+        ----------
+        data: Dict[str, str]
+
+        Returns
+        -------
+        Class
+        """
+        return cls(
+            id=data["id"],
+            name=data["name"],
+            type=data["type"],
+            grade_taken=data["grade_taken"],
+            received_grade=data["received_grade"],
+            credits=data["credits"],
+        )
+
 
 def init_db(app: Flask) -> None:
     # by putting this function in the models.py file,
