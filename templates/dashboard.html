@@ -51,7 +51,7 @@
             <form id="addClass" action="{{ url_for('dashboard.dashboard') }}" method="POST">
 
                 <input type='text' id='class' class="enter" name='name' placeholder="Enter the class name" list="possibleClasses" required>
-                <datalist id="possible-classes">
+                <datalist id="possibleClasses">
                     {% for cls in all_classes %}
                     <option>{{ cls }}</option>
                     {% endfor %}

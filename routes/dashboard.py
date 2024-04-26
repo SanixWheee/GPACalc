@@ -338,16 +338,10 @@ def restore_backup_data() -> Any:
 
     json_string = data_bytes.decode()
     data = json.loads(json_string)
-    classes = Class.query.filter_by(user_id=current_user.id).all()
-    class_ids = {cls.id for cls in classes}
 
     for cls in data:
-        # make sure that we are not uploading duplicate classes
-        if cls["id"] in class_ids:
-            continue
 
         new_cls = Class(
-            id=cls["id"],
             user_id=current_user.id,
             name=cls["name"],
             type=cls["type"],
@@ -356,7 +350,6 @@ def restore_backup_data() -> Any:
             credits=cls["credits"],
         )
         db.session.add(new_cls)
-        class_ids.add(cls["id"])
 
     db.session.commit()
     return redirect(url_for("dashboard.dashboard"))
